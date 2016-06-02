@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include layout="@layout/layout_title" />
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+
+        <ListView
+            android:id="@+id/boxMap_dataList"
+            android:layout_width="wrap_content"
+            android:layout_height="250dp"
+            android:dividerHeight="1px"
+            android:paddingLeft="12dp"
+            android:scrollbars="none"
+            android:paddingRight="12dp"
+            android:divider="@color/line_gray"
+            android:layout_alignParentBottom="true"/>
+
+        <com.baidu.mapapi.map.MapView
+            android:id="@+id/boxMap_bmapView"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@id/boxMap_dataList"
+            android:layout_alignParentTop="true"
+            android:clickable="true" />
+
+        <ImageView
+            android:id="@+id/boxMap_positionIcon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@id/boxMap_bmapView"
+            android:layout_alignLeft="@id/boxMap_bmapView"
+            android:layout_margin="5dp"
+            android:src="@drawable/map_position_icon" />
+
+        <ImageView
+            android:id="@+id/boxMap_mapIcon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@id/boxMap_bmapView"
+            android:layout_alignRight="@id/boxMap_bmapView"
+            android:layout_margin="5dp"
+            android:src="@drawable/map_narrow_icon" />
+
+        <ProgressBar
+            android:id="@+id/boxMap_progress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:visibility="gone" />
+
+    </RelativeLayout>
+
+</LinearLayout>

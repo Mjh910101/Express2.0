@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/loginDialog_registerLayout"
+    android:layout_width="match_parent"
+    android:layout_height="270dp"
+    android:orientation="vertical"
+    android:visibility="visible">
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        android:background="@drawable/orange_box_white_background_btn"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/register_telIcon"
+            android:layout_width="20dp"
+            android:layout_height="30dp"
+            android:layout_centerVertical="true"
+            android:src="@drawable/tel_num_icon" />
+
+        <EditText
+            android:id="@+id/register_telInput"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/register_telIcon"
+            android:background="@drawable/input_stype_lucency"
+            android:hint="@string/input_tel"
+            android:inputType="number"
+            android:textColor="@color/black"
+            android:textColorHint="@color/text_gray_02"
+            android:textSize="@dimen/text_size_17" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/sms_phoneBox"
+        android:layout_marginBottom="5dp"
+        android:background="@drawable/orange_box_white_background_btn"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/register_codeInputIcon"
+            android:layout_width="20dp"
+            android:layout_height="30dp"
+            android:layout_centerVertical="true"
+            android:src="@drawable/code_icon" />
+
+        <TextView
+            android:id="@+id/register_getCode"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:background="@drawable/orange_box_orange_background_btn"
+            android:paddingBottom="5dp"
+            android:paddingLeft="7dp"
+            android:paddingRight="7dp"
+            android:paddingTop="5dp"
+            android:text="@string/get_code"
+            android:textColor="@color/whitle"
+            android:textSize="@dimen/text_size_14" />
+
+        <EditText
+            android:id="@+id/register_codeInput"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@id/register_getCode"
+            android:layout_toRightOf="@id/register_codeInputIcon"
+            android:background="@drawable/input_stype_lucency"
+            android:hint="@string/input_code"
+            android:textColor="@color/black"
+            android:textColorHint="@color/text_gray_02"
+            android:textSize="@dimen/text_size_17" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        android:background="@drawable/orange_box_white_background_btn"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/register_passwordIcon"
+            android:layout_width="20dp"
+            android:layout_height="30dp"
+            android:layout_centerVertical="true"
+            android:src="@drawable/password_icon" />
+
+        <EditText
+            android:id="@+id/register_passwordInput"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/register_passwordIcon"
+            android:background="@drawable/input_stype_lucency"
+            android:hint="@string/input_password"
+            android:inputType="textPassword"
+            android:textColor="@color/black"
+            android:textColorHint="@color/text_gray_02"
+            android:textSize="@dimen/text_size_17" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/orange_box_white_background_btn">
+
+        <ImageView
+            android:id="@+id/register_passwordJudge"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:src="@drawable/password_true"
+            android:visibility="invisible" />
+
+
+        <ImageView
+            android:id="@+id/register_passwordAgainIcon"
+            android:layout_width="20dp"
+            android:layout_height="30dp"
+            android:layout_centerVertical="true"
+            android:src="@drawable/password_icon" />
+
+        <EditText
+            android:id="@+id/register_passwordAgainInput"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@id/register_passwordJudge"
+            android:layout_toRightOf="@id/register_passwordAgainIcon"
+            android:background="@drawable/input_stype_lucency"
+            android:hint="@string/input_password_again"
+            android:inputType="textPassword"
+            android:textColor="@color/black"
+            android:textColorHint="@color/text_gray_02"
+            android:textSize="@dimen/text_size_17" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp">
+
+        <TextView
+            android:id="@+id/register_registerBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:background="@drawable/orange_box_white_background_btn"
+            android:gravity="center"
+            android:text="@string/confirm"
+            android:textColor="@color/text_orange"
+            android:textSize="@dimen/text_size_17" />
+    </RelativeLayout>
+
+</LinearLayout>

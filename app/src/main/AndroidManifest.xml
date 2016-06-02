@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.express.subao">
+
+    <!-- 连接网络的权限 -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <!-- 在SDCard中创建与删除文件权限 -->
+    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
+    <!-- 往SDCard写入数据权限 -->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+
+    <uses-feature android:name="android.hardware.camera" />
+    <uses-feature android:name="android.hardware.camera.autofocus" />
+    <!--地图-->
+    <uses-permission android:name="com.android.launcher.permission.READ_SETTINGS" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.GET_TASKS" />
+    <uses-permission android:name="android.permission.WRITE_SETTINGS" />
+    <!-- 这个权限用于进行网络定位-->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <!-- 这个权限用于访问GPS定位-->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <!-- 用于读取手机当前的状态-->
+    <uses-permission android:name="android.permission.READ_PHONE_STATE"></uses-permission>
+
+    <application
+        android:name="LeanCloudApp"
+        android:allowBackup="true"
+        android:icon="@mipmap/logo_icon"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme">
+        <activity
+            android:name=".activitys.MainActivity"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".activitys.AreaActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activitys.RegisterActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|stateUnchanged" />
+        <activity
+            android:name=".activitys.SMSActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|stateUnchanged" />
+        <activity
+            android:name=".activitys.LoginActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|stateUnchanged" />
+        <activity
+            android:name=".activitys.ForgetActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|stateUnchanged" />
+        <activity
+            android:name=".activitys.ForgetInpitPassWordActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|stateUnchanged" />
+        <activity
+            android:name=".activitys.ScanningActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activitys.CategoryActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activitys.RebateContentActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|stateUnchanged" />
+        <activity
+            android:name=".activitys.ExpressListActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activitys.ExpresContentActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activitys.PayActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/transparent" />
+        <activity
+            android:name=".activitys.QueryExpressActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|stateUnchanged" />
+        <activity
+            android:name=".activitys.ModifyUserActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|stateUnchanged" />
+        <activity
+            android:name=".activitys.FeedBackActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|stateUnchanged" />
+        <activity
+            android:name=".activitys.CollectionActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activitys.RemainingMoneyListActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activitys.ContentImageActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activitys.UserExpressListActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activitys.ShareFriendsActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activitys.ItemListActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activitys.TopUpActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activitys.CheckExpressActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activitys.WebActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activitys.OrdinaryWebActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activitys.BoxExpressListActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activitys.LoginDialogActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/transparent"
+            android:windowSoftInputMode="stateHidden|stateUnchanged" />
+        <activity
+            android:name=".activitys.ForgetPasswordActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|stateUnchanged" />
+        <activity
+            android:name=".activitys.SdyboxMapActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activitys.SdyboxContentaActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activitys.SdyOrderContentActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activitys.StoreItemListActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activitys.StoreItemContentActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activitys.CommentsListActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|stateUnchanged" />
+
+        <!--推送-->
+        <service
+            android:name="com.avos.avoscloud.PushService"
+            android:exported="true" />
+
+        <receiver android:name="com.avos.avoscloud.AVBroadcastReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.intent.action.USER_PRESENT" />
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+            </intent-filter>
+        </receiver>
+
+        <receiver
+            android:name=".receivers.PushReceiver"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.intent.action.USER_PRESENT" />
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+                <action android:name="com.avos.UPDATE_STATUS" />
+            </intent-filter>
+        </receiver>
+
+        <!--百度定位-->
+        <service
+            android:name="com.baidu.location.f"
+            android:enabled="true"
+            android:process=":remote" />
+        <meta-data
+            android:name="com.baidu.lbsapi.API_KEY"
+            android:value="MNLRV2VEwRkEHmcaadq6Sc43Qzc3v6s2" />
+
+    </application>
+
+</manifest>

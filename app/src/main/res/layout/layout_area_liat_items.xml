@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/activity_bg"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/areaItem_name"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="5dp"
+        android:paddingLeft="8dp"
+        android:paddingTop="5dp"
+        android:textColor="@color/text_gray_01"
+        android:textSize="@dimen/text_size_16" />
+
+    <com.express.subao.views.InsideListView
+        android:id="@+id/areaItem_dataList"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/whitle"
+        android:divider="@color/line_gray"
+        android:dividerHeight="1dp"
+        android:paddingLeft="10dp"></com.express.subao.views.InsideListView>
+
+</LinearLayout>

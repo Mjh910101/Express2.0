@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/activity_bg"
+    android:orientation="vertical">
+
+    <include layout="@layout/layout_title" />
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/whitle"
+        android:paddingBottom="12dp"
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp"
+        android:paddingTop="12dp">
+
+        <ImageView
+            android:id="@+id/remainingMoney_mobIcon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/mob_pay_icon" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@id/remainingMoney_mobIcon"
+            android:layout_alignTop="@id/remainingMoney_mobIcon"
+            android:layout_marginLeft="8dp"
+            android:layout_toRightOf="@id/remainingMoney_mobIcon"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/remaining_money_text"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_size_19" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="(100.00)"
+                android:textColor="@color/text_gray_01"
+                android:textSize="@dimen/text_size_16" />
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@id/remainingMoney_mobIcon"
+            android:layout_alignParentRight="true"
+            android:text="了解充值流程>"
+            android:textColor="@color/blue"
+            android:textSize="@dimen/text_size_17" />
+
+    </RelativeLayout>
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/remainingMoney_mobIcon"
+        android:layout_alignParentRight="true"
+        android:layout_margin="8dp"
+        android:text="交易清单"
+        android:textColor="@color/black"
+        android:textSize="@dimen/text_size_17" />
+
+    <ListView
+        android:id="@+id/remainingMoney_dataList"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:background="@color/whitle"
+        android:divider="@color/line_gray"
+        android:dividerHeight="1dp"></ListView>
+
+</LinearLayout>

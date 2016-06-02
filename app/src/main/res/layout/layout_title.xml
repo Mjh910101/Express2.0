@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/title_titleLayout"
+    android:layout_width="match_parent"
+    android:layout_height="58dp"
+    android:background="@color/title_bg"
+    android:paddingLeft="8dp"
+    android:paddingRight="8dp">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/title_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="3dp"
+            android:src="@drawable/title_icon"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/title_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/app_name"
+            android:textColor="@color/whitle"
+            android:textSize="@dimen/text_size_21" />
+
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/title_addressName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:drawableLeft="@drawable/title_map_icon"
+        android:gravity="center_vertical"
+        android:text="map"
+        android:textColor="@color/whitle"
+        android:textSize="@dimen/text_size_17"
+        android:visibility="gone" />
+
+    <ImageView
+        android:id="@+id/title_scanningIcon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:src="@drawable/title_scanning_icon"
+        android:visibility="gone" />
+
+    <ImageView
+        android:id="@+id/title_back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:src="@drawable/back_icon"
+        android:visibility="gone" />
+
+    <TextView
+        android:id="@+id/title_saveText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:background="@drawable/white_box_btn"
+        android:paddingBottom="6dp"
+        android:paddingLeft="12dp"
+        android:paddingRight="12dp"
+        android:paddingTop="6dp"
+        android:text="@string/save_text"
+        android:textColor="@color/whitle"
+        android:textSize="@dimen/text_size_17"
+        android:visibility="gone" />
+
+
+</RelativeLayout>

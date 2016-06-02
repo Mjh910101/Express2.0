@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/activity_bg"
+    android:orientation="vertical">
+
+    <include layout="@layout/layout_title" />
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+
+        <android.support.v4.widget.SwipeRefreshLayout
+            android:id="@+id/boxExpress_swipeRefresh"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ScrollView
+                android:id="@+id/boxExpress_scroll"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent">
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/boxExpress_notReceovedText"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="8dp"
+                        android:text="@string/not_received_text"
+                        android:textColor="@color/text_gray_01"
+                        android:textSize="@dimen/text_size_17" />
+
+                    <View
+                        android:layout_width="fill_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/line_gray" />
+
+                    <com.express.subao.views.InsideListView
+                        android:id="@+id/boxExpress_notReceovedDataList"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/whitle"
+                        android:divider="@color/line_gray"
+                        android:dividerHeight="1dp"></com.express.subao.views.InsideListView>
+
+                    <TextView
+                        android:id="@+id/boxExpress_notReceovedDataText"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/whitle"
+                        android:padding="8dp"
+                        android:text="暫無記錄"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/text_size_17" />
+
+                    <View
+                        android:layout_width="fill_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/line_gray" />
+
+                    <TextView
+                        android:id="@+id/boxExpress_receovedText"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="8dp"
+                        android:text="@string/received_text"
+                        android:textColor="@color/text_gray_01"
+                        android:textSize="@dimen/text_size_17" />
+
+                    <View
+                        android:layout_width="fill_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/line_gray" />
+
+                    <com.express.subao.views.InsideListView
+                        android:id="@+id/boxExpress_receovedDataList"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/whitle"
+                        android:divider="@color/line_gray"
+                        android:dividerHeight="1dp"></com.express.subao.views.InsideListView>
+
+
+                    <TextView
+                        android:id="@+id/boxExpress_receovedDataText"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/whitle"
+                        android:padding="8dp"
+                        android:text="暫無記錄"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/text_size_17" />
+
+                </LinearLayout>
+
+            </ScrollView>
+        </android.support.v4.widget.SwipeRefreshLayout>
+
+        <ProgressBar
+            android:id="@+id/boxExpress_progress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:visibility="gone" />
+
+    </RelativeLayout>
+
+</LinearLayout>

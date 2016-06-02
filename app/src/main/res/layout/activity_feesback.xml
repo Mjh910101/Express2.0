@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/activity_bg"
+    android:orientation="vertical">
+
+    <include layout="@layout/layout_title" />
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="fill_parent"
+                android:layout_height="150dp"
+                android:background="@color/whitle"
+                android:padding="10dp">
+
+                <EditText
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:background="@drawable/input_stype_gray"
+                    android:gravity="top|left" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:background="@color/whitle"
+                android:paddingBottom="10dp"
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp"
+                android:paddingTop="10dp">
+
+
+                <TextView
+                    android:id="@+id/feesback_userTelText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:text="@string/contact_text"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_17" />
+
+                <EditText
+                    android:id="@+id/feesback_userTel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_toRightOf="@id/feesback_userTelText"
+                    android:background="@drawable/input_stype_lucency"
+                    android:gravity="right"
+                    android:hint="@string/contact_tel_mail"
+                    android:textSize="@dimen/text_size_16" />
+            </RelativeLayout>
+
+
+            <TextView
+                android:id="@+id/feesback_confirm"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="15dp"
+                android:background="@drawable/orange_box_orange_background_btn"
+                android:gravity="center"
+                android:text="@string/confirm"
+                android:textColor="@color/whitle"
+                android:textSize="@dimen/text_size_20" />
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</LinearLayout>

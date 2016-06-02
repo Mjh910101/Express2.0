@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/shoppingCar_toolLayout"
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:background="@color/whitle">
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+            android:layout_alignParentTop="true"
+            android:background="@color/line_gray" />
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+            android:layout_alignParentBottom="true"
+            android:background="@color/line_gray" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_alignParentRight="true"
+            android:background="@color/title_bg"
+            android:gravity="center"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:text="@string/settlement_sum_text"
+            android:textColor="@color/whitle"
+            android:textSize="@dimen/text_size_17" />
+
+        <TextView
+            android:id="@+id/shoppingCar_allClockBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="5dp"
+            android:text="@string/all_clock_text"
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_size_17" />
+
+        <TextView
+            android:id="@+id/shoppingCar_allSumText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@id/shoppingCar_allClockBtn"
+            android:text="@string/all_sum_text"
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_size_15" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@id/shoppingCar_allSumText"
+            android:text="100"
+            android:textColor="@color/text_orange"
+            android:textSize="@dimen/text_size_16" />
+
+    </RelativeLayout>
+
+    <ListView
+        android:id="@+id/shoppingCar_dataList"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/shoppingCar_toolLayout" />
+
+</RelativeLayout>

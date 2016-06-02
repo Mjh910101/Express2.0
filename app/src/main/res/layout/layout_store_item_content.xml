@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include layout="@layout/layout_slide" />
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/whitle"
+        android:paddingBottom="5dp"
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp"
+        android:paddingTop="5dp">
+
+        <TextView
+            android:id="@+id/storeItemContent_titleText"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:maxLines="2"
+            android:text="title"
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_size_17" />
+
+        <TextView
+            android:id="@+id/storeItemContent_originalText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/storeItemContent_titleText"
+            android:layout_marginRight="5dp"
+            android:ellipsize="end"
+            android:maxLines="2"
+            android:text="original"
+            android:textColor="@color/text_orange"
+            android:textSize="@dimen/text_size_15" />
+
+        <TextView
+            android:id="@+id/storeItemContent_discountText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/storeItemContent_titleText"
+            android:layout_marginRight="5dp"
+            android:layout_toRightOf="@id/storeItemContent_originalText"
+            android:ellipsize="end"
+            android:maxLines="2"
+            android:text="discount"
+            android:textColor="@color/text_gray_02"
+            android:textSize="@dimen/text_size_15" />
+
+        <TextView
+            android:id="@+id/storeItemContent_specialText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/storeItemContent_titleText"
+            android:layout_toRightOf="@id/storeItemContent_discountText"
+            android:background="@color/blue"
+            android:ellipsize="end"
+            android:maxLines="2"
+            android:paddingBottom="2dp"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            android:paddingTop="2dp"
+            android:text="特价商品"
+            android:textColor="@color/whitle"
+            android:textSize="@dimen/text_size_10" />
+
+        <TextView
+            android:id="@+id/storeItemContent_sellText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_below="@id/storeItemContent_titleText"
+            android:ellipsize="end"
+            android:maxLines="2"
+            android:text="sell"
+            android:textColor="@color/text_gray_02"
+            android:textSize="@dimen/text_size_15" />
+
+
+    </RelativeLayout>
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="20dp"
+        android:background="@color/line_gray" />
+
+    <RelativeLayout
+        android:id="@+id/storeItemContent_commentsLayout"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/whitle"
+        android:paddingBottom="10dp"
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp"
+        android:paddingTop="10dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="8dp"
+            android:text="商品評論"
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_size_16" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:text="116人評論  >"
+            android:textColor="@color/text_gray_01"
+            android:textSize="@dimen/text_size_14" />
+
+    </RelativeLayout>
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:layout_marginBottom="20dp"
+        android:background="@color/line_gray" />
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/whitle"
+        android:orientation="vertical"
+        android:padding="8dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="商品詳細"
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_size_16" />
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="5dp"
+            android:background="@color/line_gray" />
+
+        <com.express.subao.views.VestrewWebView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+
+</LinearLayout>

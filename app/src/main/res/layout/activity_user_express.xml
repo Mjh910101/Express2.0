@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/activity_bg"
+    android:orientation="vertical">
+
+    <include layout="@layout/layout_title" />
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="40dp"
+                android:background="@color/whitle"
+                android:orientation="horizontal">
+
+                <RelativeLayout
+                    android:id="@+id/user_express_notReceivedBox"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="1">
+
+                    <TextView
+                        android:id="@+id/user_express_notReceivedText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:text="@string/not_received_text"
+                        android:textColor="@color/text_gray_01"
+                        android:textSize="@dimen/text_size_17" />
+
+                    <View
+                        android:id="@+id/user_express_notReceivedLine"
+                        android:layout_width="wrap_content"
+                        android:layout_height="3dp"
+                        android:layout_alignLeft="@id/user_express_notReceivedText"
+                        android:layout_alignParentBottom="true"
+                        android:layout_alignRight="@id/user_express_notReceivedText"
+                        android:background="@color/text_gray_01" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/user_express_receivedBox"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="1">
+
+                    <TextView
+                        android:id="@+id/user_express_receivedText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:text="@string/received_text"
+                        android:textColor="@color/text_gray_01"
+                        android:textSize="@dimen/text_size_17" />
+
+                    <View
+                        android:id="@+id/user_express_receivedLine"
+                        android:layout_width="wrap_content"
+                        android:layout_height="3dp"
+                        android:layout_alignLeft="@id/user_express_receivedText"
+                        android:layout_alignParentBottom="true"
+                        android:layout_alignRight="@id/user_express_receivedText"
+                        android:background="@color/text_gray_01" />
+
+                </RelativeLayout>
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:background="@color/line_gray" />
+
+            <ListView
+                android:id="@+id/user_express_dataList"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:background="@color/whitle"
+                android:divider="@color/line_gray"
+                android:dividerHeight="1dp"></ListView>
+
+        </LinearLayout>
+
+        <ProgressBar
+            android:id="@+id/user_express_progress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:visibility="gone" />
+
+    </RelativeLayout>
+
+</LinearLayout>

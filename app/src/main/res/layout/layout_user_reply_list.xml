@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="1dp"
+        android:layout_marginRight="1dp"
+        android:layout_marginTop="1dp"
+        android:background="@color/whitle"
+        android:orientation="horizontal">
+
+        <RelativeLayout
+            android:id="@+id/replyList_commentBox"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:paddingTop="5dp">
+
+            <LinearLayout
+                android:id="@+id/replyList_comment"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/replyList_commentIcon"
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:layout_marginRight="3dp"
+                    android:src="@drawable/comment_off_icon" />
+
+                <TextView
+                    android:id="@+id/replyList_commentTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/text_gray_01"
+                    android:textSize="@dimen/text_size_14" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="24dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:background="@color/line_gray" />
+
+            <ImageView
+                android:id="@+id/replyList_commentLine"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/replyList_comment"
+                android:scaleType="fitEnd"
+                android:src="@drawable/line_up" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/replyList_collectBox"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:paddingTop="5dp">
+
+            <LinearLayout
+                android:id="@+id/replyList_collect"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/replyList_collectIcon"
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:layout_marginRight="3dp"
+                    android:src="@drawable/collect_off_icon" />
+
+                <TextView
+                    android:id="@+id/replyList_collectTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/text_gray_01"
+                    android:textSize="@dimen/text_size_14" />
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/replyList_collectLine"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/replyList_collect"
+                android:scaleType="fitEnd"
+                android:src="@drawable/line_level" />
+        </RelativeLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/replyList_dataBox"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_marginLeft="1dp"
+        android:layout_marginRight="1dp"
+        android:background="@color/whitle"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="50dp"
+            android:gravity="center"
+            android:text="成為第一個評論的人"
+            android:textSize="@dimen/text_size_18" />
+
+    </LinearLayout>
+
+</LinearLayout>

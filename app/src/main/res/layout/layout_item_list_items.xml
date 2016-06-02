@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="8dp">
+
+    <LinearLayout
+        android:id="@+id/item_item_imgBox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/item_item_img"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/item_item_imgBox"
+        android:layout_alignTop="@id/item_item_imgBox"
+        android:layout_marginLeft="5dp"
+        android:layout_toRightOf="@id/item_item_imgBox"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/item_item_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_size_14" />
+
+        <TextView
+            android:id="@+id/item_item_sell"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:textColor="@color/text_gray_01"
+            android:textSize="@dimen/text_size_13" />
+
+        <TextView
+            android:id="@+id/item_item_priceStr"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:textColor="@color/text_orange"
+            android:textSize="@dimen/text_size_15" />
+    </LinearLayout>
+
+</RelativeLayout>

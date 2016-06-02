@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <RelativeLayout
+            android:id="@+id/user_remainingMoneyBox"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/whitle"
+            android:paddingBottom="12dp"
+            android:paddingTop="12dp">
+
+            <ImageView
+                android:id="@+id/user_item_moneyIcon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:src="@drawable/user_maney_icon" />
+
+            <TextView
+                android:id="@+id/user_item_moneyText"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@id/user_item_moneyIcon"
+                android:drawableRight="@drawable/text_right_icon"
+                android:text="@string/remaining_money_text"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_size_17" />
+        </RelativeLayout>
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+            android:layout_marginLeft="38dp"
+            android:background="@color/line_gray" />
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/whitle"
+            android:paddingBottom="12dp"
+            android:paddingTop="12dp">
+
+            <ImageView
+                android:id="@+id/user_item_commentsIcon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:src="@drawable/user_evaluation_icon" />
+
+            <TextView
+                android:id="@+id/user_item_commentsText"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@id/user_item_commentsIcon"
+                android:drawableRight="@drawable/text_right_icon"
+                android:text="@string/user_comments_text"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_size_17" />
+        </RelativeLayout>
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+            android:layout_marginLeft="38dp"
+            android:background="@color/line_gray" />
+
+        <RelativeLayout
+            android:id="@+id/user_item_collectionBox"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/whitle"
+            android:paddingBottom="12dp"
+            android:paddingTop="12dp">
+
+            <ImageView
+                android:id="@+id/user_item_collectionIcon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:src="@drawable/user_collection_icon" />
+
+            <TextView
+                android:id="@+id/user_item_collectionText"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@id/user_item_collectionIcon"
+                android:drawableRight="@drawable/text_right_icon"
+                android:text="@string/user_collection_text"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_size_17" />
+        </RelativeLayout>
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+            android:layout_marginLeft="38dp"
+            android:background="@color/line_gray" />
+
+        <RelativeLayout
+            android:id="@+id/user_item_subaoBox"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/whitle"
+            android:paddingBottom="12dp"
+            android:paddingTop="12dp">
+
+            <ImageView
+                android:id="@+id/user_item_subaoIcon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:src="@drawable/user_subao_icon" />
+
+            <TextView
+                android:id="@+id/user_item_subaoText"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@id/user_item_subaoIcon"
+                android:drawableRight="@drawable/text_right_icon"
+                android:text="@string/user_subao_text"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_size_17" />
+        </RelativeLayout>
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+            android:layout_marginLeft="38dp"
+            android:background="@color/line_gray" />
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/user_item_push"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/whitle"
+        android:paddingBottom="12dp"
+        android:paddingTop="12dp">
+
+        <ImageView
+            android:id="@+id/user_item_pushIcon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:src="@drawable/user_push_icon" />
+
+        <TextView
+            android:id="@+id/user_item_pushText"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@id/user_item_pushIcon"
+            android:text="@string/user_push_text"
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_size_17" />
+
+        <RadioButton
+            android:id="@+id/user_item_pushSwitch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="8dp"
+            android:button="@drawable/push_sype"
+            android:clickable="false" />
+    </RelativeLayout>
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:layout_marginLeft="38dp"
+        android:background="@color/line_gray" />
+
+</LinearLayout>

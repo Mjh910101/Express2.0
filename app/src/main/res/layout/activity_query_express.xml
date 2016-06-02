@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/activity_bg"
+    android:orientation="vertical">
+
+    <include layout="@layout/layout_title" />
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/whitle"
+                android:padding="8dp">
+
+                <TextView
+                    android:id="@+id/query_express_codeText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:drawableLeft="@drawable/bar_code_icon"
+                    android:text="@string/express_code_text"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_17" />
+
+                <EditText
+                    android:id="@+id/query_express_codeInput"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginLeft="5dp"
+                    android:layout_toRightOf="@id/query_express_codeText"
+                    android:background="@drawable/input_stype_lucency"
+                    android:gravity="right|center_vertical"
+                    android:hint="@string/input_express_code_text"
+                    android:textSize="@dimen/text_size_17" />
+
+            </RelativeLayout>
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:background="@color/line_gray" />
+
+            <RelativeLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/whitle"
+                android:padding="8dp">
+
+                <TextView
+                    android:id="@+id/query_express_companyText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:drawableLeft="@drawable/car_icon"
+                    android:text="@string/express_company_text"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_17" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginLeft="5dp"
+                    android:layout_toRightOf="@id/query_express_companyText"
+                    android:background="@drawable/input_stype_lucency"
+                    android:gravity="right|center_vertical"
+                    android:text="@string/choose_express_code_text"
+                    android:textSize="@dimen/text_size_17" />
+
+            </RelativeLayout>
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:background="@color/line_gray" />
+
+            <RelativeLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="15dp"
+                android:background="@color/whitle"
+                android:padding="20dp">
+
+                <TextView
+                    android:id="@+id/query_express_checkBtn"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/orange_box_yellow_background_btn"
+                    android:gravity="center"
+                    android:text="@string/query"
+                    android:textColor="@color/whitle"
+                    android:textSize="@dimen/text_size_20" />
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="40dp"
+                android:background="@color/whitle"
+                android:orientation="horizontal">
+
+                <RelativeLayout
+                    android:id="@+id/query_express_notReceivedBox"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="1">
+
+                    <TextView
+                        android:id="@+id/query_express_notReceivedText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:text="@string/not_received_text"
+                        android:textColor="@color/text_gray_01"
+                        android:textSize="@dimen/text_size_17" />
+
+                    <View
+                        android:id="@+id/query_express_notReceivedLine"
+                        android:layout_width="wrap_content"
+                        android:layout_height="3dp"
+                        android:layout_alignLeft="@id/query_express_notReceivedText"
+                        android:layout_alignParentBottom="true"
+                        android:layout_alignRight="@id/query_express_notReceivedText"
+                        android:background="@color/text_gray_01" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/query_express_receivedBox"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="1">
+
+                    <TextView
+                        android:id="@+id/query_express_receivedText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:text="@string/received_text"
+                        android:textColor="@color/text_gray_01"
+                        android:textSize="@dimen/text_size_17" />
+
+                    <View
+                        android:id="@+id/query_express_receivedLine"
+                        android:layout_width="wrap_content"
+                        android:layout_height="3dp"
+                        android:layout_alignLeft="@id/query_express_receivedText"
+                        android:layout_alignParentBottom="true"
+                        android:layout_alignRight="@id/query_express_receivedText"
+                        android:background="@color/text_gray_01" />
+
+                </RelativeLayout>
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:background="@color/line_gray" />
+
+            <ListView
+                android:id="@+id/query_express_dataList"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:background="@color/whitle"
+                android:divider="@color/line_gray"
+                android:dividerHeight="1dp"></ListView>
+
+        </LinearLayout>
+
+        <ProgressBar
+            android:id="@+id/query_express_progress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:visibility="gone" />
+
+    </RelativeLayout>
+
+</LinearLayout>
