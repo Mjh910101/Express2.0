@@ -16,9 +16,15 @@ public class MyWebViewClient extends WebViewClient {
 
     private Context context;
     private int color;
+    private boolean jump;
 
     public MyWebViewClient(Context context) {
         this.context = context;
+        jump = true;
+    }
+
+    public void notJump() {
+        jump = false;
     }
 
     // 重写shouldOverrideUrlLoading方法，使点击链接后不使用其他的浏览器打开。
@@ -26,11 +32,14 @@ public class MyWebViewClient extends WebViewClient {
     public boolean shouldOverrideUrlLoading(WebView view, String url) {
         // view.loadUrl(url);// 如果不需要其他对点击链接事件的处理返回true，否则返回false
         Log.e("MyWebViewClient", url);
-        Bundle b = new Bundle();
-        b.putString(WebActivity.URL, url);
-        b.putString(WebActivity.TITLE, "");
-        Passageway.jumpActivity(context, WebActivity.class, b);
-
+        if (jump) {
+            Bundle b = new Bundle();
+            b.putString(WebActivity.URL, url);
+            b.putString(WebActivity.TITLE, "");
+            Passageway.jumpActivity(context, WebActivity.class, b);
+        } else {
+            view.loadUrl(url);
+        }
         return true;
 
     }

@@ -14,12 +14,13 @@
             android:id="@+id/boxMap_dataList"
             android:layout_width="wrap_content"
             android:layout_height="250dp"
+            android:layout_alignParentBottom="true"
+            android:background="@color/whitle"
+            android:divider="@color/line_gray"
             android:dividerHeight="1px"
             android:paddingLeft="12dp"
-            android:scrollbars="none"
             android:paddingRight="12dp"
-            android:divider="@color/line_gray"
-            android:layout_alignParentBottom="true"/>
+            android:scrollbars="none" />
 
         <com.baidu.mapapi.map.MapView
             android:id="@+id/boxMap_bmapView"
@@ -45,7 +46,7 @@
             android:layout_alignBottom="@id/boxMap_bmapView"
             android:layout_alignRight="@id/boxMap_bmapView"
             android:layout_margin="5dp"
-            android:src="@drawable/map_narrow_icon" />
+            android:src="@drawable/map_amp_icon" />
 
         <ProgressBar
             android:id="@+id/boxMap_progress"

@@ -128,10 +128,10 @@ public class SdyboxMapActivity extends BaseActivity {
     private void setDataListVisibility() {
         if (dataList.getVisibility() == View.VISIBLE) {
             dataList.setVisibility(View.GONE);
-            mapIcon.setImageResource(R.drawable.map_amp_icon);
+            mapIcon.setImageResource(R.drawable.map_narrow_icon);
         } else {
             dataList.setVisibility(View.VISIBLE);
-            mapIcon.setImageResource(R.drawable.map_narrow_icon);
+            mapIcon.setImageResource(R.drawable.map_amp_icon);
         }
     }
 

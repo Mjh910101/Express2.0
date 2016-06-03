@@ -95,6 +95,7 @@ public class BoxExpressListActivity extends BaseActivity {
     private List<SdyOrderObj> receivedList;
 
     private int page = 1, pages = 1;
+    private boolean isShow = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -118,6 +119,7 @@ public class BoxExpressListActivity extends BaseActivity {
 
             @Override
             public void onRefresh() {
+                isShow = true;
                 page = 1;
                 notReceivedList.removeAll(notReceivedList);
                 receivedList.removeAll(receivedList);
@@ -150,7 +152,10 @@ public class BoxExpressListActivity extends BaseActivity {
                                     downloadData();
                                 }
                             } else {
-                                MessageHandler.showLast(context);
+                                if (isShow) {
+                                    isShow = false;
+                                    MessageHandler.showLast(context);
+                                }
                             }
                         }
                         break;

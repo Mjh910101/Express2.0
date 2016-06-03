@@ -147,6 +147,7 @@ public class SdyOrderContentActivity extends BaseActivity {
 //        b.putString(CheckExpressActivity.CODE_KEY, mExpresObj.getExpreser().getExpress_id());
 //        Passageway.jumpActivity(context, CheckExpressActivity.class, b);
         Bundle b = new Bundle();
+        b.putString(WebActivity.TITLE, TextHandeler.getText(context, R.string.main_kdgz_text));
         b.putString(WebActivity.URL, "https://m.baidu.com/from=1013665e/s?word=" + "快递" + mSdyOrderObj.getMailno());
         Passageway.jumpActivity(context, WebActivity.class, b);
     }
@@ -187,13 +188,13 @@ public class SdyOrderContentActivity extends BaseActivity {
             case "3":
                 contentVerifyTitle.setVisibility(View.GONE);
                 contentVerify.setText("快递员取出");
-                contentVerify.setTextColor(ColorHandle.getColorForID(context, R.color.text_orange));
+                contentVerify.setTextColor(ColorHandle.getColorForID(context, R.color.red));
                 contentTips.setVisibility(View.GONE);
                 break;
             case "4":
                 contentVerifyTitle.setVisibility(View.GONE);
                 contentVerify.setText("管理员取出");
-                contentVerify.setTextColor(ColorHandle.getColorForID(context, R.color.text_orange));
+                contentVerify.setTextColor(ColorHandle.getColorForID(context, R.color.red));
                 contentTips.setVisibility(View.GONE);
                 break;
             default:

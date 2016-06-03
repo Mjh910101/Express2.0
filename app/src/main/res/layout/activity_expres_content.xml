@@ -113,7 +113,7 @@
                                     android:id="@+id/expres_content_verify"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="verify"
+                                    android:text=""
                                     android:textColor="@color/green"
                                     android:textSize="@dimen/text_size_17" />
 
@@ -124,7 +124,7 @@
                                 android:id="@+id/expres_content_tips"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="tips"
+                                android:text=""
                                 android:textColor="@color/black"
                                 android:textSize="@dimen/text_size_17" />
 
@@ -159,7 +159,7 @@
                                 android:id="@+id/expres_content_area"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="area"
+                                android:text=""
                                 android:textColor="@color/black"
                                 android:textSize="@dimen/text_size_17" />
 
@@ -176,7 +176,7 @@
                                 android:id="@+id/expres_content_code"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="code"
+                                android:text=""
                                 android:textColor="@color/black"
                                 android:textSize="@dimen/text_size_17" />
 
@@ -213,7 +213,7 @@
                                 android:id="@+id/expres_content_companyName"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="companyName"
+                                android:text=""
                                 android:textColor="@color/black"
                                 android:textSize="@dimen/text_size_17" />
 
@@ -221,7 +221,7 @@
                                 android:id="@+id/expres_content_postman"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="postman"
+                                android:text=""
                                 android:textColor="@color/black"
                                 android:textSize="@dimen/text_size_17" />
 
@@ -229,7 +229,7 @@
                                 android:id="@+id/expres_content_expressAt"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="expressAt"
+                                android:text=""
                                 android:textColor="@color/black"
                                 android:textSize="@dimen/text_size_17" />
 

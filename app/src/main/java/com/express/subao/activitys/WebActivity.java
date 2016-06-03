@@ -71,7 +71,9 @@ public class WebActivity extends BaseActivity {
         titleName.setVisibility(View.VISIBLE);
 
         content.getSettings().setJavaScriptEnabled(true);
-        content.setWebViewClient(new MyWebViewClient(context));
+        MyWebViewClient clien = new MyWebViewClient(context);
+        clien.notJump();
+        content.setWebViewClient(clien);
 
         Bundle b = getIntent().getExtras();
         if (b != null) {

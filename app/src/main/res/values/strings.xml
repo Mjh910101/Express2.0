@@ -25,7 +25,7 @@
     <string name="user_help_text">幫助</string>
     <string name="user_feedback_text">問題反饋</string>
     <string name="user_about_us_text">關於我們</string>
-    <string name="user_invite_friends_text">邀請好友使用速寶物</string>
+    <string name="user_invite_friends_text">邀請好友使用速寶</string>
     <string name="logout_text">退出</string>
     <string name="box_map_text">箱體地址</string>
     <string name="input_password_again">請再次輸入密碼</string>
