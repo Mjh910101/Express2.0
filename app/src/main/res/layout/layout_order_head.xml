@@ -1,8 +1,69 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/yellow"
-    android:orientation="vertical">
+    android:background="@color/yellow_03"
+    android:paddingBottom="15dp"
+    android:paddingLeft="8dp"
+    android:paddingRight="8dp"
+    android:paddingTop="15dp">
 
-</LinearLayout>
+    <ImageView
+        android:id="@+id/orderHead_rightIcon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:src="@drawable/back_icon" />
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_toLeftOf="@id/orderHead_rightIcon">
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="address"
+            android:textColor="@color/text_gray_01"
+            android:textSize="@dimen/text_size_17" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_toLeftOf="@id/orderHead_rightIcon">
+
+        <TextView
+            android:id="@+id/orderHead_userNameText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:text="name"
+            android:textColor="@color/text_gray_01"
+            android:textSize="@dimen/text_size_18" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:text="tel"
+            android:textColor="@color/text_gray_01"
+            android:textSize="@dimen/text_size_18" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@id/orderHead_userNameText"
+            android:text="address"
+            android:textColor="@color/text_gray_01"
+            android:textSize="@dimen/text_size_18" />
+
+    </RelativeLayout>
+
+
+</RelativeLayout>
