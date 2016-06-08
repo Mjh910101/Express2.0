@@ -137,11 +137,11 @@ public class SdyOrderAdaper extends BaseAdapter {
                 holder.statusStr.setBackgroundResource(R.color.green);
                 break;
             case "3":
-                holder.statusStr.setText("快递员取出");
+                holder.statusStr.setText("快遞員取出");
                 holder.statusStr.setBackgroundResource(R.color.red);
                 break;
             case "4":
-                holder.statusStr.setText("管理员取出");
+                holder.statusStr.setText("管理員取出");
                 holder.statusStr.setBackgroundResource(R.color.red);
                 break;
             default:
@@ -149,7 +149,7 @@ public class SdyOrderAdaper extends BaseAdapter {
                 break;
         }
 
-        holder.companyName.setText("快递单号 " + obj.getMailno());
+        holder.companyName.setText("快遞單號 " + obj.getMailno());
 
         switch (obj.getStatus()) {
             case "1":
@@ -161,7 +161,7 @@ public class SdyOrderAdaper extends BaseAdapter {
                 break;
             default:
                 holder.codeText.setVisibility(View.GONE);
-                holder.code.setTextColor(ColorHandle.getColorForID(context, R.color.black));
+                holder.code.setTextColor(ColorHandle.getColorForID(context, R.color.text_gray_01));
                 holder.code.setText(obj.getPickup_time());
                 holder.companyIcon.setImageResource(R.drawable.sdy_code_gray_icon);
                 holder.codeIcon.setImageResource(R.drawable.time_code_gray_icon);

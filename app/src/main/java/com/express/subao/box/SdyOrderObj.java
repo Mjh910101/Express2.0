@@ -79,6 +79,9 @@ public class SdyOrderObj {
     }
 
     public String getPickup_time() {
+        if (pickup_time.indexOf(" ") > 0) {
+            return pickup_time.substring(0, pickup_time.indexOf(" "));
+        }
         return pickup_time;
     }
 

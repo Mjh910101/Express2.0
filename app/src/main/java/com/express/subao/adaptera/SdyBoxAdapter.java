@@ -89,7 +89,7 @@ public class SdyBoxAdapter extends BaseAdapter {
             holder.title = (TextView) convertView.findViewById(R.id.sdybox_title);
             holder.address = (TextView) convertView.findViewById(R.id.sdybox_address);
             holder.contentText = (TextView) convertView.findViewById(R.id.sdybox_contentText);
-            holder.pic = (ImageView) convertView.findViewById(R.id.sdybox_icon);
+            holder.pic = (TextView) convertView.findViewById(R.id.sdybox_icon);
 
             convertView.setTag(holder);
         } else {
@@ -127,13 +127,14 @@ public class SdyBoxAdapter extends BaseAdapter {
     private void setView(HolderView holder, SdyBoxObj obj) {
         holder.title.setText(obj.getTitle());
         holder.address.setText(obj.getAddress());
+        holder.pic.setText(obj.getNum());
     }
 
     class HolderView {
         TextView title;
         TextView address;
         TextView contentText;
-        ImageView pic;
+        TextView pic;
     }
 
     public interface AddressListener {

@@ -36,7 +36,9 @@ public class SdyBoxObjHandler {
         List<SdyBoxObj> list = new ArrayList<>();
 
         for (int i = 0; i < array.length(); i++) {
-            list.add(getSdyBoxObj(JsonHandle.getJSON(array, i)));
+            SdyBoxObj obj = getSdyBoxObj(JsonHandle.getJSON(array, i));
+            obj.setNum(i);
+            list.add(obj);
         }
 
         return list;

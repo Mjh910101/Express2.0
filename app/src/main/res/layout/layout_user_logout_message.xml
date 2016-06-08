@@ -18,7 +18,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="8dp"
             android:layout_marginRight="8dp"
-            android:src="@drawable/user_maney_icon" />
+            android:src="@drawable/user_help_icon" />
 
         <TextView
             android:id="@+id/user_item_helpText"
@@ -36,8 +36,8 @@
         android:layout_width="fill_parent"
         android:layout_height="1dp"
         android:layout_marginLeft="38dp"
-        android:visibility="gone"
-        android:background="@color/line_gray" />
+        android:background="@color/line_gray"
+        android:visibility="gone" />
 
     <RelativeLayout
         android:id="@+id/user_item_feedbackBox"

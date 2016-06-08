@@ -117,7 +117,7 @@ public class RebateAdapter extends BaseAdapter {
     private void setView(HolderView holder, RebateObj obj) {
         setRebateImage(holder.img, obj.getImg());
         holder.title.setText(obj.getTitle());
-        holder.time.setText("优惠时间"+obj.getTips());
+        holder.time.setText("優惠時間"+obj.getTips());
         holder.intro.setText(obj.getIntro());
     }
 

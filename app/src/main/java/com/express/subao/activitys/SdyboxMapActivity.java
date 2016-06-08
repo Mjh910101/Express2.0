@@ -1,7 +1,14 @@
 package com.express.subao.activitys;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -226,14 +233,38 @@ public class SdyboxMapActivity extends BaseActivity {
     private Overlay addOverlay(SdyBoxObj obj) {
         Log.e("", obj.getPoint().latitude + "   +   " + obj.getPoint().longitude);
         LatLng point = obj.getPoint();
-        return addOverlay(point, obj.getIconDrawble());
+        return addOverlay(point, obj);
     }
 
-    private Overlay addOverlay(LatLng point, int icon) {
-        BitmapDescriptor bitmap = BitmapDescriptorFactory.fromResource(icon);
+    private Overlay addOverlay(LatLng point, SdyBoxObj obj) {
+//        BitmapDescriptor bitmap = BitmapDescriptorFactory.fromResource(icon);
+//        BitmapDescriptor bitmap = BitmapDescriptorFactory.fromBitmap(getOverlayIcon(icon, "999"));
+        BitmapDescriptor bitmap = BitmapDescriptorFactory.fromView(obj.getOverlayView(context));
         OverlayOptions option = new MarkerOptions().position(point)
                 .icon(bitmap);
         return mBaiduMap.addOverlay(option);
+    }
+
+
+    private Bitmap getOverlayIcon(int icon, String str) {
+        Bitmap bmp = BitmapFactory.decodeResource(context.getResources(), icon);
+
+        Bitmap newb = Bitmap.createBitmap(320, 480, Bitmap.Config.ARGB_8888);
+
+        Canvas canvasTmp = new Canvas(newb);
+        canvasTmp.drawColor(Color.TRANSPARENT);
+
+        Paint p = new Paint();
+        Typeface font = Typeface.create("宋体", Typeface.BOLD);
+        p.setColor(Color.RED);
+        p.setTypeface(font);
+        p.setTextSize(16);
+        canvasTmp.drawBitmap(bmp, 0, 0, p);
+        canvasTmp.drawText(str, 10, 40, p);
+        canvasTmp.save(Canvas.ALL_SAVE_FLAG);
+        canvasTmp.restore();
+
+        return newb;
     }
 
     private void downloadData() {

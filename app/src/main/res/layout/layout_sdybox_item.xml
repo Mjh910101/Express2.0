@@ -6,13 +6,17 @@
     android:paddingBottom="8dp"
     android:paddingTop="8dp">
 
-    <ImageView
+    <TextView
         android:id="@+id/sdybox_icon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_centerVertical="true"
-        android:src="@drawable/sdy_icon" />
+        android:background="@drawable/sdy_box_icon"
+        android:textColor="@color/red"
+        android:gravity="center"
+        android:textSize="@dimen/text_size_10"
+        android:text="999"/>
 
     <TextView
         android:id="@+id/sdybox_contentText"
@@ -25,7 +29,7 @@
         android:paddingLeft="12dp"
         android:paddingRight="12dp"
         android:paddingTop="5dp"
-        android:text="详细"
+        android:text="詳細"
         android:textColor="@color/text_orange"
         android:textSize="@dimen/text_size_16" />
 

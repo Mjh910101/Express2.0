@@ -174,7 +174,7 @@ public class SdyOrderContentActivity extends BaseActivity {
         contentArea.setText("位置：" + obj.getBoxAddress());
         contentPart.setText("");
         contentCode.setText("編號：" + obj.getBoxDeviceId());
-        contentCompanyName.setText("快递单号 : " + obj.getMailno());
+        contentCompanyName.setText("快遞單號 : " + obj.getMailno());
         contentPostman.setText("快遞員 : " + obj.getMailman() + " " + obj.getMailman_mobile());
         contentExpressAt.setText("投件時間 : " + obj.getCreatedAt());
 
@@ -187,13 +187,13 @@ public class SdyOrderContentActivity extends BaseActivity {
                 break;
             case "3":
                 contentVerifyTitle.setVisibility(View.GONE);
-                contentVerify.setText("快递员取出");
+                contentVerify.setText("快遞員取出");
                 contentVerify.setTextColor(ColorHandle.getColorForID(context, R.color.red));
                 contentTips.setVisibility(View.GONE);
                 break;
             case "4":
                 contentVerifyTitle.setVisibility(View.GONE);
-                contentVerify.setText("管理员取出");
+                contentVerify.setText("管理員取出");
                 contentVerify.setTextColor(ColorHandle.getColorForID(context, R.color.red));
                 contentTips.setVisibility(View.GONE);
                 break;

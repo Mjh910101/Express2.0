@@ -1,8 +1,15 @@
 package com.express.subao.box;
 
+import android.content.Context;
+import android.view.Gravity;
+import android.view.View;
+import android.widget.TextView;
+
 import com.baidu.mapapi.model.LatLng;
 import com.express.subao.R;
+import com.express.subao.handlers.ColorHandle;
 import com.express.subao.handlers.JsonHandle;
+import com.express.subao.tool.WinTool;
 
 import org.json.JSONObject;
 
@@ -37,6 +44,19 @@ public class SdyBoxObj {
     private LatLng point;
     private String cover;
     private String device_id;
+    private int num;
+
+    public void setNum(int num) {
+        this.num = num;
+    }
+
+    public String getNum() {
+        try {
+            return String.valueOf(num + 1);
+        } catch (Exception e) {
+            return "";
+        }
+    }
 
     public String getDevice_id() {
         if (device_id == null || device_id.equals("null")) {
@@ -116,5 +136,15 @@ public class SdyBoxObj {
 
     public int getIconDrawble() {
         return R.drawable.sdy_icon;
+    }
+
+    public View getOverlayView(Context context) {
+        TextView view = new TextView(context);
+        view.setBackgroundResource(R.drawable.sdy_box_icon);
+        view.setText(getNum());
+        view.setTextSize(12);
+        view.setTextColor(ColorHandle.getColorForID(context, R.color.red));
+        view.setGravity(Gravity.CENTER);
+        return view;
     }
 }
