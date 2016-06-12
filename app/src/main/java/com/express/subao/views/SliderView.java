@@ -191,7 +191,7 @@ public class SliderView {
     private void onClickPPT(SliderObj obj) {
         Log.e("", obj.getImg());
         Bundle b = new Bundle();
-        b.putString(WebActivity.TITLE,context.getResources().getString(R.string.detailed_text));
+        b.putString(WebActivity.TITLE, "詳細");
         b.putString(WebActivity.URL, obj.getUrl());
         Passageway.jumpActivity(context, WebActivity.class, b);
     }

@@ -339,7 +339,7 @@ public class LoginDialogActivity extends BaseActivity {
     private void getSmsCode() {
         progress.setVisibility(View.VISIBLE);
 
-        String url = Url.getSignUpSendVerify();
+        String url = Url.getSignUpVerify();
 
         RequestParams params = HttpUtilsBox.getRequestParams(context);
         params.addBodyParameter("mobile", TextHandeler.getText(registerTelInput));

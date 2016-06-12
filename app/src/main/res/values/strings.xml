@@ -58,6 +58,7 @@
     <string name="box_express_text">此箱內的待取快件</string>
     <string name="box_in_express_text">箱體快件</string>
     <string name="open_box_text">開箱取件</string>
+    <string name="open_box_find_box_text">箱體查件取件</string>
     <string name="open_text">付費開箱</string>
     <string name="need_money_text">需繳費</string>
     <string name="pay_way_text">請選擇付費方式</string>

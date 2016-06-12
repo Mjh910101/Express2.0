@@ -165,6 +165,7 @@ public class ForgetPasswordActivity extends BaseActivity {
         RequestParams params = HttpUtilsBox.getRequestParams(context);
         params.addBodyParameter("password", TextHandeler.getText(passwordInput));
         params.addBodyParameter("verify", TextHandeler.getText(verifyInput));
+        params.addBodyParameter("mobile", TextHandeler.getText(telInput));
 
         HttpUtilsBox.getHttpUtil().send(HttpMethod.POST, url, params,
                 new RequestCallBack<String>() {
@@ -185,7 +186,8 @@ public class ForgetPasswordActivity extends BaseActivity {
                         if (json != null) {
                             JSONObject resultsJson = JsonHandle.getJSON(json, "results");
                             if (JsonHandle.getInt(json, "status") == 1) {
-                                UserObjHandler.saveUserObj(UserObjHandler.getUserObj(resultsJson));
+//                                UserObjHandler.saveUserObj(UserObjHandler.getUserObj(resultsJson));
+                                MessageHandler.showToast(context, "請登錄!");
                                 finish();
                             } else {
                                 MessageHandler.showToast(context, JsonHandle.getString(resultsJson, "message"));
@@ -201,7 +203,7 @@ public class ForgetPasswordActivity extends BaseActivity {
     private void getSmsCode() {
         progress.setVisibility(View.VISIBLE);
 
-        String url = Url.getForgotSendVerify();
+        String url = Url.getForgotVerify();
 
         RequestParams params = HttpUtilsBox.getRequestParams(context);
         params.addBodyParameter("mobile", TextHandeler.getText(telInput));

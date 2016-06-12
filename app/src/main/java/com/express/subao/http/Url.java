@@ -28,6 +28,10 @@ public class Url {
         return getIndex() + "/api/v1/signUp/verify";
     }
 
+    public static String getForgotVerify() {
+        return getIndex() + "/api/v1/forgot/verify";
+    }
+
     public static String getLogin() {
         return getIndex() + "/api/v1/login";
     }
@@ -89,6 +93,6 @@ public class Url {
     }
 
     public static String getUserOrderDetail() {
-        return getUserOrder()+"/detail";
+        return getUserOrder() + "/detail";
     }
 }
