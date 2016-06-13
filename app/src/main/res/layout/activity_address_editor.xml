@@ -18,13 +18,165 @@
 
             <RelativeLayout
                 android:layout_width="fill_parent"
-                android:layout_height="40dp"
-                android:layout_marginTop="5dp"
-                android:background="@color/whitle">
+                android:layout_height="48dp"
+                android:layout_marginTop="10dp"
+                android:background="@color/whitle"
+                android:padding="8dp">
 
+                <TextView
+                    android:id="@+id/addressEditor_nameTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="收  貨  人："
+                    android:textColor="@color/text_gray_01"
+                    android:textSize="@dimen/text_size_17" />
+
+                <EditText
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_toRightOf="@id/addressEditor_nameTitle"
+                    android:background="@drawable/input_stype_lucency" />
 
             </RelativeLayout>
 
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:background="@color/line_gray" />
+
+            <RelativeLayout
+                android:layout_width="fill_parent"
+                android:layout_height="48dp"
+                android:background="@color/whitle"
+                android:padding="8dp">
+
+                <TextView
+                    android:id="@+id/addressEditor_telTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="聯繫電話："
+                    android:textColor="@color/text_gray_01"
+                    android:textSize="@dimen/text_size_17" />
+
+                <EditText
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_toRightOf="@id/addressEditor_telTitle"
+                    android:background="@drawable/input_stype_lucency" />
+
+            </RelativeLayout>
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:background="@color/line_gray" />
+
+            <RelativeLayout
+                android:layout_width="fill_parent"
+                android:layout_height="48dp"
+                android:background="@color/whitle"
+                android:padding="8dp">
+
+                <TextView
+                    android:id="@+id/addressEditor_regionTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="所在地區："
+                    android:textColor="@color/text_gray_01"
+                    android:textSize="@dimen/text_size_17" />
+
+                <EditText
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_toRightOf="@id/addressEditor_regionTitle"
+                    android:background="@drawable/input_stype_lucency" />
+
+            </RelativeLayout>
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:background="@color/line_gray" />
+
+            <RelativeLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/whitle"
+                android:padding="8dp">
+
+                <TextView
+                    android:id="@+id/addressEditor_addressTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="收貨地址："
+                    android:textColor="@color/text_gray_01"
+                    android:textSize="@dimen/text_size_17" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_toRightOf="@id/addressEditor_addressTitle"
+                    android:gravity="center"
+                    android:text="請選擇"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_16" />
+
+                <com.baidu.mapapi.map.MapView
+                    android:id="@+id/addressEditor_addressMap"
+                    android:layout_width="fill_parent"
+                    android:layout_height="220dp"
+                    android:layout_below="@id/addressEditor_addressTitle"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginTop="5dp" />
+
+                <TextView
+                    android:id="@+id/addressEditor_addressText"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/addressEditor_addressMap"
+                    android:gravity="center"
+                    android:text="收貨地址"
+                    android:textColor="@color/text_gray_01"
+                    android:textSize="@dimen/text_size_17" />
+
+            </RelativeLayout>
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:background="@color/line_gray" />
+
+            <RelativeLayout
+                android:layout_width="fill_parent"
+                android:layout_height="48dp"
+                android:background="@color/whitle"
+                android:padding="8dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="設為默認地址："
+                    android:textColor="@color/text_gray_01"
+                    android:textSize="@dimen/text_size_17" />
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true" />
+
+            </RelativeLayout>
 
         </LinearLayout>
 
