@@ -59,7 +59,7 @@ import java.util.List;
  */
 public class RebateFrameLayout extends BaseFragment {
 
-    private final static int LIMIT = 20;
+    private final static int LIMIT = 30;
 
 
     @ViewInject(R.id.rebate_progress)

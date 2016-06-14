@@ -230,7 +230,7 @@ public class BoxExpressListActivity extends BaseActivity {
     private void downloadData() {
         progress.setVisibility(View.VISIBLE);
 
-        String url = Url.getUserOrder() + "?sessiontoken=" + UserObjHandler.getSessionToken(context) + "&page=" + page + "&limit=100";
+        String url = Url.getUserOrder() + "?sessiontoken=" + UserObjHandler.getSessionToken(context) + "&page=" + page + "&limit=30";
 
         HttpUtilsBox.getHttpUtil().send(HttpMethod.GET, url,
                 new RequestCallBack<String>() {

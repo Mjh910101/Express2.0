@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
+import android.widget.AbsListView;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
@@ -104,6 +105,8 @@ public class SdyboxMapActivity extends BaseActivity {
     private List<Overlay> mOverlayList;
     private List<SdyBoxObj> mSdyBoxObjList;
 
+    private int page = 1, pages = 1;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -115,6 +118,7 @@ public class SdyboxMapActivity extends BaseActivity {
         ViewUtils.inject(this);
 
         initActivity();
+        setDataListScrollListener();
     }
 
     @OnClick({R.id.title_back, R.id.boxMap_mapIcon, R.id.boxMap_positionIcon})
@@ -130,6 +134,29 @@ public class SdyboxMapActivity extends BaseActivity {
                 initMap();
                 break;
         }
+    }
+
+    private void setDataListScrollListener() {
+        dataList.setOnScrollListener(new AbsListView.OnScrollListener() {
+            public void onScrollStateChanged(AbsListView view, int scrollState) {
+                if (scrollState == AbsListView.OnScrollListener.SCROLL_STATE_IDLE) {
+                    if (view.getLastVisiblePosition() >= (view.getCount() - 1)) {
+                        if (page <= pages) {
+                            if (progress.getVisibility() == View.GONE) {
+                                downloadData();
+                            }
+                        } else {
+                            MessageHandler.showLast(context);
+                        }
+                    }
+                }
+            }
+
+            @Override
+            public void onScroll(AbsListView arg0, int arg1, int arg2, int arg3) {
+
+            }
+        });
     }
 
     private void setDataListVisibility() {
@@ -270,7 +297,7 @@ public class SdyboxMapActivity extends BaseActivity {
     private void downloadData() {
         progress.setVisibility(View.VISIBLE);
 
-        String url = Url.getSdyBoxes() + "?page=1&limit=100";
+        String url = Url.getSdyBoxes() + "?page=" + page + "&limit=30";
 
         RequestParams params = HttpUtilsBox.getRequestParams(context);
 
@@ -294,7 +321,9 @@ public class SdyboxMapActivity extends BaseActivity {
                             JSONArray array = JsonHandle.getArray(json, "results");
                             if (JsonHandle.getInt(json, "status") == 1) {
                                 setMapPoint(SdyBoxObjHandler.getSdyBoxObjList(array));
+                                page += 1;
                             }
+                            pages = JsonHandle.getInt(json, "pages");
                         }
                     }
 

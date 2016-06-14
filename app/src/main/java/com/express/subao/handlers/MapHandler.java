@@ -29,7 +29,7 @@ public class MapHandler {
                             + location.getLongitude() + "      add : " + location.getAddrStr());
                     callback.callback(location);
                     if (location.getAddrStr() == null || location.getAddrStr().equals("null")) {
-                        MessageHandler.showToast(context,"请确定您已开启速宝的定位权限");
+                        MessageHandler.showToast(context,"請確定您已經開啟速寶的定位權限");
                     }
                 }
                 locationClient.stop();
