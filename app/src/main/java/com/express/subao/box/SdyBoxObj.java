@@ -52,7 +52,15 @@ public class SdyBoxObj {
 
     public String getNum() {
         try {
-            return String.valueOf(num + 1);
+//            return String.valueOf(num + 1);
+            int n = num + 1;
+            if (n < 10) {
+                return "00" + n;
+            } else if (n < 100) {
+                return "0" + n;
+            } else {
+                return "" + n;
+            }
         } catch (Exception e) {
             return "";
         }
@@ -142,7 +150,7 @@ public class SdyBoxObj {
         TextView view = new TextView(context);
         view.setBackgroundResource(R.drawable.sdy_box_icon);
         view.setText(getNum());
-        view.setTextSize(12);
+        view.setTextSize(9);
         view.setTextColor(ColorHandle.getColorForID(context, R.color.red));
         view.setGravity(Gravity.CENTER);
         return view;

@@ -1,8 +1,11 @@
 package com.express.subao.activitys;
 
 import android.os.Bundle;
+import android.text.Html;
 import android.util.Log;
 import android.view.View;
+import android.webkit.JavascriptInterface;
+import android.webkit.WebChromeClient;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
@@ -16,7 +19,9 @@ import com.express.subao.handlers.MessageHandler;
 import com.express.subao.handlers.TextHandeler;
 import com.express.subao.http.HttpUtilsBox;
 import com.express.subao.http.Url;
+import com.express.subao.tool.Passageway;
 import com.express.subao.views.LazyWebView;
+import com.express.subao.views.VestrewWebView;
 import com.lidroid.xutils.ViewUtils;
 import com.lidroid.xutils.exception.HttpException;
 import com.lidroid.xutils.http.ResponseInfo;
@@ -26,6 +31,9 @@ import com.lidroid.xutils.view.annotation.ViewInject;
 import com.lidroid.xutils.view.annotation.event.OnClick;
 
 import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * *
@@ -57,7 +65,7 @@ public class RebateContentActivity extends BaseActivity {
     @ViewInject(R.id.rebate_content_progress)
     private ProgressBar progress;
     @ViewInject(R.id.rebate_content_vontentWeb)
-    private LazyWebView contentWeb;
+    private VestrewWebView contentWeb;
 
     private RebateObj mRebateObj;
 
@@ -91,9 +99,39 @@ public class RebateContentActivity extends BaseActivity {
         }
     }
 
+    private List<String> webImgeList = new ArrayList<>();
 
     private void setContentWeb(RebateObj obj) {
-        contentWeb.loadDataWithBaseURL(obj.getContent(), false);
+//        contentWeb.loadDataWithBaseURL(obj.getContent(), false);
+        Log.e("", obj.getContent());
+        Log.e("", Html.fromHtml(obj.getContent()).toString());
+        String contentStr = VestrewWebView.addJavaScript(Html.fromHtml(
+                obj.getContent()).toString(), webImgeList);
+        // String contentStr = VestrewWebView.addJavaScript(obj.getContent());
+        contentWeb.getSettings().setJavaScriptEnabled(true);
+        contentWeb.addJavascriptInterface(this, "ImageOnClick");
+        contentWeb.setWebChromeClient(new WebChromeClient());
+        contentWeb.setFocusable(false);
+        contentWeb.loadData(contentStr);
+    }
+
+    @JavascriptInterface
+    public void onClickForImg(final String imgURL) {
+        Log.d("OnClick", imgURL);
+        Bundle b = new Bundle();
+        b.putStringArrayList("DataList",
+                (ArrayList<String>) webImgeList);
+        b.putInt("position", webImgeList.indexOf(imgURL));
+//        b.putStringArrayList("DataList",
+//                (ArrayList<String>) getImageList(imgURL));
+//        b.putInt("position", 0);
+        Passageway.jumpActivity(context, ImageListActivity.class, b);
+    }
+
+    private List<String> getImageList(String imgURL) {
+        List<String> imgList = new ArrayList<String>();
+        imgList.add(imgURL);
+        return imgList;
     }
 
     private void downloadData(String id) {

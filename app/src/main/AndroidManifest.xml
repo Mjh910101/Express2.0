@@ -161,6 +161,9 @@
             android:name=".activitys.CommentsListActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden|stateUnchanged" />
+        <activity
+            android:name=".activitys.ImageListActivity"
+            android:screenOrientation="portrait" />
 
         <!--推送-->
         <service

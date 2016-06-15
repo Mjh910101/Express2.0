@@ -7,6 +7,8 @@ import android.util.Log;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -95,7 +97,7 @@ public class VestrewWebView extends WebView {
         return sb.toString();
     }
 
-    public static String addJavaScript(String str) {
+    public static String addJavaScript(String str, List<String> imageList) {
         try {
             String newStr = str;
             Pattern pattern = Pattern.compile("<img(.*?)>");
@@ -115,6 +117,9 @@ public class VestrewWebView extends WebView {
                 Log.d("img", basisImg);
                 String url = basisImg.substring(basisImg.indexOf("src=") + 5, list);
                 Log.d("url", url);
+                if (imageList != null) {
+                    imageList.add(url);
+                }
                 String newImg = basisImg.replaceAll(">",
                         " onClick=\"window.ImageOnClick.onClickForImg(\'" + url
                                 + "\') \" >");

@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 
 import com.express.subao.R;
 import com.express.subao.activitys.BoxExpressListActivity;
@@ -62,6 +63,10 @@ public class MainFrameLayoutV2 extends BaseFragment {
 
     @ViewInject(R.id.main_progress)
     private ProgressBar progress;
+    @ViewInject(R.id.ppt_boxBg)
+    private ImageView boxBg;
+    @ViewInject(R.id.ppt_box)
+    private RelativeLayout pptBox;
     @ViewInject(R.id.ppt_images)
     private InsideViewFlipper mViewFlipper;
     @ViewInject(R.id.ppt_ball)
@@ -130,9 +135,14 @@ public class MainFrameLayoutV2 extends BaseFragment {
         double bAH = w2 / 320 * 176;
         setImageParams(boxAddress, w2, bAH);
 
+        double pptH = w / 64 * 30;
+        setImageParams(pptBox, w, pptH);
+        boxBg.setLayoutParams(new RelativeLayout.LayoutParams((int) w, (int) pptH));
+//        boxBg.setScaleType(ImageView.ScaleType.FIT_XY);
+        boxBg.setImageResource(R.drawable.sb_download_icon);
     }
 
-    private void setImageParams(ImageView view, double w, double h) {
+    private void setImageParams(View view, double w, double h) {
         view.setLayoutParams(new LinearLayout.LayoutParams((int) w, (int) h));
     }
 

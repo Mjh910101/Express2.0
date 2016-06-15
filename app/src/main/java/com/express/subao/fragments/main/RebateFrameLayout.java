@@ -103,7 +103,7 @@ public class RebateFrameLayout extends BaseFragment {
             public void onScrollStateChanged(AbsListView view, int scrollState) {
                 if (scrollState == AbsListView.OnScrollListener.SCROLL_STATE_IDLE) {
                     if (view.getLastVisiblePosition() >= (view.getCount() - 1)) {
-                        if (page < pages) {
+                        if (page <= pages) {
                             if (progress.getVisibility() == View.GONE) {
                                 downloadData();
                             }
@@ -122,7 +122,7 @@ public class RebateFrameLayout extends BaseFragment {
     }
 
     private void setOnRefreshListener() {
-        dataListRefresh.setColorScheme(R.color.holo_blue_bright,
+        dataListRefresh.setColorSchemeResources(R.color.holo_blue_bright,
                 R.color.holo_green_light, R.color.holo_orange_light,
                 R.color.holo_red_light);
         dataListRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {

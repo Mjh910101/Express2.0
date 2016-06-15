@@ -22,9 +22,9 @@ import java.io.File;
 
 public class DownloadImageLoader {
 
-    private final static int INDEX_IMAGE = R.drawable.download_icon;
-    private final static int FAIL_IMAGE = R.drawable.download_icon;
-    private final static int EMPTY_IMAGE = R.drawable.download_icon;
+    private final static int INDEX_IMAGE = R.drawable.sb_download_icon;
+    private final static int FAIL_IMAGE = R.drawable.sb_download_icon;
+    private final static int EMPTY_IMAGE = R.drawable.sb_download_icon;
 
     private final static String RootName = "SBFILE";
     private final static String ImageFileName = RootName + "/Image";

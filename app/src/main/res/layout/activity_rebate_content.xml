@@ -32,7 +32,7 @@
                     android:paddingRight="1dp"
                     android:paddingTop="1dp">
 
-                    <com.express.subao.views.LazyWebView
+                    <com.express.subao.views.VestrewWebView
                         android:id="@+id/rebate_content_vontentWeb"
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"

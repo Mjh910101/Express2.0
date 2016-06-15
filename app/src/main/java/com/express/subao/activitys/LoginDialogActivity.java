@@ -165,23 +165,23 @@ public class LoginDialogActivity extends BaseActivity {
         switch (type) {
             case LOGIN:
                 loginBtn.setBackgroundResource(R.color.whitle);
-                loginBtn.setTextColor(ColorHandler.getColorForID(context, R.color.text_orange));
+//                loginBtn.setTextColor(ColorHandler.getColorForID(context, R.color.text_orange));
                 loginLayout.setVisibility(View.VISIBLE);
                 break;
             case REGISTER:
                 registerBtn.setBackgroundResource(R.color.whitle);
-                registerBtn.setTextColor(ColorHandler.getColorForID(context, R.color.text_orange));
+//                registerBtn.setTextColor(ColorHandler.getColorForID(context, R.color.text_orange));
                 registerLayout.setVisibility(View.VISIBLE);
                 break;
         }
     }
 
     private void initType() {
-        loginBtn.setBackgroundResource(R.color.text_orange);
-        registerBtn.setBackgroundResource(R.color.text_orange);
+        loginBtn.setBackgroundResource(R.color.yellow_04);
+        registerBtn.setBackgroundResource(R.color.yellow_04);
 
-        loginBtn.setTextColor(ColorHandler.getColorForID(context, R.color.whitle));
-        registerBtn.setTextColor(ColorHandler.getColorForID(context, R.color.whitle));
+        loginBtn.setTextColor(ColorHandler.getColorForID(context, R.color.text_orange));
+        registerBtn.setTextColor(ColorHandler.getColorForID(context, R.color.text_orange));
 
         loginLayout.setVisibility(View.GONE);
         registerLayout.setVisibility(View.GONE);
