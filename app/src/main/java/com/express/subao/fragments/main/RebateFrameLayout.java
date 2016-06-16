@@ -105,7 +105,7 @@ public class RebateFrameLayout extends BaseFragment {
                     if (view.getLastVisiblePosition() >= (view.getCount() - 1)) {
                         if (page <= pages) {
                             if (progress.getVisibility() == View.GONE) {
-                                downloadData();
+                                downloadData(true);
                             }
                         } else {
                             MessageHandler.showLast(context);
@@ -146,7 +146,7 @@ public class RebateFrameLayout extends BaseFragment {
         for (String s : tagList) {
             tagLayout.addView(getTagView(s));
         }
-        downloadData();
+        downloadData(true);
     }
 
     private TextView getTagView(final String s) {
@@ -191,7 +191,7 @@ public class RebateFrameLayout extends BaseFragment {
         page = 1;
         pages = 1;
         rebateAdapter = null;
-        downloadData();
+        downloadData(false);
     }
 
     private void downloadTag() {
@@ -233,9 +233,10 @@ public class RebateFrameLayout extends BaseFragment {
                 });
     }
 
-    private void downloadData() {
-        progress.setVisibility(View.VISIBLE);
-
+    private void downloadData(boolean b) {
+        if (b) {
+            progress.setVisibility(View.VISIBLE);
+        }
         String url = Url.getDiscount() + "?tag=" + getDiscountTag() + "&limit=" + LIMIT + "&page=" + page;
 
         HttpUtilsBox.getHttpUtil().send(HttpMethod.GET, url,

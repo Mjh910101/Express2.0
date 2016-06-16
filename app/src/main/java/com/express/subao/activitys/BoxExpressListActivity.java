@@ -108,7 +108,7 @@ public class BoxExpressListActivity extends BaseActivity {
         initActivity();
         setOnTouchListener();
         setOnRefreshListener();
-        downloadData();
+        downloadData(true);
     }
 
     private void setOnRefreshListener() {
@@ -123,7 +123,7 @@ public class BoxExpressListActivity extends BaseActivity {
                 page = 1;
                 notReceivedList.removeAll(notReceivedList);
                 receivedList.removeAll(receivedList);
-                downloadData();
+                downloadData(false);
             }
         });
     }
@@ -149,7 +149,7 @@ public class BoxExpressListActivity extends BaseActivity {
                             Log.e("", "滑动到了底部 scrollViewMeasuredHeight=" + scrollViewMeasuredHeight);
                             if (pages >= page) {
                                 if (progress.getVisibility() == View.GONE) {
-                                    downloadData();
+                                    downloadData(true);
                                 }
                             } else {
                                 if (isShow) {
@@ -189,7 +189,8 @@ public class BoxExpressListActivity extends BaseActivity {
 
     private void setTitleListSize() {
         notReceivedText.setText(TextHandeler.getText(context, R.string.not_received_text).replace("?", String.valueOf(notReceivedList.size())));
-        receivedText.setText(TextHandeler.getText(context, R.string.received_text).replace("?", String.valueOf(receivedList.size())));
+//        receivedText.setText(TextHandeler.getText(context, R.string.received_text).replace("?", String.valueOf(receivedList.size())));
+        receivedText.setText("已取件");
 
         notReceovedDataText.setVisibility(View.GONE);
         notReceovedDataList.setVisibility(View.GONE);
@@ -224,13 +225,14 @@ public class BoxExpressListActivity extends BaseActivity {
         receovedDataList.setAdapter(new SdyOrderAdaper(context, receivedList));
         notReceovedDataList.setAdapter(new SdyOrderAdaper(context, notReceivedList));
 
-        scroll.smoothScrollTo(0, 0);
+//        scroll.smoothScrollTo(0, 0);
     }
 
-    private void downloadData() {
-        progress.setVisibility(View.VISIBLE);
-
-        String url = Url.getUserOrder() + "?sessiontoken=" + UserObjHandler.getSessionToken(context) + "&page=" + page + "&limit=30";
+    private void downloadData(boolean b) {
+        if (b) {
+            progress.setVisibility(View.VISIBLE);
+        }
+        String url = Url.getUserOrder() + "?sessiontoken=" + UserObjHandler.getSessionToken(context) + "&page=" + page + "&limit=100";
 
         HttpUtilsBox.getHttpUtil().send(HttpMethod.GET, url,
                 new RequestCallBack<String>() {

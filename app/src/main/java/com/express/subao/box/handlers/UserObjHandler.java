@@ -70,10 +70,10 @@ public class UserObjHandler {
     public static void saveUserObj(Context context, UserObj obj, boolean b) {
         if (b) {
             SystemHandle.saveStringMessage(context, KEY + UserObj.SESSION_TOKEN, obj.getSessionToken());
+            SystemHandle.saveStringMessage(context, KEY + UserObj.MOBILE, obj.getMobilePhoneNumber());
+            SystemHandle.saveStringMessage(context, KEY + UserObj.OBJECT_ID, obj.getObjectId());
         }
         SystemHandle.saveStringMessage(context, KEY + UserObj.USER_NAME, obj.getUsername());
-        SystemHandle.saveStringMessage(context, KEY + UserObj.OBJECT_ID, obj.getObjectId());
-        SystemHandle.saveStringMessage(context, KEY + UserObj.MOBILE, obj.getMobilePhoneNumber());
         SystemHandle.saveStringMessage(context, KEY + UserObj.NICKNAME, obj.getNickname());
         saveUserAvatar(context, obj.getAvatar());
     }
