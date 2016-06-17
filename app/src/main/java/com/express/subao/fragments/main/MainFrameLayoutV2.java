@@ -138,7 +138,7 @@ public class MainFrameLayoutV2 extends BaseFragment {
         double pptH = w / 64 * 30;
         setImageParams(pptBox, w, pptH);
         boxBg.setLayoutParams(new RelativeLayout.LayoutParams((int) w, (int) pptH));
-//        boxBg.setScaleType(ImageView.ScaleType.FIT_XY);
+        boxBg.setScaleType(ImageView.ScaleType.FIT_XY);
         boxBg.setImageResource(R.drawable.sb_download_icon);
     }
 

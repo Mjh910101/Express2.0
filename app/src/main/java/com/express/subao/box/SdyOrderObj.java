@@ -168,6 +168,9 @@ public class SdyOrderObj {
         if (createdAt == null || createdAt.equals("null")) {
             return "";
         }
+        if (createdAt.indexOf(" ") > 0) {
+            return createdAt.substring(0, createdAt.indexOf(" "));
+        }
         return createdAt;
     }
 

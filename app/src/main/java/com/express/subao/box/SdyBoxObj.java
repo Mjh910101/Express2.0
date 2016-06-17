@@ -51,19 +51,20 @@ public class SdyBoxObj {
     }
 
     public String getNum() {
-        try {
-//            return String.valueOf(num + 1);
-            int n = num + 1;
-            if (n < 10) {
-                return "00" + n;
-            } else if (n < 100) {
-                return "0" + n;
-            } else {
-                return "" + n;
-            }
-        } catch (Exception e) {
-            return "";
-        }
+//        try {
+////            return String.valueOf(num + 1);
+//            int n = num + 1;
+//            if (n < 10) {
+//                return "00" + n;
+//            } else if (n < 100) {
+//                return "0" + n;
+//            } else {
+//                return "" + n;
+//            }
+//        } catch (Exception e) {
+//            return "";
+//        }
+        return "";
     }
 
     public String getDevice_id() {

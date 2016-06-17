@@ -130,6 +130,13 @@ public class SdyBoxAdapter extends BaseAdapter {
         holder.pic.setText(obj.getNum());
     }
 
+    public void addItems(List<SdyBoxObj> list) {
+        for (SdyBoxObj obj : list) {
+            itemList.add(obj);
+        }
+        notifyDataSetChanged();
+    }
+
     class HolderView {
         TextView title;
         TextView address;

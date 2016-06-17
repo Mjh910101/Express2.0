@@ -225,6 +225,8 @@ public class BoxExpressListActivity extends BaseActivity {
         receovedDataList.setAdapter(new SdyOrderAdaper(context, receivedList));
         notReceovedDataList.setAdapter(new SdyOrderAdaper(context, notReceivedList));
 
+        receovedDataList.setFocusable(false);
+        notReceovedDataList.setFocusable(false);
 //        scroll.smoothScrollTo(0, 0);
     }
 

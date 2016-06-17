@@ -49,6 +49,8 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="3dp"
             android:text="title"
+            android:maxLines="1"
+            android:ellipsize="end"
             android:textColor="@color/black"
             android:textSize="@dimen/text_size_17" />
 
@@ -57,6 +59,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="address"
+            android:maxLines="1"
+            android:ellipsize="end"
             android:textColor="@color/text_gray_01"
             android:textSize="@dimen/text_size_16" />
 

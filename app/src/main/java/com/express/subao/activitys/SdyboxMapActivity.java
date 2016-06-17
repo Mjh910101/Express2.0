@@ -104,6 +104,7 @@ public class SdyboxMapActivity extends BaseActivity {
     private BaiduMap mBaiduMap;
     private List<Overlay> mOverlayList;
     private List<SdyBoxObj> mSdyBoxObjList;
+    private SdyBoxAdapter mSdyBoxAdapter;
 
     private int page = 1, pages = 1;
 
@@ -131,6 +132,10 @@ public class SdyboxMapActivity extends BaseActivity {
                 setDataListVisibility();
                 break;
             case R.id.boxMap_positionIcon:
+                page = 1;
+                mOverlayList.removeAll(mOverlayList);
+                mSdyBoxObjList.removeAll(mSdyBoxObjList);
+                mSdyBoxAdapter = null;
                 initMap();
                 break;
         }
@@ -176,6 +181,9 @@ public class SdyboxMapActivity extends BaseActivity {
         mMapView.removeViewAt(1);
         mMapView.showZoomControls(false);
         mMapView.showScaleControl(false);
+
+        mOverlayList = new ArrayList<Overlay>();
+        mSdyBoxObjList = new ArrayList<SdyBoxObj>();
         initMap();
     }
 
@@ -237,17 +245,20 @@ public class SdyboxMapActivity extends BaseActivity {
 
     public void setMapPoint(List<SdyBoxObj> list) {
         addOverlay(list);
-        dataList.setAdapter(new SdyBoxAdapter(context, list, new SdyBoxAdapter.AddressListener() {
-            @Override
-            public void onAddress(LatLng p) {
-                animateMap(p);
-            }
-        }));
+        if (mSdyBoxAdapter == null) {
+            mSdyBoxAdapter = new SdyBoxAdapter(context, list, new SdyBoxAdapter.AddressListener() {
+                @Override
+                public void onAddress(LatLng p) {
+                    animateMap(p);
+                }
+            });
+            dataList.setAdapter(mSdyBoxAdapter);
+        } else {
+            mSdyBoxAdapter.addItems(list);
+        }
     }
 
     private void addOverlay(List<SdyBoxObj> list) {
-        mOverlayList = new ArrayList<Overlay>();
-        mSdyBoxObjList = new ArrayList<SdyBoxObj>();
         for (SdyBoxObj obj : list) {
             if (obj != null && obj.isHavePoint()) {
                 mSdyBoxObjList.add(obj);
@@ -320,7 +331,7 @@ public class SdyboxMapActivity extends BaseActivity {
                         if (json != null) {
                             JSONArray array = JsonHandle.getArray(json, "results");
                             if (JsonHandle.getInt(json, "status") == 1) {
-                                setMapPoint(SdyBoxObjHandler.getSdyBoxObjList(array));
+                                setMapPoint(SdyBoxObjHandler.getSdyBoxObjList(array,(page-1)*30));
                                 page += 1;
                             }
                             pages = JsonHandle.getInt(json, "pages");

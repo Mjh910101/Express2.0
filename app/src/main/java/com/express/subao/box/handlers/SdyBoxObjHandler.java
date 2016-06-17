@@ -32,12 +32,12 @@ import java.util.List;
  */
 public class SdyBoxObjHandler {
 
-    public static List<SdyBoxObj> getSdyBoxObjList(JSONArray array) {
+    public static List<SdyBoxObj> getSdyBoxObjList(JSONArray array, int p) {
         List<SdyBoxObj> list = new ArrayList<>();
 
         for (int i = 0; i < array.length(); i++) {
             SdyBoxObj obj = getSdyBoxObj(JsonHandle.getJSON(array, i));
-            obj.setNum(i);
+            obj.setNum(p + i);
             list.add(obj);
         }
 

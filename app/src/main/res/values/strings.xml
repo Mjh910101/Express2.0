@@ -68,7 +68,7 @@
     <string name="input_express_code_text">请输入快递单号</string>
     <string name="choose_express_code_text">请选择快递公司</string>
     <string name="input_express_company_text">请输入快递公司</string>
-    <string name="not_received_text">未取件(?)</string>
+    <string name="not_received_text">待取件(?)</string>
     <string name="received_text">已取件(?)</string>
     <string name="head_text">頭像</string>
     <string name="user_name_text">暱稱</string>
