@@ -98,6 +98,7 @@ public class SdyOrderAdaper extends BaseAdapter {
             holder.companyName = (TextView) convertView.findViewById(R.id.query_express_item_companyName);
             holder.code = (TextView) convertView.findViewById(R.id.query_express_item_code);
             holder.codeText = (TextView) convertView.findViewById(R.id.query_express_item_codeText);
+            holder.stayTimeText = (TextView) convertView.findViewById(R.id.query_express_item_stayTimeText);
 
             convertView.setTag(holder);
         } else {
@@ -131,10 +132,13 @@ public class SdyOrderAdaper extends BaseAdapter {
         holder.img.setVisibility(View.GONE);
 
         holder.statusStr.setVisibility(View.VISIBLE);
+        holder.stayTimeText.setVisibility(View.GONE);
         switch (obj.getStatus()) {
             case "1":
                 holder.statusStr.setText("待取件");
                 holder.statusStr.setBackgroundResource(R.color.green);
+                holder.stayTimeText.setVisibility(View.VISIBLE);
+                holder.stayTimeText.setText(obj.getStayTime());
                 break;
             case "3":
                 holder.statusStr.setText("快遞員取出");
@@ -184,6 +188,7 @@ public class SdyOrderAdaper extends BaseAdapter {
         TextView code;
         TextView codeText;
         TextView statusStr;
+        TextView stayTimeText;
     }
 
 }

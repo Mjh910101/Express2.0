@@ -12,7 +12,7 @@ public class PPTFlish implements Runnable {
     private Handler handler;
 
     public final static int FLISHFORPPT = 1000;
-    public final static long INDEXPPTTIME = 1000 * 5;
+    public final static long INDEXPPTTIME = 1000 * 3;
 
     public PPTFlish(Handler handler) {
         this.handler = handler;

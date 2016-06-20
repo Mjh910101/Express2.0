@@ -1,5 +1,12 @@
 package com.express.subao.box;
 
+import android.util.Log;
+
+import com.express.subao.handlers.DateHandle;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 /**
  * *
  * * ┏┓      ┏┓
@@ -184,5 +191,54 @@ public class SdyOrderObj {
 
     public void setUpdatedAt(String updatedAt) {
         this.updatedAt = updatedAt;
+    }
+
+    private final static String DATA_TYPE = "yyyy-MM-dd HH:mm:ss";
+
+    public String getStayTime() {
+        StringBuffer sb = new StringBuffer();
+        sb.append("已存放");
+        int s = 1;
+        int m = s * 60;
+        int h = m * 60;
+        int d = h * 24;
+        int y = d * 365;
+        try {
+            SimpleDateFormat sdf = new SimpleDateFormat(DATA_TYPE);
+            Date date = sdf.parse(createdAt);
+            long c = date.getTime();
+            long n = DateHandle.getTime();
+            Log.e("", "now time : " + n);
+            Log.e("", "created time : " + c + " = " + DateHandle.format(c, DATA_TYPE));
+            int stayTime = (int) (n - c / 1000);
+            Log.e("", "stay time : " + stayTime);
+            int year = stayTime / y;
+            Log.e("", "year : " + stayTime + " " + y + " " + year);
+            if (year > 0) {
+                sb.append(year);
+                sb.append("年");
+            }
+            int day = stayTime % y / d;
+            Log.e("", "day : " + (stayTime % y) + " " + d + " " + day);
+            if (day > 0) {
+                sb.append(day);
+                sb.append("天");
+            }
+            int hours = stayTime % y % d / h;
+            Log.e("", "hours : " + (stayTime % y % d) + " " + h + " " + hours);
+            if (hours > 0) {
+                sb.append(hours);
+                sb.append("小時");
+            }
+            int minutes = stayTime % y % d % h / m;
+            Log.e("", "minutes : " + (stayTime % y % d % h) + " " + m + " " + minutes);
+            if (minutes > 0) {
+                sb.append(minutes);
+                sb.append("分鐘");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return sb.toString();
     }
 }
