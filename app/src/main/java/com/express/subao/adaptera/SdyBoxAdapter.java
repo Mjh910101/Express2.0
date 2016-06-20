@@ -99,7 +99,7 @@ public class SdyBoxAdapter extends BaseAdapter {
         SdyBoxObj obj = itemList.get(position);
         setView(holder, obj);
         setOnClickContentText(holder.contentText, obj);
-        serOnClick(convertView, obj);
+        serOnClick(convertView, position);
         return convertView;
     }
 
@@ -113,12 +113,13 @@ public class SdyBoxAdapter extends BaseAdapter {
         });
     }
 
-    private void serOnClick(View view, final SdyBoxObj obj) {
+    private void serOnClick(View view, final int p) {
+        final SdyBoxObj obj = itemList.get(p);
         view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (mAddressListener != null && obj.getPoint() != null) {
-                    mAddressListener.onAddress(obj.getPoint());
+                    mAddressListener.onAddress(obj.getPoint(), p);
                 }
             }
         });
@@ -145,6 +146,6 @@ public class SdyBoxAdapter extends BaseAdapter {
     }
 
     public interface AddressListener {
-        public void onAddress(LatLng p);
+        public void onAddress(LatLng p, int i);
     }
 }

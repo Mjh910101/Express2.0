@@ -268,5 +268,4 @@ public class BoxExpressListActivity extends BaseActivity {
                 });
     }
 
-
 }

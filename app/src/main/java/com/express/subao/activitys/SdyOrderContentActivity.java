@@ -148,7 +148,7 @@ public class SdyOrderContentActivity extends BaseActivity {
 //        Passageway.jumpActivity(context, CheckExpressActivity.class, b);
         Bundle b = new Bundle();
         b.putString(WebActivity.TITLE, TextHandeler.getText(context, R.string.main_kdgz_text));
-        b.putString(WebActivity.URL, "https://m.baidu.com/from=1013665e/s?word=" + "快递" + mSdyOrderObj.getMailno());
+        b.putString(WebActivity.URL, "https://m.baidu.com/from=1013665e/s?word=" + "快遞" + mSdyOrderObj.getMailno());
         Passageway.jumpActivity(context, WebActivity.class, b);
     }
 
@@ -165,7 +165,6 @@ public class SdyOrderContentActivity extends BaseActivity {
             isPush = b.getBoolean(PushReceiver.PUSH_KEY);
             downloadData(b.getString(SdyOrderObj.SDY_ORDER_ID));
         }
-
     }
 
     public void setMessageView(SdyOrderObj obj) {

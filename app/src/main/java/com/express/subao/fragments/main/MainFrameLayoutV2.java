@@ -170,6 +170,7 @@ public class MainFrameLayoutV2 extends BaseFragment {
         Bundle b = new Bundle();
         switch (view.getId()) {
             case R.id.main_tellFriend:
+                b.putString(WebActivity.TITLE, "告訴朋友");
                 b.putString(WebActivity.URL, Url.getIndex() + "/html/11.html");
                 break;
             case R.id.main_getExpress:
@@ -177,6 +178,7 @@ public class MainFrameLayoutV2 extends BaseFragment {
                 b.putString(WebActivity.URL, Url.getIndex() + "/html/12.html");
                 break;
             case R.id.main_callMe:
+                b.putString(WebActivity.TITLE, "聯繫我們");
                 b.putString(WebActivity.URL, Url.getIndex() + "/html/14.html");
                 break;
             case R.id.main_boxAddress:

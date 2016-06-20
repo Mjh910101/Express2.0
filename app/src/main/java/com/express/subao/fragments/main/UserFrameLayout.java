@@ -106,9 +106,11 @@ public class UserFrameLayout extends BaseFragment {
                 b.putString(WebActivity.URL, Url.getIndex() + "/html/12.html");
                 break;
             case R.id.user_item_about:
+                b.putString(WebActivity.TITLE, "關於我們");
                 b.putString(WebActivity.URL, Url.getIndex() + "/html/22.html");
                 break;
             case R.id.user_item_inviteFriendsBox:
+                b.putString(WebActivity.TITLE, "邀請好友使用速寶");
                 b.putString(WebActivity.URL, Url.getIndex() + "/html/23.html");
                 break;
         }

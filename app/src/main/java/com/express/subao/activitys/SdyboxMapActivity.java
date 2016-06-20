@@ -26,6 +26,7 @@ import com.baidu.mapapi.map.MapStatus;
 import com.baidu.mapapi.map.MapStatusUpdate;
 import com.baidu.mapapi.map.MapStatusUpdateFactory;
 import com.baidu.mapapi.map.MapView;
+import com.baidu.mapapi.map.Marker;
 import com.baidu.mapapi.map.MarkerOptions;
 import com.baidu.mapapi.map.Overlay;
 import com.baidu.mapapi.map.OverlayOptions;
@@ -106,6 +107,8 @@ public class SdyboxMapActivity extends BaseActivity {
     private List<SdyBoxObj> mSdyBoxObjList;
     private SdyBoxAdapter mSdyBoxAdapter;
 
+    private Marker onClickMarker;
+
     private int page = 1, pages = 1;
 
     @Override
@@ -136,6 +139,7 @@ public class SdyboxMapActivity extends BaseActivity {
                 mOverlayList.removeAll(mOverlayList);
                 mSdyBoxObjList.removeAll(mSdyBoxObjList);
                 mSdyBoxAdapter = null;
+                removeOnClickMarker();
                 initMap();
                 break;
         }
@@ -219,6 +223,27 @@ public class SdyboxMapActivity extends BaseActivity {
         MapStatusUpdate mMapStatusUpdate = MapStatusUpdateFactory
                 .newMapStatus(mMapStatus);
         mBaiduMap.animateMapStatus(mMapStatusUpdate, 500);
+
+    }
+
+    private Marker setOnClickIcon(int position) {
+        if (!mOverlayList.isEmpty()) {
+            BitmapDescriptor icon_marka = BitmapDescriptorFactory
+                    .fromResource(R.drawable.marker_icon);
+            Marker marker = (Marker) mOverlayList.get(position);
+            removeOnClickMarker();
+            OverlayOptions option = new MarkerOptions().position(marker.getPosition()).icon(icon_marka);
+            onClickMarker = (Marker) mBaiduMap.addOverlay(option);
+            return onClickMarker;
+        }
+        return null;
+    }
+
+    private void removeOnClickMarker() {
+        if (onClickMarker != null) {
+            onClickMarker.remove();
+            onClickMarker = null;
+        }
     }
 
     OnGetGeoCoderResultListener getGeoCodeResultListener = new OnGetGeoCoderResultListener() {
@@ -248,8 +273,9 @@ public class SdyboxMapActivity extends BaseActivity {
         if (mSdyBoxAdapter == null) {
             mSdyBoxAdapter = new SdyBoxAdapter(context, list, new SdyBoxAdapter.AddressListener() {
                 @Override
-                public void onAddress(LatLng p) {
+                public void onAddress(LatLng p, int i) {
                     animateMap(p);
+                    setOnClickIcon(i);
                 }
             });
             dataList.setAdapter(mSdyBoxAdapter);
@@ -308,7 +334,7 @@ public class SdyboxMapActivity extends BaseActivity {
     private void downloadData() {
         progress.setVisibility(View.VISIBLE);
 
-        String url = Url.getSdyBoxes() + "?page=" + page + "&limit=30";
+        String url = Url.getSdyBoxes() + "?page=" + page + "&limit=100";
 
         RequestParams params = HttpUtilsBox.getRequestParams(context);
 
@@ -331,7 +357,7 @@ public class SdyboxMapActivity extends BaseActivity {
                         if (json != null) {
                             JSONArray array = JsonHandle.getArray(json, "results");
                             if (JsonHandle.getInt(json, "status") == 1) {
-                                setMapPoint(SdyBoxObjHandler.getSdyBoxObjList(array,(page-1)*30));
+                                setMapPoint(SdyBoxObjHandler.getSdyBoxObjList(array, (page - 1) * 30));
                                 page += 1;
                             }
                             pages = JsonHandle.getInt(json, "pages");

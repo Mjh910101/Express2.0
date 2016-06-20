@@ -234,7 +234,7 @@ public class SdyOrderObj {
             Log.e("", "minutes : " + (stayTime % y % d % h) + " " + m + " " + minutes);
             if (minutes > 0) {
                 sb.append(minutes);
-                sb.append("分鐘");
+                sb.append("分");
             }
         } catch (Exception e) {
             e.printStackTrace();
