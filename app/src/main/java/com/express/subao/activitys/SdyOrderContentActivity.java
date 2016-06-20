@@ -5,6 +5,7 @@ import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -90,6 +91,8 @@ public class SdyOrderContentActivity extends BaseActivity {
     private View mobLine;
     @ViewInject(R.id.expres_content_progress)
     private ProgressBar progress;
+    @ViewInject(R.id.expres_content_messageBox)
+    private LinearLayout messageBox;
 
     private SdyOrderObj mSdyOrderObj;
     private boolean isPush = false;
@@ -168,6 +171,7 @@ public class SdyOrderContentActivity extends BaseActivity {
     }
 
     public void setMessageView(SdyOrderObj obj) {
+        messageBox.setVisibility(View.VISIBLE);
         contentPrice.setText("MOB");
         contentTips.setText("請盡快前往取件");
         contentArea.setText("位置：" + obj.getBoxAddress());

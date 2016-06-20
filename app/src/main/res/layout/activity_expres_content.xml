@@ -12,8 +12,10 @@
         android:layout_height="fill_parent">
 
         <LinearLayout
+            android:id="@+id/expres_content_messageBox"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
+            android:visibility="invisible"
             android:orientation="vertical">
 
             <RelativeLayout

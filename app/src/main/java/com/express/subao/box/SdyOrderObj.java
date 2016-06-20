@@ -220,22 +220,22 @@ public class SdyOrderObj {
             }
             int day = stayTime % y / d;
             Log.e("", "day : " + (stayTime % y) + " " + d + " " + day);
-            if (day > 0) {
+//            if (day > 0) {
                 sb.append(day);
                 sb.append("天");
-            }
+//            }
             int hours = stayTime % y % d / h;
             Log.e("", "hours : " + (stayTime % y % d) + " " + h + " " + hours);
-            if (hours > 0) {
+//            if (hours > 0) {
                 sb.append(hours);
                 sb.append("小時");
-            }
+//            }
             int minutes = stayTime % y % d % h / m;
             Log.e("", "minutes : " + (stayTime % y % d % h) + " " + m + " " + minutes);
-            if (minutes > 0) {
+//            if (minutes > 0) {
                 sb.append(minutes);
                 sb.append("分");
-            }
+//            }
         } catch (Exception e) {
             e.printStackTrace();
         }
