@@ -179,7 +179,7 @@ public class MainFrameLayoutV2 extends BaseFragment {
                 break;
             case R.id.main_callMe:
                 b.putString(WebActivity.TITLE, "聯繫我們");
-                b.putString(WebActivity.URL, Url.getIndex() + "/html/14.html");
+                b.putString(WebActivity.URL, Url.getIndex() + "/html/andriod_contact.html");
                 break;
             case R.id.main_boxAddress:
 //                b.putString(WebActivity.URL, Url.getIndex() + "/html/15.html");

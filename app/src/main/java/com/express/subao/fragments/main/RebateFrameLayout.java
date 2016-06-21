@@ -181,7 +181,10 @@ public class RebateFrameLayout extends BaseFragment {
         } else {
             rebateAdapter.addItems(list);
         }
+        closeRefreshing();
+    }
 
+    private void closeRefreshing(){
         if (dataListRefresh.isRefreshing()) {
             dataListRefresh.setRefreshing(false);
         }
@@ -205,6 +208,7 @@ public class RebateFrameLayout extends BaseFragment {
                     @Override
                     public void onFailure(HttpException exception, String msg) {
                         progress.setVisibility(View.GONE);
+                        closeRefreshing();
                         MessageHandler.showFailure(context);
                     }
 
@@ -245,6 +249,7 @@ public class RebateFrameLayout extends BaseFragment {
                     @Override
                     public void onFailure(HttpException exception, String msg) {
                         progress.setVisibility(View.GONE);
+                        closeRefreshing();
                         MessageHandler.showFailure(context);
                     }
 

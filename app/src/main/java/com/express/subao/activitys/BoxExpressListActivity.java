@@ -218,16 +218,18 @@ public class BoxExpressListActivity extends BaseActivity {
         }
         setTitleListSize();
 
-        if (swipeRefresh.isRefreshing()) {
-            swipeRefresh.setRefreshing(false);
-        }
-
         receovedDataList.setAdapter(new SdyOrderAdaper(context, receivedList));
         notReceovedDataList.setAdapter(new SdyOrderAdaper(context, notReceivedList));
 
         receovedDataList.setFocusable(false);
         notReceovedDataList.setFocusable(false);
 //        scroll.smoothScrollTo(0, 0);
+    }
+
+    private void closeRefreshing() {
+        if (swipeRefresh.isRefreshing()) {
+            swipeRefresh.setRefreshing(false);
+        }
     }
 
     private void downloadData(boolean b) {
@@ -242,6 +244,7 @@ public class BoxExpressListActivity extends BaseActivity {
                     @Override
                     public void onFailure(HttpException exception, String msg) {
                         progress.setVisibility(View.GONE);
+                        closeRefreshing();
                         MessageHandler.showFailure(context);
                     }
 

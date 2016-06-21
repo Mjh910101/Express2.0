@@ -86,6 +86,9 @@ public class SdyOrderObj {
     }
 
     public String getPickup_time() {
+        if (pickup_time == null || pickup_time.equals("null")) {
+            return "";
+        }
         if (pickup_time.indexOf(" ") > 0) {
             return pickup_time.substring(0, pickup_time.indexOf(" "));
         }
@@ -175,8 +178,11 @@ public class SdyOrderObj {
         if (createdAt == null || createdAt.equals("null")) {
             return "";
         }
-        if (createdAt.indexOf(" ") > 0) {
-            return createdAt.substring(0, createdAt.indexOf(" "));
+//        if (createdAt.indexOf(":") > 0) {
+//            return createdAt.substring(0, createdAt.indexOf(" "));
+//        }
+        if (createdAt.length() > 3) {
+            return createdAt.substring(0, createdAt.length() - 3);
         }
         return createdAt;
     }
@@ -221,20 +227,20 @@ public class SdyOrderObj {
             int day = stayTime % y / d;
             Log.e("", "day : " + (stayTime % y) + " " + d + " " + day);
 //            if (day > 0) {
-                sb.append(day);
-                sb.append("天");
+            sb.append(day);
+            sb.append("天");
 //            }
             int hours = stayTime % y % d / h;
             Log.e("", "hours : " + (stayTime % y % d) + " " + h + " " + hours);
 //            if (hours > 0) {
-                sb.append(hours);
-                sb.append("小時");
+            sb.append(hours);
+            sb.append("小時");
 //            }
             int minutes = stayTime % y % d % h / m;
             Log.e("", "minutes : " + (stayTime % y % d % h) + " " + m + " " + minutes);
 //            if (minutes > 0) {
-                sb.append(minutes);
-                sb.append("分");
+            sb.append(minutes);
+            sb.append("分");
 //            }
         } catch (Exception e) {
             e.printStackTrace();

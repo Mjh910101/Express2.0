@@ -97,8 +97,8 @@ public class SdyboxContentaActivity extends BaseActivity {
 
         mSdyBoxObj = SdyBoxObjHandler.getSdyBoxObj();
         if (mSdyBoxObj != null) {
-            title.setText(mSdyBoxObj.getTitle());
-            address.setText(mSdyBoxObj.getAddress());
+            title.setText("櫃名："+mSdyBoxObj.getTitle());
+            address.setText("地址："+mSdyBoxObj.getAddress());
             DownloadImageLoader.loadImage(cover, mSdyBoxObj.getCover());
         }
     }
