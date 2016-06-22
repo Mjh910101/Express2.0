@@ -217,6 +217,7 @@ public class BoxExpressListActivity extends BaseActivity {
             }
         }
         setTitleListSize();
+        closeRefreshing();
 
         receovedDataList.setAdapter(new SdyOrderAdaper(context, receivedList));
         notReceovedDataList.setAdapter(new SdyOrderAdaper(context, notReceivedList));

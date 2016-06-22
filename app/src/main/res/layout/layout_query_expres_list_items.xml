@@ -18,33 +18,49 @@
 
     </LinearLayout>
 
-    <LinearLayout
-        android:id="@+id/query_express_item_messageBox"
+    <!--<LinearLayout-->
+    <!--android:id="@+id/query_express_item_messageBox"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_alignParentRight="true"-->
+    <!--android:layout_centerVertical="true"-->
+    <!--android:gravity="right"-->
+    <!--android:orientation="vertical">-->
+
+    <TextView
+        android:id="@+id/query_express_item_statusStr"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
-        android:layout_centerVertical="true"
-        android:gravity="right"
-        android:orientation="vertical">
+        android:paddingBottom="3dp"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp"
+        android:paddingTop="3dp"
+        android:textColor="@color/whitle"
+        android:textSize="@dimen/text_size_13" />
 
-        <TextView
-            android:id="@+id/query_express_item_statusStr"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:paddingBottom="3dp"
-            android:paddingLeft="5dp"
-            android:paddingRight="5dp"
-            android:paddingTop="3dp"
-            android:textColor="@color/whitle"
-            android:textSize="@dimen/text_size_13" />
+    <TextView
+        android:id="@+id/query_express_item_pastStatusStr"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_below="@id/query_express_item_statusStr"
+        android:paddingBottom="3dp"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp"
+        android:paddingTop="3dp"
+        android:textColor="@color/whitle"
+        android:textSize="@dimen/text_size_13" />
 
-        <TextView
-            android:id="@+id/query_express_item_stayTimeText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@color/text_orange"
-            android:textSize="@dimen/text_size_13" />
-    </LinearLayout>
+    <TextView
+        android:id="@+id/query_express_item_stayTimeText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_below="@id/query_express_item_statusStr"
+        android:textColor="@color/text_orange"
+        android:textSize="@dimen/text_size_13" />
+    <!--</LinearLayout>-->
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -52,7 +68,7 @@
         android:layout_centerVertical="true"
         android:layout_marginLeft="5dp"
         android:layout_marginRight="5dp"
-        android:layout_toLeftOf="@id/query_express_item_messageBox"
+        android:layout_toLeftOf="@id/query_express_item_statusStr"
         android:layout_toRightOf="@id/query_express_item_imgBox"
         android:orientation="vertical">
 

@@ -95,6 +95,7 @@ public class SdyOrderAdaper extends BaseAdapter {
             holder.companyIcon = (ImageView) convertView.findViewById(R.id.query_express_item_companyIcon);
             holder.codeIcon = (ImageView) convertView.findViewById(R.id.query_express_item_codeIcon);
             holder.statusStr = (TextView) convertView.findViewById(R.id.query_express_item_statusStr);
+            holder.pastStatusStr = (TextView) convertView.findViewById(R.id.query_express_item_pastStatusStr);
             holder.companyName = (TextView) convertView.findViewById(R.id.query_express_item_companyName);
             holder.code = (TextView) convertView.findViewById(R.id.query_express_item_code);
             holder.codeText = (TextView) convertView.findViewById(R.id.query_express_item_codeText);
@@ -130,26 +131,28 @@ public class SdyOrderAdaper extends BaseAdapter {
 //        setImage(holder.img, obj.getExpreser().getCompanyInfo().getIco());
 //        holder.companyName.setText(obj.getExpreser().getCompanyInfo().getName() + " " + obj.getExpreser().getExpress_id());
         holder.img.setVisibility(View.GONE);
-
-        holder.statusStr.setVisibility(View.VISIBLE);
+        holder.statusStr.setVisibility(View.INVISIBLE);
+        holder.pastStatusStr.setVisibility(View.GONE);
         holder.stayTimeText.setVisibility(View.GONE);
         switch (obj.getStatus()) {
             case "1":
+                holder.statusStr.setVisibility(View.VISIBLE);
                 holder.statusStr.setText("待取件");
                 holder.statusStr.setBackgroundResource(R.color.green);
                 holder.stayTimeText.setVisibility(View.VISIBLE);
                 holder.stayTimeText.setText(obj.getStayTime());
                 break;
             case "3":
-                holder.statusStr.setText("快遞員取出");
-                holder.statusStr.setBackgroundResource(R.color.red);
+                holder.pastStatusStr.setVisibility(View.VISIBLE);
+                holder.pastStatusStr.setText("快遞員取出");
+                holder.pastStatusStr.setBackgroundResource(R.color.red);
                 break;
             case "4":
-                holder.statusStr.setText("管理員取出");
-                holder.statusStr.setBackgroundResource(R.color.red);
+                holder.pastStatusStr.setVisibility(View.VISIBLE);
+                holder.pastStatusStr.setText("管理員取出");
+                holder.pastStatusStr.setBackgroundResource(R.color.red);
                 break;
             default:
-                holder.statusStr.setVisibility(View.INVISIBLE);
                 break;
         }
 
@@ -188,6 +191,7 @@ public class SdyOrderAdaper extends BaseAdapter {
         TextView code;
         TextView codeText;
         TextView statusStr;
+        TextView pastStatusStr;
         TextView stayTimeText;
     }
 
