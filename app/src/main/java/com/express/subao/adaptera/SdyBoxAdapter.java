@@ -15,6 +15,7 @@ import com.express.subao.activitys.SdyboxContentaActivity;
 import com.express.subao.box.AreaObj;
 import com.express.subao.box.SdyBoxObj;
 import com.express.subao.box.handlers.SdyBoxObjHandler;
+import com.express.subao.handlers.ColorHandler;
 import com.express.subao.interfaces.CallbackForString;
 import com.express.subao.tool.Passageway;
 import com.express.subao.views.InsideListView;
@@ -50,6 +51,7 @@ public class SdyBoxAdapter extends BaseAdapter {
 
     private AddressListener mAddressListener;
 
+    private int onPosition = -1;
 
     public SdyBoxAdapter(Context context, List<SdyBoxObj> itemList, AddressListener listener) {
         initBaseAdapter(context);
@@ -97,7 +99,8 @@ public class SdyBoxAdapter extends BaseAdapter {
         }
 
         SdyBoxObj obj = itemList.get(position);
-        setView(holder, obj);
+
+        setView(holder, position);
         setOnClickContentText(holder.contentText, obj);
         serOnClick(convertView, position);
         return convertView;
@@ -120,15 +123,35 @@ public class SdyBoxAdapter extends BaseAdapter {
             public void onClick(View v) {
                 if (mAddressListener != null && obj.getPoint() != null) {
                     mAddressListener.onAddress(obj.getPoint(), p);
+                    onPosition = p;
+                    notifyDataSetChanged();
                 }
             }
         });
     }
 
-    private void setView(HolderView holder, SdyBoxObj obj) {
+    public void initOnPosition(){
+        onPosition=-1;
+        notifyDataSetChanged();
+    }
+
+    private void setView(HolderView holder, int p) {
+        SdyBoxObj obj = itemList.get(p);
+
         holder.title.setText(obj.getTitle());
         holder.address.setText(obj.getAddress());
         holder.pic.setText(obj.getNum());
+        if (onPosition == p) {
+            holder.pic.setBackgroundResource(R.drawable.marker_small_icon);
+            holder.contentText.setBackgroundResource(R.drawable.blue_box_white_background_btn);
+            holder.contentText.setTextColor(ColorHandler.getColorForID(context,R.color.text_blue));
+            holder.title.setTextColor(ColorHandler.getColorForID(context,R.color.text_blue));
+        }else{
+            holder.pic.setBackgroundResource(R.drawable.sdy_box_icon);
+            holder.contentText.setBackgroundResource(R.drawable.orange_box_white_background_btn);
+            holder.contentText.setTextColor(ColorHandler.getColorForID(context,R.color.text_orange));
+            holder.title.setTextColor(ColorHandler.getColorForID(context,R.color.black));
+        }
     }
 
     public void addItems(List<SdyBoxObj> list) {

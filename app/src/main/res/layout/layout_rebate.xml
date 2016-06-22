@@ -44,7 +44,6 @@
                 android:background="@color/whitle"
                 android:divider="@color/line_gray"
                 android:dividerHeight="1dp"
-                android:scrollbars="none"
                 android:paddingLeft="12dp"
                 android:paddingRight="12dp" />
         </android.support.v4.widget.SwipeRefreshLayout>

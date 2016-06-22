@@ -10,7 +10,7 @@ import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 
 import com.express.subao.R;
-import com.express.subao.activitys.BoxExpressListActivity;
+import com.express.subao.activitys.SdyOrderListActivity;
 import com.express.subao.activitys.SdyboxMapActivity;
 import com.express.subao.activitys.WebActivity;
 import com.express.subao.adaptera.StoreAdapter;
@@ -155,7 +155,7 @@ public class MainFrameLayoutV3 extends BaseFragment {
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.main_expressBox:
-                Passageway.jumpActivity(context, BoxExpressListActivity.class);
+                Passageway.jumpActivity(context, SdyOrderListActivity.class);
                 break;
             case R.id.main_expressCheck:
 //                Passageway.jumpActivity(context, QueryExpressActivity.class);

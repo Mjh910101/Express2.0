@@ -131,7 +131,7 @@
             android:name=".activitys.OrdinaryWebActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activitys.BoxExpressListActivity"
+            android:name=".activitys.SdyOrderListActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".activitys.LoginDialogActivity"
