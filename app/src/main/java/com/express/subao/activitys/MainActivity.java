@@ -293,6 +293,7 @@ public class MainActivity extends BaseActivity {
             transaction.add(R.id.main_content, mainFrameLayout);
         } else {
             transaction.show(mainFrameLayout);
+            mainFrameLayout.startFlish();
         }
     }
 
@@ -329,6 +330,9 @@ public class MainActivity extends BaseActivity {
 
         titleName.setText(TextHandeler.getText(context, R.string.app_name));
 
+        if (mainFrameLayout != null) {
+            mainFrameLayout.stopFlish();
+        }
     }
 
 }

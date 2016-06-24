@@ -107,6 +107,7 @@ public class SdyboxMapActivity extends BaseActivity {
     private List<SdyBoxObj> mSdyBoxObjList;
     private SdyBoxAdapter mSdyBoxAdapter;
 
+    private Marker onCurrentMarker;
     private Marker onClickMarker;
 
     private int page = 1, pages = 1;
@@ -209,11 +210,11 @@ public class SdyboxMapActivity extends BaseActivity {
 
         BitmapDescriptor bitmap = BitmapDescriptorFactory
                 .fromResource(R.drawable.position_icon);
+        removeOnCurrentMarker();
         OverlayOptions option = new MarkerOptions()
                 .position(point)
                 .icon(bitmap);
-        mBaiduMap.addOverlay(option);
-
+        onCurrentMarker = (Marker) mBaiduMap.addOverlay(option);
         downloadData();
     }
 
@@ -240,9 +241,18 @@ public class SdyboxMapActivity extends BaseActivity {
     }
 
     private void removeOnClickMarker() {
-        if (onClickMarker != null) {
-            onClickMarker.remove();
-            onClickMarker = null;
+        removeMarker(onClickMarker);
+        onClickMarker = null;
+    }
+
+    private void removeOnCurrentMarker() {
+        removeMarker(onCurrentMarker);
+        onCurrentMarker = null;
+    }
+
+    private void removeMarker(Marker marker) {
+        if (marker != null) {
+            marker.remove();
         }
     }
 

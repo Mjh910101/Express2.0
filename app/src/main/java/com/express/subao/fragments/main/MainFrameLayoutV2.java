@@ -90,9 +90,7 @@ public class MainFrameLayoutV2 extends BaseFragment {
     public void onRestart() {
         pptBallBox.removeAllViews();
         mViewFlipper.removeAllViews();
-        if (mSliderView != null) {
-            mSliderView.stopFlish();
-        }
+        stopFlish();
         downloadData();
     }
 
@@ -108,6 +106,30 @@ public class MainFrameLayoutV2 extends BaseFragment {
         downloadData();
 
         return contactsLayout;
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        stopFlish();
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        startFlish();
+    }
+
+    public void startFlish(){
+        if (mSliderView != null) {
+            mSliderView.startFlish();
+        }
+    }
+
+    public void stopFlish(){
+        if (mSliderView != null) {
+            mSliderView.stopFlish();
+        }
     }
 
     private void initImageView() {
