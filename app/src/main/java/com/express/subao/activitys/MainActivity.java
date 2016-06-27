@@ -77,7 +77,7 @@ public class MainActivity extends BaseActivity {
     @ViewInject(R.id.main_tap_userText)
     private TextView userText;
 
-    private MainFrameLayoutV2 mainFrameLayout;
+    private MainFrameLayoutV3 mainFrameLayout;
     private RebateFrameLayout rebateFrameLayout;
     private ShoppingCarFrameLayout shoppingCarFrameLayout;
     private UserFrameLayout userFrameLayout;
@@ -289,7 +289,7 @@ public class MainActivity extends BaseActivity {
 //        scanningIcon.setVisibility(View.VISIBLE);
         titleIcon.setVisibility(View.VISIBLE);
         if (mainFrameLayout == null) {
-            mainFrameLayout = new MainFrameLayoutV2();
+            mainFrameLayout = new MainFrameLayoutV3();
             transaction.add(R.id.main_content, mainFrameLayout);
         } else {
             transaction.show(mainFrameLayout);

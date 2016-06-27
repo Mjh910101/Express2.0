@@ -43,10 +43,10 @@ public class MapHandler {
     private static LocationClientOption getLocationClientOption() {
         LocationClientOption option = new LocationClientOption();
         option.setLocationMode(LocationMode.Hight_Accuracy);// 设置定位模式
-        option.setCoorType("gcj02");// 返回的定位结果是百度经纬度，默认值gcj02
+        option.setCoorType("bd09ll");// 返回的定位结果是百度经纬度，默认值gcj02
         option.setOpenGps(true);
         int span = 1000;
-        option.setScanSpan(span);
+        option.setScanSpan(0);
         option.setIsNeedAddress(true);
 //        option.SetIgnoreCacheException(true);
         return option;

@@ -70,7 +70,7 @@
         <RelativeLayout
             android:layout_width="0dp"
             android:layout_height="fill_parent"
-            android:visibility="gone"
+            android:visibility="visible"
             android:layout_weight="1">
 
             <ImageView
@@ -87,7 +87,7 @@
             android:layout_height="fill_parent"
             android:layout_weight="1"
             android:gravity="center"
-            android:visibility="gone"
+            android:visibility="visible"
             android:orientation="vertical">
 
             <ImageView

@@ -81,6 +81,7 @@ public class StoreAdapter extends BaseAdapter {
 
         ImageView view = new ImageView(context);
         view.setLayoutParams(new GridView.LayoutParams(w, w));
+        view.setScaleType(ImageView.ScaleType.FIT_XY);
         view.setPadding(p, p, p, p);
         DownloadImageLoader.loadImage(view, obj.getImg());
 
