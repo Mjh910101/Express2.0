@@ -28,6 +28,7 @@ import com.express.subao.fragments.main.MainFrameLayoutV3;
 import com.express.subao.fragments.main.RebateFrameLayout;
 import com.express.subao.fragments.main.ShoppingCarFrameLayout;
 import com.express.subao.fragments.main.UserFrameLayout;
+import com.express.subao.fragments.main.UserFrameLayoutV2;
 import com.express.subao.handlers.ColorHandler;
 import com.express.subao.handlers.MessageHandler;
 import com.express.subao.handlers.PushHandler;
@@ -80,7 +81,7 @@ public class MainActivity extends BaseActivity {
     private MainFrameLayoutV3 mainFrameLayout;
     private RebateFrameLayout rebateFrameLayout;
     private ShoppingCarFrameLayout shoppingCarFrameLayout;
-    private UserFrameLayout userFrameLayout;
+    private UserFrameLayoutV2 userFrameLayout;
     private FragmentManager fragmentManager;
 
 
@@ -148,7 +149,7 @@ public class MainActivity extends BaseActivity {
         }
     }
 
-    @OnClick({R.id.title_addressName, R.id.title_scanningIcon})
+    @OnClick({R.id.title_addressName, R.id.title_scanningIcon, R.id.main_tap_scanningIcon})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.title_addressName:
@@ -158,6 +159,9 @@ public class MainActivity extends BaseActivity {
 //                Passageway.jumpActivity(context, ExpressListActivity.class);
 //                Passageway.jumpActivity(context, ScanningActivity.class);
                 showBanDialog();
+                break;
+            case R.id.main_tap_scanningIcon:
+                Passageway.jumpActivity(context, ScanningActivity.class);
                 break;
         }
     }
@@ -251,7 +255,7 @@ public class MainActivity extends BaseActivity {
         userIcon.setImageResource(R.drawable.main_tap_on_user_icon);
         userText.setTextColor(ColorHandler.getColorForID(context, R.color.text_orange));
         if (userFrameLayout == null) {
-            userFrameLayout = new UserFrameLayout();
+            userFrameLayout = new UserFrameLayoutV2();
             transaction.add(R.id.main_content, userFrameLayout);
         } else {
             transaction.show(userFrameLayout);

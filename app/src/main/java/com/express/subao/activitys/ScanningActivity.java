@@ -16,6 +16,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.express.subao.R;
+import com.express.subao.dialogs.MessageDialog;
 import com.express.subao.handlers.TextHandeler;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.Result;
@@ -158,7 +159,8 @@ public class ScanningActivity extends BaseActivity implements SurfaceHolder.Call
         playBeepSoundAndVibrate();
         String resultString = result.getText();
 
-        finish();
+        MessageDialog dialog = new MessageDialog(context);
+        dialog.setMessage(resultString);
     }
 
     private void initCamera(SurfaceHolder surfaceHolder) {
