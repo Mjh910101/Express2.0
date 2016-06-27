@@ -230,9 +230,15 @@ public class LoginDialogActivity extends BaseActivity {
             return false;
         }
 
-        if (TextHandeler.getText(registerTelInput).length() != 8 && TextHandeler.getText(registerTelInput).length() != 11) {
+//        if (TextHandeler.getText(registerTelInput).length() != 8 && TextHandeler.getText(registerTelInput).length() != 11) {
+//            MessageHandler.showToast(context,
+//                    getResources().getString(R.string.tel_not_error));
+//            return false;
+//        }
+
+        if (TextHandeler.getText(registerVerifyInput).equals("")) {
             MessageHandler.showToast(context,
-                    getResources().getString(R.string.tel_not_error));
+                    getResources().getString(R.string.verify_not_null));
             return false;
         }
 
@@ -247,6 +253,13 @@ public class LoginDialogActivity extends BaseActivity {
                     getResources().getString(R.string.pass_length));
             return false;
         }
+
+        if (!TextHandeler.getText(registerPasswordInput).equals(TextHandeler.getText(registerPasswordAgainInput))) {
+            MessageHandler.showToast(context,
+                    getResources().getString(R.string.pass_not_equals));
+            return false;
+        }
+
         return true;
     }
 

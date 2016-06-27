@@ -35,8 +35,10 @@
     <string name="tel_not_null">手機號碼不能為空</string>
     <string name="tel_not_error">手機號碼不正確</string>
     <string name="pass_not_null">密碼不能為空</string>
+    <string name="verify_not_null">驗證碼不能為空</string>
     <string name="code_not_null">驗證碼不能為空</string>
     <string name="pass_length">密碼長度需6-20位</string>
+    <string name="pass_not_equals">兩次輸入的密碼不一樣</string>
     <string name="phone_message">請確認您的手機號碼，我們將發送驗證碼短信到這個號碼</string>
     <string name="confirm">確定</string>
     <string name="query">查詢</string>
