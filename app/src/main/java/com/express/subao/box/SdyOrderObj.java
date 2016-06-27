@@ -201,14 +201,15 @@ public class SdyOrderObj {
 
     private final static String DATA_TYPE = "yyyy-MM-dd HH:mm:ss";
 
+    private final static int s = 1;
+    private final static int m = s * 60;
+    private final static int h = m * 60;
+    private final static int d = h * 24;
+    private final static int y = d * 365;
+
     public String getStayTime() {
         StringBuffer sb = new StringBuffer();
         sb.append("已存放");
-        int s = 1;
-        int m = s * 60;
-        int h = m * 60;
-        int d = h * 24;
-        int y = d * 365;
         try {
             SimpleDateFormat sdf = new SimpleDateFormat(DATA_TYPE);
             Date date = sdf.parse(createdAt);
