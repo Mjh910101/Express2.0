@@ -52,9 +52,9 @@
             android:background="@drawable/input_stype_lucency"
             android:cursorVisible="true"
             android:hint="@string/input_tel"
-            android:textColorHint="@color/text_gray_02"
             android:inputType="number"
             android:textColor="@color/black"
+            android:textColorHint="@color/text_gray_02"
             android:textSize="@dimen/text_size_17" />
     </LinearLayout>
 
@@ -77,9 +77,9 @@
             android:layout_height="wrap_content"
             android:background="@drawable/input_stype_lucency"
             android:hint="@string/input_password"
-            android:textColorHint="@color/text_gray_02"
             android:inputType="textPassword"
             android:textColor="@color/black"
+            android:textColorHint="@color/text_gray_02"
             android:textSize="@dimen/text_size_17" />
     </LinearLayout>
 
@@ -89,8 +89,9 @@
 
         <TextView
             android:id="@+id/login_forgetPassword"
-            android:layout_width="fill_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
             android:layout_marginBottom="8dp"
             android:layout_marginRight="8dp"
             android:gravity="right"

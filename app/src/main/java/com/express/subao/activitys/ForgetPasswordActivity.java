@@ -126,7 +126,8 @@ public class ForgetPasswordActivity extends BaseActivity {
     private void initActivity() {
         backIcon.setVisibility(View.VISIBLE);
         titleName.setText(TextHandeler.getText(context, R.string.forget_password));
-
+        passwordInput.setHint(R.string.input_new_password);
+        passwordAgainInput.setHint(R.string.input_new_password_again);
         setTextChangedListener();
     }
 
@@ -143,15 +144,28 @@ public class ForgetPasswordActivity extends BaseActivity {
             return false;
         }
 
+        if (TextHandeler.getText(verifyInput).equals("")) {
+            MessageHandler.showToast(context,
+                    getResources().getString(R.string.verify_not_null));
+            return false;
+        }
+
         if (TextHandeler.getText(passwordInput).equals("")) {
             MessageHandler.showToast(context,
                     getResources().getString(R.string.pass_not_null));
             return false;
         }
+
         if (TextHandeler.getText(passwordInput).length() < 6
                 || TextHandeler.getText(passwordInput).length() > 20) {
             MessageHandler.showToast(context,
                     getResources().getString(R.string.pass_length));
+            return false;
+        }
+
+        if (!TextHandeler.getText(passwordInput).equals(TextHandeler.getText(passwordAgainInput))) {
+            MessageHandler.showToast(context,
+                    getResources().getString(R.string.pass_not_equals));
             return false;
         }
         return true;

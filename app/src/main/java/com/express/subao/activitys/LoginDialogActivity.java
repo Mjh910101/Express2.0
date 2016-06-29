@@ -204,11 +204,11 @@ public class LoginDialogActivity extends BaseActivity {
                     getResources().getString(R.string.tel_not_null));
             return false;
         }
-        if (TextHandeler.getText(loginTelInput).length() != 8 && TextHandeler.getText(loginTelInput).length() != 11) {
-            MessageHandler.showToast(context,
-                    getResources().getString(R.string.tel_not_error));
-            return false;
-        }
+//        if (TextHandeler.getText(loginTelInput).length() != 8 && TextHandeler.getText(loginTelInput).length() != 11) {
+//            MessageHandler.showToast(context,
+//                    getResources().getString(R.string.tel_not_error));
+//            return false;
+//        }
         if (TextHandeler.getText(loginPasswordInput).equals("")) {
             MessageHandler.showToast(context,
                     getResources().getString(R.string.pass_not_null));
@@ -294,7 +294,7 @@ public class LoginDialogActivity extends BaseActivity {
                                 UserObjHandler.saveUserObj(context, UserObjHandler.getUserObj(resultsJson));
                                 finish();
                             } else {
-                                MessageHandler.showToast(context, JsonHandle.getString(resultsJson, "message"));
+                                MessageHandler.showToast(context, JsonHandle.getInt(resultsJson, "code"));
                             }
 
                         }

@@ -136,10 +136,9 @@ public class SdyboxMapActivity extends BaseActivity {
                 setDataListVisibility();
                 break;
             case R.id.boxMap_positionIcon:
-                page = 1;
-                mOverlayList.removeAll(mOverlayList);
-                mSdyBoxObjList.removeAll(mSdyBoxObjList);
-                mSdyBoxAdapter = null;
+                if (mSdyBoxAdapter != null) {
+                    mSdyBoxAdapter.initOnPosition();
+                }
                 removeOnClickMarker();
                 initMap();
                 break;
@@ -190,6 +189,7 @@ public class SdyboxMapActivity extends BaseActivity {
         mOverlayList = new ArrayList<Overlay>();
         mSdyBoxObjList = new ArrayList<SdyBoxObj>();
         initMap();
+        downloadData();
     }
 
     private void initMap() {
@@ -215,7 +215,6 @@ public class SdyboxMapActivity extends BaseActivity {
                 .position(point)
                 .icon(bitmap);
         onCurrentMarker = (Marker) mBaiduMap.addOverlay(option);
-        downloadData();
     }
 
     private void animateMap(LatLng point) {
@@ -313,7 +312,8 @@ public class SdyboxMapActivity extends BaseActivity {
     private Overlay addOverlay(LatLng point, SdyBoxObj obj) {
 //        BitmapDescriptor bitmap = BitmapDescriptorFactory.fromResource(icon);
 //        BitmapDescriptor bitmap = BitmapDescriptorFactory.fromBitmap(getOverlayIcon(icon, "999"));
-        BitmapDescriptor bitmap = BitmapDescriptorFactory.fromView(obj.getOverlayView(context));
+        BitmapDescriptor bitmap = BitmapDescriptorFactory.fromResource(obj.getIconDrawble());
+//        BitmapDescriptor bitmap = BitmapDescriptorFactory.fromView(obj.getOverlayView(context));
         OverlayOptions option = new MarkerOptions().position(point)
                 .icon(bitmap);
         return mBaiduMap.addOverlay(option);

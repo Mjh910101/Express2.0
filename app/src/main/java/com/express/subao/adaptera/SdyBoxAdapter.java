@@ -147,7 +147,7 @@ public class SdyBoxAdapter extends BaseAdapter {
             holder.contentText.setTextColor(ColorHandler.getColorForID(context,R.color.text_blue));
             holder.title.setTextColor(ColorHandler.getColorForID(context,R.color.text_blue));
         }else{
-            holder.pic.setBackgroundResource(R.drawable.sdy_box_icon);
+            holder.pic.setBackgroundResource(R.drawable.sdy_icon);
             holder.contentText.setBackgroundResource(R.drawable.orange_box_white_background_btn);
             holder.contentText.setTextColor(ColorHandler.getColorForID(context,R.color.text_orange));
             holder.title.setTextColor(ColorHandler.getColorForID(context,R.color.black));
