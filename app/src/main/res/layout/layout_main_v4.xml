@@ -9,9 +9,10 @@
         android:id="@+id/main_sortGrid"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:horizontalSpacing="3dp"
+        android:horizontalSpacing="0dp"
         android:numColumns="2"
-        android:verticalSpacing="3dp"></com.express.subao.views.HeaderGridView>
+        android:scrollbars="none"
+        android:verticalSpacing="0dp"/>
 
     <ProgressBar
         android:id="@+id/main_progress"
