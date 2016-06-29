@@ -1,6 +1,7 @@
 package com.express.subao.fragments.main;
 
 import android.os.Bundle;
+import android.os.UserHandle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,6 +18,8 @@ import com.express.subao.adaptera.StoreAdapter;
 import com.express.subao.box.SliderObj;
 import com.express.subao.box.StoreObj;
 import com.express.subao.box.handlers.SliderObjHandler;
+import com.express.subao.box.handlers.StoreObjHandler;
+import com.express.subao.box.handlers.UserObjHandler;
 import com.express.subao.fragments.BaseFragment;
 import com.express.subao.handlers.JsonHandle;
 import com.express.subao.handlers.MessageHandler;
@@ -108,7 +111,7 @@ public class MainFrameLayoutV3 extends BaseFragment {
 
         initImageView();
         downloadData();
-        initTestStoreGrid();
+//        initTestStoreGrid();
         return contactsLayout;
     }
 
@@ -234,10 +237,22 @@ public class MainFrameLayoutV3 extends BaseFragment {
         mSliderView = SliderView.initSliderView(context, list, mViewFlipper, pptBallBox);
     }
 
+
+    public void setStoreGrid(JSONArray array) {
+        if (array != null) {
+            setStoreGrid(StoreObjHandler.getStoreObjList(array));
+        }
+    }
+
+    private void setStoreGrid(List<StoreObj> list) {
+        sortGrid.setAdapter(new StoreAdapter(context, list));
+        sortGrid.setFocusable(false);
+    }
+
     private void downloadData() {
         progress.setVisibility(View.VISIBLE);
 
-        String url = Url.getIndex() + "/api/v1/slider";
+        String url = Url.getHome() + "?sessiontoken=" + UserObjHandler.getSessionToken(context);
 //        String url = Url.getHomeUrl(AreaObjHandler.getAreaName(context));
 
         HttpUtilsBox.getHttpUtil().send(HttpMethod.GET, url,
@@ -257,10 +272,14 @@ public class MainFrameLayoutV3 extends BaseFragment {
 
                         JSONObject json = JsonHandle.getJSON(result);
                         if (json != null) {
-
                             if (JsonHandle.getInt(json, "status") == 1) {
-                                JSONArray sliderArray = JsonHandle.getArray(json, "results");
-                                setSliderView(sliderArray);
+                                JSONObject resultsJson = JsonHandle.getJSON(json, "results");
+                                if (resultsJson != null) {
+                                    JSONArray sliderArray = JsonHandle.getArray(resultsJson, "slider");
+                                    setSliderView(sliderArray);
+                                    JSONArray storeArray = JsonHandle.getArray(resultsJson, "store");
+                                    setStoreGrid(storeArray);
+                                }
                             }
 
                         }

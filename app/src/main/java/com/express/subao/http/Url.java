@@ -95,4 +95,8 @@ public class Url {
     public static String getUserOrderDetail() {
         return getUserOrder() + "/detail";
     }
+
+    public static String getHome() {
+        return getIndex() + "/api/v1/home";
+    }
 }
