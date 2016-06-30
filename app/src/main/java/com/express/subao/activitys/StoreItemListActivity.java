@@ -104,6 +104,8 @@ public class StoreItemListActivity extends BaseActivity {
     private LinearLayout ballLayout;
     @ViewInject(R.id.ppt_boxBg)
     private ImageView sliderBg;
+    @ViewInject(R.id.itemList_commentsSumText)
+    private TextView commentsSumText;
 
     private StoreObj mStoreObj;
     private int page = 1, pages = 1;
@@ -227,7 +229,7 @@ public class StoreItemListActivity extends BaseActivity {
         setItemTagView(tagList);
     }
 
-    public void setItemTagView(List<String> tagList){
+    public void setItemTagView(List<String> tagList) {
         ItemTagAdapter adapter = new ItemTagAdapter(context, tagList);
         adapter.setCallback(new CallbackForString() {
             @Override
@@ -368,8 +370,8 @@ public class StoreItemListActivity extends BaseActivity {
                             if (JsonHandle.getInt(json, "status") == 1) {
                                 JSONObject resultsJson = JsonHandle.getJSON(json, "results");
                                 if (resultsJson != null) {
-                                    mStoreObj=StoreObjHandler.getStoreObj(resultsJson);
-                                    setItemTagView(mStoreObj.getTapList());
+                                    mStoreObj = StoreObjHandler.getStoreObj(resultsJson);
+                                    setStoreMessage(mStoreObj);
                                 }
                             }
 
@@ -380,4 +382,8 @@ public class StoreItemListActivity extends BaseActivity {
                 });
     }
 
+    public void setStoreMessage(StoreObj obj) {
+        setItemTagView(obj.getTapList());
+        commentsSumText.setText(TextHandeler.getText(context, R.string.comments_sum_text).replace("0", String.valueOf(obj.getComments())) + "   >");
+    }
 }

@@ -89,6 +89,7 @@
     <string name="settlement_sum_text">去結賬(?)</string>
     <string name="all_clock_text">全選</string>
     <string name="all_sum_text">總計：</string>
+    <string name="comments_sum_text">0人評論</string>
 
 
 </resources>

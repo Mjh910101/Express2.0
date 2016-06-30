@@ -42,8 +42,17 @@ public class StoreObj {
     private String objectId;
     private String title;
     private String img;
+    private int comments;
     private List<SliderObj> sliderList;
     private List<String> tapList;
+
+    public int getComments() {
+        return comments;
+    }
+
+    public void setComments(int comments) {
+        this.comments = comments;
+    }
 
     public List<String> getTapList() {
         return tapList;
