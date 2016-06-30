@@ -162,8 +162,11 @@ public class StoreItemListActivity extends BaseActivity {
                 Log.e("", "x : " + (position[1] - 166 + sliderLayout.getHeight()));
                 if (position[1] - 166 + sliderLayout.getHeight() > 1 || isDispatchScroll) {
                     scroll.dispatchTouchEvent(event);
-                    isDispatchScroll = false;
+//                    isDispatchScroll = false;
                 } else {
+//                    if(){
+//
+//                    }
                     listLayout.dispatchTouchEvent(event);
                 }
                 return true;
@@ -219,6 +222,10 @@ public class StoreItemListActivity extends BaseActivity {
         }
     }
 
+    public void setStoreMessage(StoreObj obj) {
+        setItemTagView(obj.getTapList());
+        commentsSumText.setText(TextHandeler.getText(context, R.string.comments_sum_text).replace("0", String.valueOf(obj.getComments())) + "   >");
+    }
 
     public void setItemTagView(JSONArray array) {
 
@@ -382,8 +389,5 @@ public class StoreItemListActivity extends BaseActivity {
                 });
     }
 
-    public void setStoreMessage(StoreObj obj) {
-        setItemTagView(obj.getTapList());
-        commentsSumText.setText(TextHandeler.getText(context, R.string.comments_sum_text).replace("0", String.valueOf(obj.getComments())) + "   >");
-    }
+
 }
