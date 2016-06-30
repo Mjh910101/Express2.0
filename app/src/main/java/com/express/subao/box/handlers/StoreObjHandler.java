@@ -43,17 +43,18 @@ public class StoreObjHandler {
         return list;
     }
 
-    private static StoreObj getStoreObj(JSONObject json) {
+    public static StoreObj getStoreObj(JSONObject json) {
         StoreObj obj = new StoreObj();
 
-        obj.setImg(JsonHandle.getString(json, StoreObj.IMG));
+        obj.setImg(JsonHandle.getJSON(json, StoreObj.IMG));
         obj.setObjectId(JsonHandle.getString(json, StoreObj.OBJECT_ID));
         obj.setTitle(JsonHandle.getString(json, StoreObj.TITLE));
 
-        JSONArray array = JsonHandle.getArray(json, StoreObj.IMAGES);
-        if (array != null) {
-            obj.setImageList(array);
-        }
+        JSONArray array = JsonHandle.getArray(json, StoreObj.SLIDER);
+        obj.setSliderList(array);
+
+        JSONArray tagList = JsonHandle.getArray(json, "tag");
+        obj.setTapList(tagList);
 
         return obj;
     }

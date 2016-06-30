@@ -27,12 +27,14 @@
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
 
-                    <ImageView
+                    <!--<ImageView
                         android:id="@+id/itemList_pic"
                         android:layout_width="fill_parent"
                         android:layout_height="180dp"
                         android:background="@color/whitle"
-                        android:src="@mipmap/logo_icon" />
+                        android:src="@mipmap/logo_icon" />-->
+                    <include
+                        layout="@layout/layout_slide"/>
 
                     <LinearLayout
                         android:id="@+id/itemList_toolLayout"

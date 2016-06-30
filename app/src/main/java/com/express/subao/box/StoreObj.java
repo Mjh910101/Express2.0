@@ -1,5 +1,7 @@
 package com.express.subao.box;
 
+import com.alibaba.fastjson.JSON;
+import com.express.subao.box.handlers.SliderObjHandler;
 import com.express.subao.handlers.JsonHandle;
 
 import org.json.JSONArray;
@@ -35,11 +37,30 @@ public class StoreObj {
     public static final String TITLE = "title";
     public static final String IMG = "img";
     public static final String IMAGES = "images";
+    public static final String SLIDER = "slider";
 
     private String objectId;
     private String title;
     private String img;
-    private List<String> imageList;
+    private List<SliderObj> sliderList;
+    private List<String> tapList;
+
+    public List<String> getTapList() {
+        return tapList;
+    }
+
+    public void setTapList(List<String> tapList) {
+        this.tapList = tapList;
+    }
+
+    public void setTapList(JSONArray array) {
+        this.tapList = new ArrayList<>();
+        if (array != null) {
+            for (int i = 0; i < array.length(); i++) {
+                tapList.add(JsonHandle.getString(array, i));
+            }
+        }
+    }
 
     public String getObjectId() {
         return objectId;
@@ -65,15 +86,26 @@ public class StoreObj {
         this.img = img;
     }
 
-    public List<String> getImageList() {
-        return imageList;
+    public void setImg(JSONObject img) {
+        if (img != null) {
+            this.img = JsonHandle.getString(img, "url");
+        }
     }
 
-    public void setImageList(JSONArray array) {
-        imageList = new ArrayList<String>(array.length());
-        for (int i = 0; i < array.length(); i++) {
-            JSONObject json = JsonHandle.getJSON(array, i);
-            imageList.add(JsonHandle.getString(json, "url"));
+    public List<SliderObj> getSliderList() {
+        return sliderList;
+    }
+
+    public void setSliderList(JSONArray array) {
+        sliderList = new ArrayList<>();
+
+        if (array != null) {
+            for (int i = 0; i < array.length(); i++) {
+                JSONObject json = JsonHandle.getJSON(array, i);
+                if (json != null) {
+                    sliderList.add(SliderObjHandler.getSliderObj(json));
+                }
+            }
         }
     }
 }

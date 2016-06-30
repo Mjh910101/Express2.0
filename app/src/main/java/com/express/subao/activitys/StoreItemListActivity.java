@@ -20,6 +20,7 @@ import com.express.subao.box.ItemObj;
 import com.express.subao.box.StoreObj;
 import com.express.subao.box.handlers.ItemObjHandler;
 import com.express.subao.box.handlers.StoreObjHandler;
+import com.express.subao.box.handlers.UserObjHandler;
 import com.express.subao.handlers.JsonHandle;
 import com.express.subao.handlers.MessageHandler;
 import com.express.subao.handlers.TextHandeler;
@@ -28,6 +29,8 @@ import com.express.subao.http.Url;
 import com.express.subao.interfaces.CallbackForString;
 import com.express.subao.tool.WinTool;
 import com.express.subao.views.InsideListView;
+import com.express.subao.views.InsideViewFlipper;
+import com.express.subao.views.SliderView;
 import com.express.subao.views.TouchLinearLayout;
 import com.express.subao.views.TouchScrollView;
 import com.lidroid.xutils.ViewUtils;
@@ -85,14 +88,22 @@ public class StoreItemListActivity extends BaseActivity {
     private RelativeLayout titleLayout;
     @ViewInject(R.id.itemList_scrollView)
     private ScrollView scroll;
-    @ViewInject(R.id.itemList_pic)
-    private ImageView pic;
+    //    @ViewInject(R.id.itemList_pic)
+//    private ImageView pic;
     @ViewInject(R.id.itemList_toolLayout)
     private LinearLayout toolLayout;
     @ViewInject(R.id.itemList_listLayout)
     private LinearLayout listLayout;
     @ViewInject(R.id.itemList_fatherLayou)
     private TouchLinearLayout fatherLayou;
+    @ViewInject(R.id.ppt_box)
+    private RelativeLayout sliderLayout;
+    @ViewInject(R.id.ppt_images)
+    private InsideViewFlipper sliderFlipper;
+    @ViewInject(R.id.ppt_ball)
+    private LinearLayout ballLayout;
+    @ViewInject(R.id.ppt_boxBg)
+    private ImageView sliderBg;
 
     private StoreObj mStoreObj;
     private int page = 1, pages = 1;
@@ -120,7 +131,7 @@ public class StoreItemListActivity extends BaseActivity {
 
         listLayout.setLayoutParams(new LinearLayout.LayoutParams(w, h - 166 - 80));
         toolLayout.setLayoutParams(new LinearLayout.LayoutParams(w, 80));
-        pic.setLayoutParams(new LinearLayout.LayoutParams(w, 360));
+//        sliderLayout.setLayoutParams(new LinearLayout.LayoutParams(w, 360));
 
         itemList.setOnScrollListener(new AbsListView.OnScrollListener() {
             @Override
@@ -143,11 +154,11 @@ public class StoreItemListActivity extends BaseActivity {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 int[] position = new int[2];
-                pic.getLocationOnScreen(position);
+                sliderLayout.getLocationOnScreen(position);
                 Log.e("", "position : " + position[0] + " , " + position[1]);
-                Log.e("", "position : " + pic.getWidth() + " , " + pic.getHeight());
-                Log.e("", "x : " + (position[1] - 166 + pic.getHeight()));
-                if (position[1] - 166 + pic.getHeight() > 1 || isDispatchScroll) {
+                Log.e("", "position : " + sliderLayout.getWidth() + " , " + sliderLayout.getHeight());
+                Log.e("", "x : " + (position[1] - 166 + sliderLayout.getHeight()));
+                if (position[1] - 166 + sliderLayout.getHeight() > 1 || isDispatchScroll) {
                     scroll.dispatchTouchEvent(event);
                     isDispatchScroll = false;
                 } else {
@@ -199,7 +210,10 @@ public class StoreItemListActivity extends BaseActivity {
         mStoreObj = StoreObjHandler.getStoreObj();
         if (mStoreObj != null) {
 //            titleName.setText(mStoreObj.getTitle());
-            downloadItemTag(mStoreObj.getObjectId());
+//            downloadItemTag(mStoreObj.getObjectId());
+            downloadStoreData(mStoreObj.getObjectId());
+            SliderView.initSliderView(context, mStoreObj.getSliderList(), sliderFlipper, ballLayout);
+            sliderBg.setVisibility(View.GONE);
         }
     }
 
@@ -210,12 +224,10 @@ public class StoreItemListActivity extends BaseActivity {
         for (int i = 0; i < array.length(); i++) {
             tagList.add(JsonHandle.getString(array, i));
         }
-        for (int i = 0; i < array.length(); i++) {
-            tagList.add(JsonHandle.getString(array, i));
-        }
-        for (int i = 0; i < array.length(); i++) {
-            tagList.add(JsonHandle.getString(array, i));
-        }
+        setItemTagView(tagList);
+    }
+
+    public void setItemTagView(List<String> tagList){
         ItemTagAdapter adapter = new ItemTagAdapter(context, tagList);
         adapter.setCallback(new CallbackForString() {
             @Override
@@ -326,6 +338,46 @@ public class StoreItemListActivity extends BaseActivity {
 
                 });
 
+    }
+
+
+    private void downloadStoreData(String id) {
+
+        progress.setVisibility(View.VISIBLE);
+
+        String url = Url.getStore(id) + "?sessiontoken=" + UserObjHandler.getSessionToken(context);
+
+        HttpUtilsBox.getHttpUtil().send(HttpMethod.GET, url,
+                new RequestCallBack<String>() {
+
+                    @Override
+                    public void onFailure(HttpException exception, String msg) {
+                        progress.setVisibility(View.GONE);
+                        MessageHandler.showFailure(context);
+                    }
+
+                    @Override
+                    public void onSuccess(ResponseInfo<String> responseInfo) {
+                        progress.setVisibility(View.GONE);
+                        String result = responseInfo.result;
+                        Log.d("", result);
+
+                        JSONObject json = JsonHandle.getJSON(result);
+                        if (json != null) {
+
+                            if (JsonHandle.getInt(json, "status") == 1) {
+                                JSONObject resultsJson = JsonHandle.getJSON(json, "results");
+                                if (resultsJson != null) {
+                                    mStoreObj=StoreObjHandler.getStoreObj(resultsJson);
+                                    setItemTagView(mStoreObj.getTapList());
+                                }
+                            }
+
+                        }
+
+                    }
+
+                });
     }
 
 }

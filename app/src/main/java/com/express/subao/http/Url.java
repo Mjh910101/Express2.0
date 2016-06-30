@@ -99,4 +99,8 @@ public class Url {
     public static String getHome() {
         return getIndex() + "/api/v1/home";
     }
+
+    public static String getStore(String id) {
+        return getIndex() + "/api/v1/store/" + id;
+    }
 }

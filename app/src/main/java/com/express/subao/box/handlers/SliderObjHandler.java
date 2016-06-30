@@ -35,13 +35,20 @@ public class SliderObjHandler {
     public static List<SliderObj> getSliderObjList(JSONArray array) {
         List<SliderObj> sliderList = new ArrayList<SliderObj>(array.length());
         for (int i = 0; i < array.length(); i++) {
-            JSONObject json = JsonHandle.getJSON(array, i);
-            SliderObj obj = new SliderObj();
-            obj.setImg(JsonHandle.getString(json, "img"));
-            obj.setUrl(JsonHandle.getString(json, "url"));
-            sliderList.add(obj);
+            sliderList.add(getSliderObj(JsonHandle.getJSON(array, i)));
         }
         return sliderList;
+    }
+
+    public static SliderObj getSliderObj(JSONObject json){
+        SliderObj obj = new SliderObj();
+        obj.setImg(JsonHandle.getString(json, "img"));
+        obj.setImg(JsonHandle.getJSON(json, "img"));
+        obj.setUrl(JsonHandle.getString(json, "url"));
+        obj.setUrl(JsonHandle.getString(json, "objectId"));
+        obj.setUrl(JsonHandle.getString(json, "additional"));
+        obj.setUrl(JsonHandle.getString(json, "type"));
+        return obj;
     }
 
 }
