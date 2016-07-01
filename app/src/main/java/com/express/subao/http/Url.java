@@ -103,4 +103,8 @@ public class Url {
     public static String getStore(String id) {
         return getIndex() + "/api/v1/store/" + id;
     }
+
+    public static String getStoreItemComments(String storeId, String itemId) {
+        return getIndex() + "/api/v1/store/" + storeId + "/item/" + itemId + "/comment";
+    }
 }

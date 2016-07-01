@@ -165,4 +165,21 @@ public class StoreItemObj {
             }
         }
     }
+
+    public String getSellText() {
+        return "已售" + getSell();
+    }
+
+    public List<SliderObj> getSliderList() {
+        List<SliderObj> list = new ArrayList<>();
+        if (getImagesList() != null) {
+            for (int i = 0; i < getImagesList().size(); i++) {
+                SliderObj obj = new SliderObj();
+                obj.setImg(getImagesList().get(i));
+                list.add(obj);
+            }
+        }
+        return list;
+
+    }
 }

@@ -190,10 +190,12 @@ public class SliderView {
 
     private void onClickPPT(SliderObj obj) {
         Log.e("", obj.getImg());
-        Bundle b = new Bundle();
-        b.putString(WebActivity.TITLE, "詳細");
-        b.putString(WebActivity.URL, obj.getUrl());
-        Passageway.jumpActivity(context, WebActivity.class, b);
+        if (obj.getUrl() != null && !obj.getUrl().equals("")) {
+            Bundle b = new Bundle();
+            b.putString(WebActivity.TITLE, "詳細");
+            b.putString(WebActivity.URL, obj.getUrl());
+            Passageway.jumpActivity(context, WebActivity.class, b);
+        }
     }
 
     private Handler handler = new Handler() {

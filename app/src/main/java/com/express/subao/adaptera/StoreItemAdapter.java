@@ -13,6 +13,7 @@ import com.express.subao.R;
 import com.express.subao.activitys.StoreItemContentActivity;
 import com.express.subao.box.ItemObj;
 import com.express.subao.box.StoreItemObj;
+import com.express.subao.box.handlers.StoreItemObjHandler;
 import com.express.subao.download.DownloadImageLoader;
 import com.express.subao.interfaces.CallbackForString;
 import com.express.subao.tool.Passageway;
@@ -111,10 +112,11 @@ public class StoreItemAdapter extends BaseAdapter {
         return convertView;
     }
 
-    private void setOnClick(View view, StoreItemObj obj) {
+    private void setOnClick(View view, final StoreItemObj obj) {
         view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                StoreItemObjHandler.save(obj);
                 Passageway.jumpActivity(context, StoreItemContentActivity.class);
             }
         });

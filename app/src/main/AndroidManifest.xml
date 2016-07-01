@@ -164,6 +164,10 @@
         <activity
             android:name=".activitys.ImageListActivity"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".activitys.SearchItemActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|stateUnchanged" />
 
         <!--推送-->
         <service

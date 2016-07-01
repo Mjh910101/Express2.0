@@ -30,6 +30,7 @@ import com.express.subao.handlers.TextHandeler;
 import com.express.subao.http.HttpUtilsBox;
 import com.express.subao.http.Url;
 import com.express.subao.interfaces.CallbackForString;
+import com.express.subao.tool.Passageway;
 import com.express.subao.tool.WinTool;
 import com.express.subao.views.InsideListView;
 import com.express.subao.views.InsideViewFlipper;
@@ -164,13 +165,22 @@ public class StoreItemListActivity extends BaseActivity {
 
     }
 
-    @OnClick({R.id.title_back})
+    @OnClick({R.id.title_back, R.id.imageList_searchIcon})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.title_back:
                 finish();
                 break;
+            case R.id.imageList_searchIcon:
+                jumpSearchItemActivity();
+                break;
         }
+    }
+
+    private void jumpSearchItemActivity() {
+        Bundle b = new Bundle();
+        b.putString("storeId", mStoreObj.getObjectId());
+        Passageway.jumpActivity(context, SearchItemActivity.class, b);
     }
 
     private void setDataListScrollListener() {
@@ -178,7 +188,7 @@ public class StoreItemListActivity extends BaseActivity {
             public void onScrollStateChanged(AbsListView view, int scrollState) {
                 if (scrollState == AbsListView.OnScrollListener.SCROLL_STATE_IDLE) {
                     if (view.getLastVisiblePosition() >= (view.getCount() - 1)) {
-                        if (page < pages) {
+                        if (page <= pages) {
                             if (progress.getVisibility() == View.GONE) {
                                 downloadItem(tag);
                             }

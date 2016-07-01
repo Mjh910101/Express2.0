@@ -53,10 +53,17 @@
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="8dp"
                 android:layout_marginRight="5dp"
-                android:background="@drawable/input_stype_gray"
-                android:layout_toLeftOf="@id/comment_sendBtn" />
+                android:layout_toLeftOf="@id/comment_sendBtn"
+                android:background="@drawable/input_stype_gray" />
 
         </RelativeLayout>
+
+        <ProgressBar
+            android:id="@+id/comment_progress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:visibility="gone" />
 
     </RelativeLayout>
 

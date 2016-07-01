@@ -58,4 +58,14 @@ public class StoreItemObjHandler {
         return obj;
     }
 
+    private static StoreItemObj mStoreItemObj;
+
+    public static void save(StoreItemObj obj) {
+        mStoreItemObj = obj;
+    }
+
+    public static StoreItemObj getStoreItemObj() {
+        return mStoreItemObj;
+    }
+
 }
