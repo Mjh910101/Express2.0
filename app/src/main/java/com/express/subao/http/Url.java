@@ -81,7 +81,7 @@ public class Url {
     }
 
     public static String getItem(String id) {
-        return getIndex() + "/api/v1/store/" + id + "/items";
+        return getIndex() + "/api/v1/store/" + id + "/item";
     }
 
     public static String getSdyBoxes() {

@@ -43,7 +43,7 @@ public class ItemObj {
     private String origin_price_str;
     private String price_str;
     private double origin;
-    private double comment_count;
+    private int comment_count;
     private double price;
     private double sell;
 
@@ -111,11 +111,11 @@ public class ItemObj {
         this.origin = origin;
     }
 
-    public double getComment_count() {
+    public int getComment_count() {
         return comment_count;
     }
 
-    public void setComment_count(double comment_count) {
+    public void setComment_count(int comment_count) {
         this.comment_count = comment_count;
     }
 

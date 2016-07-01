@@ -47,7 +47,7 @@ public class ItemObjHandler {
 
         obj.setObjectId(JsonHandle.getString(json, ItemObj.OBJECT_ID));
         obj.setContent(JsonHandle.getString(json, ItemObj.CONTENT));
-        obj.setComment_count(JsonHandle.getDouble(json, ItemObj.COMMENT_COUT));
+        obj.setComment_count(JsonHandle.getInt(json, ItemObj.COMMENT_COUT));
         obj.setImg(JsonHandle.getString(json, ItemObj.IMG));
         obj.setIntro(JsonHandle.getString(json, ItemObj.INTRO));
         obj.setOrigin(JsonHandle.getDouble(json, ItemObj.ORIGIN));

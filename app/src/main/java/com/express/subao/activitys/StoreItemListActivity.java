@@ -16,9 +16,12 @@ import android.widget.TextView;
 import com.express.subao.R;
 import com.express.subao.adaptera.ItemAdapter;
 import com.express.subao.adaptera.ItemTagAdapter;
+import com.express.subao.adaptera.StoreItemAdapter;
 import com.express.subao.box.ItemObj;
+import com.express.subao.box.StoreItemObj;
 import com.express.subao.box.StoreObj;
 import com.express.subao.box.handlers.ItemObjHandler;
+import com.express.subao.box.handlers.StoreItemObjHandler;
 import com.express.subao.box.handlers.StoreObjHandler;
 import com.express.subao.box.handlers.UserObjHandler;
 import com.express.subao.handlers.JsonHandle;
@@ -112,7 +115,7 @@ public class StoreItemListActivity extends BaseActivity {
     private String tag = "";
 
     private boolean isDispatchScroll = false;
-    private ItemAdapter itemAdapter;
+    private StoreItemAdapter itemAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -123,7 +126,7 @@ public class StoreItemListActivity extends BaseActivity {
         ViewUtils.inject(this);
 
         initActivity();
-//        setDataListScrollListener();
+        setDataListScrollListener();
         setTestLayout();
     }
 
@@ -135,23 +138,6 @@ public class StoreItemListActivity extends BaseActivity {
         toolLayout.setLayoutParams(new LinearLayout.LayoutParams(w, 80));
 //        sliderLayout.setLayoutParams(new LinearLayout.LayoutParams(w, 360));
 
-        itemList.setOnScrollListener(new AbsListView.OnScrollListener() {
-            @Override
-            public void onScrollStateChanged(AbsListView view, int scrollState) {
-
-            }
-
-            @Override
-            public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
-                Log.e("", "Count : " + firstVisibleItem);
-                View firstItem = itemList.getChildAt(0);
-                if (firstVisibleItem <= 1 && firstItem != null && firstItem.getTop() == 0) {
-                    isDispatchScroll = true;
-                } else {
-                    isDispatchScroll = false;
-                }
-            }
-        });
         fatherLayou.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
@@ -162,12 +148,15 @@ public class StoreItemListActivity extends BaseActivity {
                 Log.e("", "x : " + (position[1] - 166 + sliderLayout.getHeight()));
                 if (position[1] - 166 + sliderLayout.getHeight() > 1 || isDispatchScroll) {
                     scroll.dispatchTouchEvent(event);
-//                    isDispatchScroll = false;
+                    isDispatchScroll = false;
                 } else {
-//                    if(){
-//
-//                    }
-                    listLayout.dispatchTouchEvent(event);
+                    if (event.getX() < listLayout.getWidth() / 3) {
+//                    if (position[0] < listLayout.getWidth() / 3) {
+                        itemTagList.dispatchTouchEvent(event);
+                    } else {
+                        itemList.dispatchTouchEvent(event);
+                    }
+//                    listLayout.dispatchTouchEvent(event);
                 }
                 return true;
             }
@@ -201,8 +190,14 @@ public class StoreItemListActivity extends BaseActivity {
             }
 
             @Override
-            public void onScroll(AbsListView arg0, int arg1, int arg2, int arg3) {
-
+            public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
+                Log.e("", "Count : " + firstVisibleItem);
+                View firstItem = itemList.getChildAt(0);
+                if (firstVisibleItem <= 1 && firstItem != null && firstItem.getTop() == 0) {
+                    isDispatchScroll = true;
+                } else {
+                    isDispatchScroll = false;
+                }
             }
         });
     }
@@ -256,10 +251,10 @@ public class StoreItemListActivity extends BaseActivity {
     }
 
 
-    public void setItemView(List<ItemObj> list) {
+    public void setItemView(List<StoreItemObj> list) {
         list.addAll(list);
         if (itemAdapter == null) {
-            itemAdapter = new ItemAdapter(context, list);
+            itemAdapter = new StoreItemAdapter(context, list);
             itemList.setAdapter(itemAdapter);
         } else {
             itemAdapter.addItems(list);
@@ -295,7 +290,7 @@ public class StoreItemListActivity extends BaseActivity {
                             if (JsonHandle.getInt(json, "status") == 1) {
                                 JSONArray array = JsonHandle.getArray(json, "results");
                                 if (array != null) {
-                                    List<ItemObj> list = ItemObjHandler.getItemObjList(array);
+                                    List<StoreItemObj> list = StoreItemObjHandler.getStoreItemObjList(array);
                                     setItemView(list);
                                     page += 1;
                                 }
