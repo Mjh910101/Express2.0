@@ -1,5 +1,10 @@
 package com.express.subao.box;
 
+import com.express.subao.handlers.DateHandle;
+
+import java.util.Calendar;
+import java.util.Date;
+
 /**
  * *
  * * ┏┓      ┏┓
@@ -23,10 +28,12 @@ package com.express.subao.box;
  */
 public class CommentObj {
 
-    private String username;
-    private String headimgurl;
-    private String content;
+    private String objectId;
+    private String store;
+    private String item;
     private String createdAt;
+    private String content;
+    private UserObj poster;
 
     public String getCreatedAt() {
         return createdAt;
@@ -34,6 +41,30 @@ public class CommentObj {
 
     public void setCreatedAt(String createdAt) {
         this.createdAt = createdAt;
+    }
+
+    public String getObjectId() {
+        return objectId;
+    }
+
+    public void setObjectId(String objectId) {
+        this.objectId = objectId;
+    }
+
+    public String getStore() {
+        return store;
+    }
+
+    public void setStore(String store) {
+        this.store = store;
+    }
+
+    public String getItem() {
+        return item;
+    }
+
+    public void setItem(String item) {
+        this.item = item;
     }
 
     public String getContent() {
@@ -44,19 +75,40 @@ public class CommentObj {
         this.content = content;
     }
 
-    public String getHeadimgurl() {
-        return headimgurl;
+    public UserObj getPoster() {
+        return poster;
     }
 
-    public void setHeadimgurl(String headimgurl) {
-        this.headimgurl = headimgurl;
+    public void setPoster(UserObj poster) {
+        this.poster = poster;
     }
 
-    public String getUsername() {
-        return username;
+    public String getUserAvatar() {
+        if (poster != null) {
+            return poster.getAvatar();
+        }
+        return "";
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public String getUserName() {
+        if (poster != null) {
+            return poster.getNickname();
+        }
+        return "";
+    }
+
+    public String getTime() {
+        try {
+            long t = Long.valueOf(createdAt) * 1000;
+            Calendar calendar = Calendar.getInstance();
+            calendar.setTime(new Date(t));
+            if (DateHandle.isToday(calendar)) {
+                return DateHandle.getTimeString(calendar.getTime(), DateHandle.DATESTYP_8);
+            } else {
+                return DateHandle.getTimeString(calendar.getTime(), DateHandle.DATESTYP_9);
+            }
+        } catch (Exception e) {
+            return "";
+        }
     }
 }

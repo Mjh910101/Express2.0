@@ -3,6 +3,7 @@
 
     <color name="title_bg">#f8b500</color>
     <color name="lucency">#00FFFFFF</color>
+    <color name="lucency_black">#99000000</color>
     <color name="whitle">#FFFFFF</color>
     <color name="black">#000000</color>
     <color name="black_lucency">#66000000</color>
@@ -24,7 +25,7 @@
     <color name="result_view">#b0000000</color>
     <color name="viewfinder_mask">#60000000</color>
     <color name="possible_result_points">#c0ffff00</color>
-
+    <color name="navpage">#FFE1E8EB</color>
     <!--  -->
     <color name="holo_blue_light">#ff33b5e5</color>
     <!-- A light Holo shade of green -->

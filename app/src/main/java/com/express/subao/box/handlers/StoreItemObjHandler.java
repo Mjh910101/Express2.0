@@ -42,7 +42,7 @@ public class StoreItemObjHandler {
 
     private static StoreItemObj getStoreItemObj(JSONObject json) {
         StoreItemObj obj = new StoreItemObj();
-        obj.setComments(JsonHandle.getInt(json,"comments"));
+        obj.setComments(JsonHandle.getInt(json,"comment"));
         obj.setCover(JsonHandle.getJSON(json,"cover"));
         obj.setCreatedAt(JsonHandle.getString(json,"createdAt"));
         obj.setDesc(JsonHandle.getString(json,"desc"));

@@ -98,6 +98,8 @@ public class StoreObj {
     public void setImg(JSONObject img) {
         if (img != null) {
             this.img = JsonHandle.getString(img, "url");
+        } else {
+            this.img = "";
         }
     }
 

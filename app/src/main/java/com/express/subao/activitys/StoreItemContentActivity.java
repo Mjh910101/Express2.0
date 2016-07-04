@@ -131,13 +131,13 @@ public class StoreItemContentActivity extends BaseActivity {
 
         // 设置可以支持缩放
         settings.setSupportZoom(true);
-// 设置出现缩放工具
+        // 设置出现缩放工具
         settings.setBuiltInZoomControls(true);
-//设置可在大视野范围内上下左右拖动，并且可以任意比例缩放
+        //设置可在大视野范围内上下左右拖动，并且可以任意比例缩放
         settings.setUseWideViewPort(true);
-//设置默认加载的可视范围是大视野范围
+        //设置默认加载的可视范围是大视野范围
         settings.setLoadWithOverviewMode(true);
-//自适应屏幕
+        //自适应屏幕
         settings.setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);
     }
 }

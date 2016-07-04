@@ -167,7 +167,8 @@
         <activity
             android:name=".activitys.SearchItemActivity"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateHidden|stateUnchanged" />
+            android:windowSoftInputMode="stateHidden|stateUnchanged"
+            android:theme="@style/transparent"/>
 
         <!--推送-->
         <service

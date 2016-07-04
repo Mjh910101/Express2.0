@@ -86,6 +86,8 @@ public class StoreItemObj {
     public void setCover(JSONObject json) {
         if (json != null) {
             this.cover = JsonHandle.getString(json, "url");
+        } else {
+            this.cover = "";
         }
     }
 

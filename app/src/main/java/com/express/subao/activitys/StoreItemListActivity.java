@@ -76,7 +76,6 @@ public class StoreItemListActivity extends BaseActivity {
 
     private final static int LIMIT = 20;
 
-
     @ViewInject(R.id.title_back)
     private ImageView backIcon;
     @ViewInject(R.id.title_name)
@@ -254,6 +253,7 @@ public class StoreItemListActivity extends BaseActivity {
             }
         });
         itemTagList.setAdapter(adapter);
+        itemTagList.setFocusable(false);
 
         if (!tagList.isEmpty()) {
             downloadItem(tagList.get(0));
@@ -269,8 +269,10 @@ public class StoreItemListActivity extends BaseActivity {
         } else {
             itemAdapter.addItems(list);
         }
-//        listLayout.setFocusable(false);
-        scroll.smoothScrollTo(0, 0);
+        if (page == 1) {
+//            itemList.setFocusable(false);
+            scroll.smoothScrollTo(0, 0);
+        }
     }
 
     private void downloadItem(String tag) {
