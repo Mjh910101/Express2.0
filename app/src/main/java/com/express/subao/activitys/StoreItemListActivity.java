@@ -150,13 +150,16 @@ public class StoreItemListActivity extends BaseActivity {
                     scroll.dispatchTouchEvent(event);
                     isDispatchScroll = false;
                 } else {
-                    if (event.getX() < listLayout.getWidth() / 3) {
-//                    if (position[0] < listLayout.getWidth() / 3) {
-                        itemTagList.dispatchTouchEvent(event);
+//                    if (event.getX() < listLayout.getWidth() / 3) {
+//                        itemTagList.dispatchTouchEvent(event);
+//                    } else {
+//                        itemList.dispatchTouchEvent(event);
+//                    }
+                    if (event.getY() <= 80) {
+                        toolLayout.dispatchTouchEvent(event);
                     } else {
-                        itemList.dispatchTouchEvent(event);
+                        listLayout.dispatchTouchEvent(event);
                     }
-//                    listLayout.dispatchTouchEvent(event);
                 }
                 return true;
             }
@@ -315,47 +318,6 @@ public class StoreItemListActivity extends BaseActivity {
 
                 });
     }
-
-    private void downloadItemTag(String id) {
-
-        progress.setVisibility(View.VISIBLE);
-
-        String url = Url.getItemTag(id);
-
-        HttpUtilsBox.getHttpUtil().send(HttpMethod.GET, url,
-                new RequestCallBack<String>() {
-
-                    @Override
-                    public void onFailure(HttpException exception, String msg) {
-                        progress.setVisibility(View.GONE);
-                        MessageHandler.showFailure(context);
-                    }
-
-                    @Override
-                    public void onSuccess(ResponseInfo<String> responseInfo) {
-                        progress.setVisibility(View.GONE);
-                        String result = responseInfo.result;
-                        Log.d("", result);
-
-                        JSONObject json = JsonHandle.getJSON(result);
-                        if (json != null) {
-
-                            if (JsonHandle.getInt(json, "status") == 1) {
-                                JSONArray array = JsonHandle.getArray(json, "results");
-
-                                if (array != null) {
-                                    setItemTagView(array);
-                                }
-                            }
-
-                        }
-
-                    }
-
-                });
-
-    }
-
 
     private void downloadStoreData(String id) {
 
