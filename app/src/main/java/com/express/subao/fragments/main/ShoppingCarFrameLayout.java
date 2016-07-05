@@ -1,30 +1,20 @@
 package com.express.subao.fragments.main;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ProgressBar;
+import android.widget.ListView;
 
 import com.express.subao.R;
-import com.express.subao.box.handlers.AreaObjHandler;
+import com.express.subao.adaptera.StoreItemAdapter;
+import com.express.subao.box.ShoppingCarObj;
 import com.express.subao.fragments.BaseFragment;
-import com.express.subao.handlers.JsonHandle;
-import com.express.subao.handlers.MessageHandler;
-import com.express.subao.http.HttpUtilsBox;
-import com.express.subao.http.Url;
+import com.express.subao.box.handlers.ShoppingCarHandler;
 import com.lidroid.xutils.ViewUtils;
-import com.lidroid.xutils.exception.HttpException;
-import com.lidroid.xutils.http.ResponseInfo;
-import com.lidroid.xutils.http.callback.RequestCallBack;
-import com.lidroid.xutils.http.client.HttpRequest.HttpMethod;
 import com.lidroid.xutils.view.annotation.ViewInject;
 
-import org.json.JSONArray;
-import org.json.JSONObject;
-
-import java.util.ArrayList;
+import java.util.List;
 
 /**
  * *
@@ -49,6 +39,9 @@ import java.util.ArrayList;
  */
 public class ShoppingCarFrameLayout extends BaseFragment {
 
+    @ViewInject(R.id.shoppingCar_dataList)
+    private ListView dataList;
+
     @Override
     public void onRestart() {
 
@@ -62,7 +55,13 @@ public class ShoppingCarFrameLayout extends BaseFragment {
                 false);
         ViewUtils.inject(this, contactsLayout);
 
+        initShoppingCar();
+
         return contactsLayout;
+    }
+
+    private void initShoppingCar() {
+        List<ShoppingCarObj> list=ShoppingCarHandler.getAllShoppingCar(context);
     }
 
 }

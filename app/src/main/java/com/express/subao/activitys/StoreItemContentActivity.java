@@ -1,10 +1,7 @@
 package com.express.subao.activitys;
 
 import android.os.Bundle;
-import android.text.Html;
-import android.util.Log;
 import android.view.View;
-import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -12,10 +9,9 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.express.subao.R;
-import com.express.subao.box.RebateObj;
 import com.express.subao.box.StoreItemObj;
 import com.express.subao.box.handlers.StoreItemObjHandler;
-import com.express.subao.box.handlers.StoreObjHandler;
+import com.express.subao.box.handlers.ShoppingCarHandler;
 import com.express.subao.handlers.TextHandeler;
 import com.express.subao.tool.Passageway;
 import com.express.subao.views.InsideViewFlipper;
@@ -83,7 +79,7 @@ public class StoreItemContentActivity extends BaseActivity {
 
     }
 
-    @OnClick({R.id.title_back, R.id.storeItemContent_commentsLayout})
+    @OnClick({R.id.title_back, R.id.storeItemContent_commentsLayout, R.id.storeItemContent_inShoppingCarBtn})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.title_back:
@@ -92,7 +88,14 @@ public class StoreItemContentActivity extends BaseActivity {
             case R.id.storeItemContent_commentsLayout:
                 jumpCommentsListActivity();
                 break;
+            case R.id.storeItemContent_inShoppingCarBtn:
+                saveInShoppingCar(mStoreItemObj);
+                break;
         }
+    }
+
+    private void saveInShoppingCar(StoreItemObj obj) {
+        ShoppingCarHandler.saveInShoppingCar(context,obj);
     }
 
     private void jumpCommentsListActivity() {

@@ -3,6 +3,10 @@ package com.express.subao.box;
 import com.alibaba.fastjson.JSON;
 import com.express.subao.box.handlers.SliderObjHandler;
 import com.express.subao.handlers.JsonHandle;
+import com.lidroid.xutils.db.annotation.Column;
+import com.lidroid.xutils.db.annotation.Id;
+import com.lidroid.xutils.db.annotation.Table;
+import com.lidroid.xutils.db.annotation.Transient;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -31,6 +35,7 @@ import java.util.List;
  * *   ┗┻┛   ┗┻┛
  * Created by Hua on 15/12/23.
  */
+@Table(name = "tbl_store")
 public class StoreObj {
 
     public static final String OBJECT_ID = "objectId";
@@ -39,11 +44,21 @@ public class StoreObj {
     public static final String IMAGES = "images";
     public static final String SLIDER = "slider";
 
+    @Id(column = "objectId")
     private String objectId;
+
+    @Column(column = "title")
     private String title;
+
+    @Column(column = "img")
     private String img;
+
+    @Column(column = "comments")
     private int comments;
+
+    @Transient
     private List<SliderObj> sliderList;
+    @Transient
     private List<String> tapList;
 
     public int getComments() {

@@ -65,6 +65,7 @@
         android:id="@+id/shoppingCar_dataList"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@id/shoppingCar_toolLayout" />
+        android:layout_above="@id/shoppingCar_toolLayout"
+        android:layout_alignParentTop="true" />
 
 </RelativeLayout>

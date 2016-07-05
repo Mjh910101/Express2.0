@@ -143,22 +143,22 @@ public class StoreItemListActivity extends BaseActivity {
             public boolean onTouch(View v, MotionEvent event) {
                 int[] position = new int[2];
                 sliderLayout.getLocationOnScreen(position);
-                Log.e("", "position : " + position[0] + " , " + position[1]);
-                Log.e("", "position : " + sliderLayout.getWidth() + " , " + sliderLayout.getHeight());
-                Log.e("", "x : " + (position[1] - 166 + sliderLayout.getHeight()));
-                if (position[1] - 166 + sliderLayout.getHeight() > 1 || isDispatchScroll) {
+                Log.e("scroll", "position : " + position[0] + " , " + position[1]);
+                Log.e("scroll", "slider layout : " + sliderLayout.getWidth() + " , " + sliderLayout.getHeight());
+                Log.e("scroll", "x : " + (position[1] - 166 + sliderLayout.getHeight()));
+                if (isDispatchScroll || position[1] - 166 + sliderLayout.getHeight() > 1) {
                     scroll.dispatchTouchEvent(event);
                     isDispatchScroll = false;
                 } else {
-//                    if (event.getX() < listLayout.getWidth() / 3) {
-//                        itemTagList.dispatchTouchEvent(event);
-//                    } else {
-//                        itemList.dispatchTouchEvent(event);
-//                    }
                     if (event.getY() <= 80) {
                         toolLayout.dispatchTouchEvent(event);
                     } else {
-                        listLayout.dispatchTouchEvent(event);
+                        if (event.getX() < listLayout.getWidth() / 3) {
+                            itemTagList.dispatchTouchEvent(event);
+                        } else {
+                            itemList.dispatchTouchEvent(event);
+                        }
+//                        listLayout.dispatchTouchEvent(event);
                     }
                 }
                 return true;
@@ -203,9 +203,10 @@ public class StoreItemListActivity extends BaseActivity {
 
             @Override
             public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
-                Log.e("", "Count : " + firstVisibleItem);
+                Log.e("scroll", "count : " + firstVisibleItem);
                 View firstItem = itemList.getChildAt(0);
                 if (firstVisibleItem <= 1 && firstItem != null && firstItem.getTop() == 0) {
+                    Log.e("scroll", "top : " + firstItem.getTop());
                     isDispatchScroll = true;
                 } else {
                     isDispatchScroll = false;

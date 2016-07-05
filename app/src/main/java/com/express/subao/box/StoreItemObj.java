@@ -1,6 +1,10 @@
 package com.express.subao.box;
 
 import com.express.subao.handlers.JsonHandle;
+import com.lidroid.xutils.db.annotation.Column;
+import com.lidroid.xutils.db.annotation.Id;
+import com.lidroid.xutils.db.annotation.Table;
+import com.lidroid.xutils.db.annotation.Transient;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -29,20 +33,48 @@ import java.util.List;
  * *   ┗┻┛   ┗┻┛
  * Created by Hua on 16/7/1.
  */
+@Table(name = "tbl_store_item")
 public class StoreItemObj {
 
+    @Column(column = "updatedAt")
     private String updatedAt;
+
+    @Column(column = "desc")
     private String desc;
+
+    @Column(column = "storeId")
     private String storeId;
+
+    @Id(column = "objectId")
     private String objectId;
+
+    @Column(column = "cover")
     private String cover;
+
+    @Column(column = "createdAt")
     private String createdAt;
+
+    @Column(column = "title")
     private String title;
+
+    @Column(column = "intro")
     private String intro;
+
+    @Column(column = "comments")
     private int comments;
+
+    @Column(column = "sell")
     private int sell;
+
+    @Column(column = "price")
     private double price;
+
+    @Column(column = "sum")
+    private int sum;
+
+    @Transient
     private List<String> imagesList;
+    @Transient
     private List<String> tagList;
 
     public String getUpdatedAt() {
@@ -183,5 +215,13 @@ public class StoreItemObj {
         }
         return list;
 
+    }
+
+    public int getSum() {
+        return sum;
+    }
+
+    public void setSum(int sum) {
+        this.sum = sum;
     }
 }
