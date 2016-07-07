@@ -76,6 +76,10 @@ public class Url {
         return getIndex() + "/api/v1/user/order";
     }
 
+    public static String getUserOrderScan() {
+        return getIndex() + "/api/v1/user/order/scan";
+    }
+
     public static String getItemTag(String id) {
         return getIndex() + "/api/v1/store/" + id + "/itemtag";
     }
@@ -110,5 +114,9 @@ public class Url {
 
     public static String getStoreItemComment() {
         return getIndex() + "/api/v1/store/item/comment";
+    }
+
+    public static String getUserOrderOpen() {
+        return getIndex() + "/api/v1/user/order/open";
     }
 }

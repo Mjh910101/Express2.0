@@ -79,10 +79,10 @@ public class MainActivity extends BaseActivity {
     @ViewInject(R.id.main_tap_userText)
     private TextView userText;
 
-    private MainFrameLayoutV4 mainFrameLayout;
+    private MainFrameLayoutV2 mainFrameLayout;
     private RebateFrameLayout rebateFrameLayout;
     private ShoppingCarFrameLayout shoppingCarFrameLayout;
-    private UserFrameLayoutV2 userFrameLayout;
+    private UserFrameLayout userFrameLayout;
     private FragmentManager fragmentManager;
 
 
@@ -256,7 +256,7 @@ public class MainActivity extends BaseActivity {
         userIcon.setImageResource(R.drawable.main_tap_on_user_icon);
         userText.setTextColor(ColorHandler.getColorForID(context, R.color.text_orange));
         if (userFrameLayout == null) {
-            userFrameLayout = new UserFrameLayoutV2();
+            userFrameLayout = new UserFrameLayout();
             transaction.add(R.id.main_content, userFrameLayout);
         } else {
             transaction.show(userFrameLayout);
@@ -294,7 +294,7 @@ public class MainActivity extends BaseActivity {
 //        scanningIcon.setVisibility(View.VISIBLE);
         titleIcon.setVisibility(View.VISIBLE);
         if (mainFrameLayout == null) {
-            mainFrameLayout = new MainFrameLayoutV4();
+            mainFrameLayout = new MainFrameLayoutV2();
             transaction.add(R.id.main_content, mainFrameLayout);
         } else {
             transaction.show(mainFrameLayout);

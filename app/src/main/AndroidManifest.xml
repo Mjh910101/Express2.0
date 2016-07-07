@@ -167,8 +167,18 @@
         <activity
             android:name=".activitys.SearchItemActivity"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateHidden|stateUnchanged"
-            android:theme="@style/transparent"/>
+            android:theme="@style/transparent"
+            android:windowSoftInputMode="stateHidden|stateUnchanged" />
+        <activity
+            android:name=".activitys.ScanningForSdyOrderListActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activitys.SdyOrderOpenContentActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activitys.OpenSdyDailogActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/transparent" />
 
         <!--推送-->
         <service

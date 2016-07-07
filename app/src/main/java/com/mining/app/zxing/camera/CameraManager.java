@@ -222,10 +222,11 @@ public final class CameraManager {
         return null;
       }
       int width = screenResolution.x * 3 / 4;
+      Log.e("Point","X : "+screenResolution.x+"  Y : "+screenResolution.y);
       if (width < MIN_FRAME_WIDTH) {
         width = MIN_FRAME_WIDTH;
-      } else if (width > MAX_FRAME_WIDTH) {
-        width = MAX_FRAME_WIDTH;
+//      } else if (width > MAX_FRAME_WIDTH) {
+//        width = MAX_FRAME_WIDTH;
       }
       int height = screenResolution.y * 3 / 4;
       if (height < MIN_FRAME_HEIGHT) {

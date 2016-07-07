@@ -18,6 +18,7 @@ import android.widget.Toast;
 import com.express.subao.R;
 import com.express.subao.dialogs.MessageDialog;
 import com.express.subao.handlers.TextHandeler;
+import com.express.subao.tool.Passageway;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.Result;
 import com.lidroid.xutils.ViewUtils;
@@ -159,8 +160,27 @@ public class ScanningActivity extends BaseActivity implements SurfaceHolder.Call
         playBeepSoundAndVibrate();
         String resultString = result.getText();
 
-        MessageDialog dialog = new MessageDialog(context);
-        dialog.setMessage(resultString);
+//        MessageDialog dialog = new MessageDialog(context);
+//        dialog.setMessage(getQRCode(resultString));
+
+        Bundle b = new Bundle();
+        b.putString("qrcode", getQRCode(resultString));
+        Passageway.jumpActivity(context, ScanningForSdyOrderListActivity.class, b);
+        finish();
+    }
+
+    private String getQRCode(String result) {
+        int i = result.indexOf("qrcode=");
+        if (i < 0) {
+            return "";
+        }
+        result = result.substring(i + 7, result.length());
+
+        int j = result.indexOf("&");
+        if (j > 0) {
+            result = result.substring(0, j);
+        }
+        return result;
     }
 
     private void initCamera(SurfaceHolder surfaceHolder) {

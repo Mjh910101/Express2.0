@@ -31,7 +31,7 @@ import android.util.AttributeSet;
 import android.view.View;
 
 import com.express.subao.R;
-import com.express.subao.handlers.ColorHandler;
+import com.express.subao.handlers.ColorHandle;
 import com.google.zxing.ResultPoint;
 import com.mining.app.zxing.camera.CameraManager;
 
@@ -168,7 +168,7 @@ public final class ViewfinderView extends View {
         } else {
 
             //画扫描框边上的角，总共8个部分
-            paint.setColor(ColorHandler.getColorForID(context, R.color.title_bg));
+            paint.setColor(ColorHandle.getColorForID(context, R.color.title_bg));
             canvas.drawRect(frame.left, frame.top, frame.left + ScreenRate,
                     frame.top + CORNER_WIDTH, paint);
             canvas.drawRect(frame.left, frame.top, frame.left + CORNER_WIDTH, frame.top
