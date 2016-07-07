@@ -12,6 +12,7 @@ import com.express.subao.R;
 import com.express.subao.box.StoreItemObj;
 import com.express.subao.box.handlers.StoreItemObjHandler;
 import com.express.subao.box.handlers.ShoppingCarHandler;
+import com.express.subao.handlers.MessageHandler;
 import com.express.subao.handlers.TextHandeler;
 import com.express.subao.tool.Passageway;
 import com.express.subao.views.InsideViewFlipper;
@@ -96,6 +97,7 @@ public class StoreItemContentActivity extends BaseActivity {
 
     private void saveInShoppingCar(StoreItemObj obj) {
         ShoppingCarHandler.saveInShoppingCar(context,obj);
+        MessageHandler.showToast(context,"添加入購物車");
     }
 
     private void jumpCommentsListActivity() {

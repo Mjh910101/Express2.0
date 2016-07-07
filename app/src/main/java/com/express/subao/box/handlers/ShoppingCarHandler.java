@@ -1,6 +1,7 @@
 package com.express.subao.box.handlers;
 
 import android.content.Context;
+import android.util.Log;
 
 import com.baidu.platform.comapi.map.C;
 import com.express.subao.box.ShoppingCarObj;
@@ -56,42 +57,59 @@ public class ShoppingCarHandler {
                 saveObj.setSum(saveObj.getSum() + 1);
                 db.saveOrUpdate(saveObj);
             }
+            Log.e("Shopping Car Handler","SAVE "+"ID "+obj.getObjectId()+"   Store ID "+obj.getStoreId()+"  SUM "+obj.getSum());
+            if(saveObj!=null) {
+                Log.e("Shopping Car Handler", "SAVE " + "ID " + saveObj.getObjectId() +"   Store ID "+obj.getStoreId()+ "  SUM " + saveObj.getSum());
+            }
         } catch (DbException e) {
             e.printStackTrace();
         }
     }
 
     private static List<StoreItemObj> getStoreItemForStoreId(Context context, String storeId) {
+        List<StoreItemObj> list = new ArrayList<>();
         try {
-            return DBHandler.getDbUtils(context).findAll(Selector.from(StoreItemObj.class).where("storeId", "=", storeId));
+            List<StoreItemObj> dbList = DBHandler.getDbUtils(context).findAll(Selector.from(StoreItemObj.class).where("storeId", "=", storeId));
+            if (dbList != null) {
+                list.addAll(dbList);
+            }
         } catch (DbException e) {
             e.printStackTrace();
         }
-        return new ArrayList<>();
+        return list;
     }
 
     public static List<StoreItemObj> getAllStoreItem(Context context) {
+        List<StoreItemObj> list = new ArrayList<>();
         try {
-            return DBHandler.getDbUtils(context).findAll(StoreItemObj.class);
+            List<StoreItemObj> dbList = DBHandler.getDbUtils(context).findAll(StoreItemObj.class);
+            if (dbList != null) {
+                list.addAll(dbList);
+            }
         } catch (DbException e) {
             e.printStackTrace();
         }
-        return new ArrayList<>();
+        return list;
     }
 
     public static List<StoreObj> getAllStore(Context context) {
+        List<StoreObj> list = new ArrayList<>();
         try {
-            return DBHandler.getDbUtils(context).findAll(StoreObj.class);
+            List<StoreObj> dbList = DBHandler.getDbUtils(context).findAll(StoreObj.class);
+            if (dbList != null) {
+                list.addAll(dbList);
+            }
         } catch (DbException e) {
             e.printStackTrace();
         }
-        return new ArrayList<>();
+        return list;
     }
 
     public static List<ShoppingCarObj> getAllShoppingCar(Context context) {
         List<ShoppingCarObj> list = new ArrayList<>();
         List<StoreObj> storeList = getAllStore(context);
         for (StoreObj obj : storeList) {
+            Log.e("Shopping Car Handler","GET "+"STORE ID "+obj.getObjectId());
             List<StoreItemObj> storeItemList = getStoreItemForStoreId(context, obj.getObjectId());
             if (storeItemList != null && !storeItemList.isEmpty()) {
                 addShoppingCarList(list, obj);
@@ -113,6 +131,7 @@ public class ShoppingCarHandler {
 
     public static void addShoppingCarList(List<ShoppingCarObj> list, List<StoreItemObj> storeItemList) {
         for (StoreItemObj obj : storeItemList) {
+            Log.e("Shopping Car Handler","GET "+"ITEM ID "+obj.getObjectId()+"   Store ID "+obj.getStoreId()+"  SUM "+obj.getSum());
             addShoppingCarList(list, obj);
         }
     }

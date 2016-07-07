@@ -5,6 +5,11 @@
     android:background="@color/whitle"
     android:orientation="vertical">
 
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="20dp"
+        android:background="@color/activity_bg" />
+
     <LinearLayout
         android:id="@+id/sCar_item_head"
         android:layout_width="fill_parent"
@@ -15,14 +20,16 @@
             android:id="@+id/sCar_item_allChoice"
             android:layout_width="25dp"
             android:layout_height="25dp"
-            android:layout_margin="6dp" />
+            android:layout_margin="6dp"
+            android:src="@drawable/choice_off_icon" />
 
         <ImageView
             android:layout_width="25dp"
             android:layout_height="25dp"
             android:layout_marginBottom="6dp"
             android:layout_marginRight="6dp"
-            android:layout_marginTop="6dp" />
+            android:layout_marginTop="6dp"
+            android:src="@drawable/shoppingcar_store_icon" />
 
         <TextView
             android:id="@+id/sCar_item_shopName"
@@ -54,10 +61,12 @@
         android:id="@+id/sCar_item_delivery"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
         android:layout_marginTop="5dp"
+        android:background="@drawable/status_bg"
         android:gravity="center"
         android:text="店铺满1元免运费"
-        android:textColor="@color/black"
+        android:textColor="@color/text_orange_02"
         android:textSize="@dimen/text_size_17" />
 
 </LinearLayout>

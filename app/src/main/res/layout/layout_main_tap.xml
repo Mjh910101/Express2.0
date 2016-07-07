@@ -70,8 +70,8 @@
         <RelativeLayout
             android:layout_width="0dp"
             android:layout_height="fill_parent"
-            android:visibility="gone"
-            android:layout_weight="1">
+            android:layout_weight="1"
+            android:visibility="gone">
 
             <ImageView
                 android:id="@+id/main_tap_scanningIcon"
@@ -88,8 +88,8 @@
             android:layout_height="fill_parent"
             android:layout_weight="1"
             android:gravity="center"
-            android:visibility="gone"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:visibility="visible">
 
             <ImageView
                 android:id="@+id/main_tap_shoppingCarIcon"

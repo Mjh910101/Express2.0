@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.ListView;
 
 import com.express.subao.R;
+import com.express.subao.adaptera.ShoppingCarAdapter;
 import com.express.subao.adaptera.StoreItemAdapter;
 import com.express.subao.box.ShoppingCarObj;
 import com.express.subao.fragments.BaseFragment;
@@ -61,7 +62,8 @@ public class ShoppingCarFrameLayout extends BaseFragment {
     }
 
     private void initShoppingCar() {
-        List<ShoppingCarObj> list=ShoppingCarHandler.getAllShoppingCar(context);
+        List<ShoppingCarObj> list = ShoppingCarHandler.getAllShoppingCar(context);
+        dataList.setAdapter(new ShoppingCarAdapter(context, list));
     }
 
 }

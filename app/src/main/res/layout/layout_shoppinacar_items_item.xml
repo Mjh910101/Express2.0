@@ -15,7 +15,8 @@
             android:id="@+id/sCar_item_choice"
             android:layout_width="25dp"
             android:layout_height="25dp"
-            android:layout_margin="5dp" />
+            android:layout_margin="5dp"
+            android:src="@drawable/choice_off_icon" />
 
         <RelativeLayout
             android:layout_width="wrap_content"
@@ -148,7 +149,8 @@
         <ImageView
             android:layout_width="22dp"
             android:layout_height="22dp"
-            android:layout_margin="5dp" />
+            android:layout_margin="5dp"
+            android:src="@drawable/err_icon" />
 
         <TextView
             android:id="@+id/sCar_item_warnMessage"
