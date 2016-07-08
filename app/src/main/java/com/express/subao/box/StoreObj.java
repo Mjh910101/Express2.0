@@ -134,4 +134,10 @@ public class StoreObj {
             }
         }
     }
+
+    public boolean equals(String id) {
+        return objectId.equals(id);
+    }
 }
+
+

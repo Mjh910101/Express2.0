@@ -40,11 +40,11 @@ public class MessageHandler {
     }
 
     public static void showFailure(Context context) {
-        showToast(context, "网络不佳");
+        showToast(context, "網絡不佳");
     }
 
     public static void showLast(Context context) {
-        showToast(context, "没有数据了");
+        showToast(context, "沒有數據了");
     }
 
     public static void showFailure(Context context, Exception e) {

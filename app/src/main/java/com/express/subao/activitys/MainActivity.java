@@ -78,6 +78,8 @@ public class MainActivity extends BaseActivity {
     private ImageView userIcon;
     @ViewInject(R.id.main_tap_userText)
     private TextView userText;
+    @ViewInject(R.id.title_editorText)
+    private TextView editorText;
 
     private MainFrameLayoutV4 mainFrameLayout;
     private RebateFrameLayout rebateFrameLayout;
@@ -106,7 +108,7 @@ public class MainActivity extends BaseActivity {
             if (System.currentTimeMillis() - EXIT < EXITTIME) {
                 finish();
             } else {
-                MessageHandler.showToast(context, "再次点击退出");
+                MessageHandler.showToast(context, "再次點擊退出");
             }
             EXIT = System.currentTimeMillis();
         }
@@ -150,7 +152,7 @@ public class MainActivity extends BaseActivity {
         }
     }
 
-    @OnClick({R.id.title_addressName, R.id.title_scanningIcon, R.id.main_tap_scanningIcon})
+    @OnClick({R.id.title_addressName, R.id.title_scanningIcon, R.id.main_tap_scanningIcon,R.id.title_editorText})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.title_addressName:
@@ -163,6 +165,11 @@ public class MainActivity extends BaseActivity {
                 break;
             case R.id.main_tap_scanningIcon:
                 Passageway.jumpActivity(context, ScanningActivity.class);
+                break;
+            case R.id.title_editorText:
+                if(shoppingCarFrameLayout!=null){
+                    shoppingCarFrameLayout.onEditorText(editorText);
+                }
                 break;
         }
     }
@@ -265,6 +272,7 @@ public class MainActivity extends BaseActivity {
 
     private void onShoppingCarTap(FragmentTransaction transaction) {
         titleName.setText(TextHandeler.getText(context, R.string.shopping_car_text));
+        editorText.setVisibility(View.VISIBLE);
         shoppingCarIcon.setImageResource(R.drawable.main_tap_on_shoppingcar_icon);
         shoppingCarText.setTextColor(ColorHandler.getColorForID(context, R.color.text_orange));
         if (shoppingCarFrameLayout == null) {
@@ -272,6 +280,7 @@ public class MainActivity extends BaseActivity {
             transaction.add(R.id.main_content, shoppingCarFrameLayout);
         } else {
             transaction.show(shoppingCarFrameLayout);
+            shoppingCarFrameLayout.onRestart();
         }
     }
 
@@ -332,6 +341,7 @@ public class MainActivity extends BaseActivity {
 //        scanningIcon.setVisibility(View.GONE);
 
         titleIcon.setVisibility(View.GONE);
+        editorText.setVisibility(View.GONE);
 
         titleName.setText(TextHandeler.getText(context, R.string.app_name));
 

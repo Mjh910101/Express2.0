@@ -42,12 +42,12 @@ public class ShoppingCarObj {
         this.type = ITEM;
     }
 
-    private boolean isStore() {
-        return storeObj != null;
+    public boolean isStore() {
+        return type == STORE;
     }
 
-    private boolean isItem() {
-        return storeItemObj != null;
+    public boolean isItem() {
+        return type == ITEM;
     }
 
     public StoreObj getStoreObj() {

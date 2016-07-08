@@ -4,6 +4,7 @@ import android.content.Context;
 import android.util.Log;
 
 import com.baidu.platform.comapi.map.C;
+import com.express.subao.box.ItemObj;
 import com.express.subao.box.ShoppingCarObj;
 import com.express.subao.box.StoreItemObj;
 import com.express.subao.box.StoreObj;
@@ -46,6 +47,17 @@ public class ShoppingCarHandler {
         }
     }
 
+    public static void updateShoppingCar(Context context, List<StoreItemObj> list) {
+        try {
+            DbUtils db = DBHandler.getDbUtils(context);
+            for (StoreItemObj obj : list) {
+                db.saveOrUpdate(obj);
+            }
+        } catch (DbException e) {
+            e.printStackTrace();
+        }
+    }
+
     public static void saveInShoppingCar(Context context, StoreItemObj obj) {
         try {
             DbUtils db = DBHandler.getDbUtils(context);
@@ -57,9 +69,9 @@ public class ShoppingCarHandler {
                 saveObj.setSum(saveObj.getSum() + 1);
                 db.saveOrUpdate(saveObj);
             }
-            Log.e("Shopping Car Handler","SAVE "+"ID "+obj.getObjectId()+"   Store ID "+obj.getStoreId()+"  SUM "+obj.getSum());
-            if(saveObj!=null) {
-                Log.e("Shopping Car Handler", "SAVE " + "ID " + saveObj.getObjectId() +"   Store ID "+obj.getStoreId()+ "  SUM " + saveObj.getSum());
+            Log.e("Shopping Car Handler", "SAVE " + "ID " + obj.getObjectId() + "   Store ID " + obj.getStoreId() + "  SUM " + obj.getSum());
+            if (saveObj != null) {
+                Log.e("Shopping Car Handler", "SAVE " + "ID " + saveObj.getObjectId() + "   Store ID " + obj.getStoreId() + "  SUM " + saveObj.getSum());
             }
         } catch (DbException e) {
             e.printStackTrace();
@@ -109,7 +121,7 @@ public class ShoppingCarHandler {
         List<ShoppingCarObj> list = new ArrayList<>();
         List<StoreObj> storeList = getAllStore(context);
         for (StoreObj obj : storeList) {
-            Log.e("Shopping Car Handler","GET "+"STORE ID "+obj.getObjectId());
+            Log.e("Shopping Car Handler", "GET " + "STORE ID " + obj.getObjectId());
             List<StoreItemObj> storeItemList = getStoreItemForStoreId(context, obj.getObjectId());
             if (storeItemList != null && !storeItemList.isEmpty()) {
                 addShoppingCarList(list, obj);
@@ -131,8 +143,17 @@ public class ShoppingCarHandler {
 
     public static void addShoppingCarList(List<ShoppingCarObj> list, List<StoreItemObj> storeItemList) {
         for (StoreItemObj obj : storeItemList) {
-            Log.e("Shopping Car Handler","GET "+"ITEM ID "+obj.getObjectId()+"   Store ID "+obj.getStoreId()+"  SUM "+obj.getSum());
+            Log.e("Shopping Car Handler", "GET " + "ITEM ID " + obj.getObjectId() + "   Store ID " + obj.getStoreId() + "  SUM " + obj.getSum());
             addShoppingCarList(list, obj);
+        }
+    }
+
+
+    public static void deleteItem(Context context, StoreItemObj obj) {
+        try {
+            DBHandler.getDbUtils(context).deleteById(StoreItemObj.class, obj.getObjectId());
+        } catch (DbException e) {
+            e.printStackTrace();
         }
     }
 

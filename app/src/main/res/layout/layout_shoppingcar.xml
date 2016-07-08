@@ -18,7 +18,8 @@
             android:background="@color/line_gray" />
 
         <TextView
-            android:layout_width="wrap_content"
+            android:id="@+id/shoppingCar_sumText"
+            android:layout_width="100dp"
             android:layout_height="fill_parent"
             android:layout_alignParentRight="true"
             android:background="@color/title_bg"
@@ -29,13 +30,21 @@
             android:textColor="@color/whitle"
             android:textSize="@dimen/text_size_17" />
 
+        <ImageView
+            android:id="@+id/shoppingCar_choiceIcon"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_centerVertical="true"
+            android:layout_margin="5dp"
+            android:src="@drawable/choice_off_icon" />
+
         <TextView
             android:id="@+id/shoppingCar_allClockBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="8dp"
             android:layout_marginRight="5dp"
+            android:layout_toRightOf="@id/shoppingCar_choiceIcon"
             android:text="@string/all_clock_text"
             android:textColor="@color/black"
             android:textSize="@dimen/text_size_17" />
@@ -51,11 +60,12 @@
             android:textSize="@dimen/text_size_15" />
 
         <TextView
+            android:id="@+id/shoppingCar_totalPriceText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_toRightOf="@id/shoppingCar_allSumText"
-            android:text="100"
+            android:text=""
             android:textColor="@color/text_orange"
             android:textSize="@dimen/text_size_16" />
 
@@ -66,6 +76,8 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_above="@id/shoppingCar_toolLayout"
-        android:layout_alignParentTop="true" />
+        android:layout_alignParentTop="true"
+        android:divider="@color/lucency"
+        android:dividerHeight="0dp" />
 
 </RelativeLayout>

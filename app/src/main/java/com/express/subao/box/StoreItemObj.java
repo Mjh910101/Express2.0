@@ -224,4 +224,8 @@ public class StoreItemObj {
     public void setSum(int sum) {
         this.sum = sum;
     }
+
+    public boolean isStore(String id) {
+        return storeId.equals(id);
+    }
 }
