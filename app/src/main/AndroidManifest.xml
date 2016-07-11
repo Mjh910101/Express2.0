@@ -179,6 +179,12 @@
             android:name=".activitys.OpenSdyDailogActivity"
             android:screenOrientation="portrait"
             android:theme="@style/transparent" />
+        <activity
+            android:name=".activitys.VersionActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/transparent" />
+        <!-- 服务 -->
+        <service android:name=".download.DownloadNewAppService" />
 
         <!--推送-->
         <service

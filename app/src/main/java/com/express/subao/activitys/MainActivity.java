@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.avos.avoscloud.AVException;
@@ -31,13 +32,24 @@ import com.express.subao.fragments.main.ShoppingCarFrameLayout;
 import com.express.subao.fragments.main.UserFrameLayout;
 import com.express.subao.fragments.main.UserFrameLayoutV2;
 import com.express.subao.handlers.ColorHandler;
+import com.express.subao.handlers.JsonHandle;
 import com.express.subao.handlers.MessageHandler;
 import com.express.subao.handlers.PushHandler;
 import com.express.subao.handlers.TextHandeler;
+import com.express.subao.handlers.VersionHandler;
+import com.express.subao.http.HttpUtilsBox;
+import com.express.subao.http.Url;
 import com.express.subao.tool.Passageway;
 import com.lidroid.xutils.ViewUtils;
+import com.lidroid.xutils.exception.HttpException;
+import com.lidroid.xutils.http.ResponseInfo;
+import com.lidroid.xutils.http.callback.RequestCallBack;
+import com.lidroid.xutils.http.client.HttpRequest.HttpMethod;
 import com.lidroid.xutils.view.annotation.ViewInject;
 import com.lidroid.xutils.view.annotation.event.OnClick;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 import java.util.List;
 
@@ -80,8 +92,10 @@ public class MainActivity extends BaseActivity {
     private TextView userText;
     @ViewInject(R.id.title_editorText)
     private TextView editorText;
+    @ViewInject(R.id.main_progress)
+    private ProgressBar progress;
 
-    private MainFrameLayoutV4 mainFrameLayout;
+    private MainFrameLayoutV2 mainFrameLayout;
     private RebateFrameLayout rebateFrameLayout;
     private ShoppingCarFrameLayout shoppingCarFrameLayout;
     private UserFrameLayout userFrameLayout;
@@ -134,6 +148,18 @@ public class MainActivity extends BaseActivity {
                     initPush();
                 }
                 break;
+            case VersionActivity.UPLOAD_REQUEST_CODE:
+                if (data != null) {
+                    Bundle b = data.getExtras();
+                    if (b != null) {
+                        if (b.getBoolean("isFinish")) {
+                            finish();
+                        } else {
+                            setTap(MAIN);
+                        }
+                    }
+                }
+                break;
         }
 
 
@@ -152,7 +178,7 @@ public class MainActivity extends BaseActivity {
         }
     }
 
-    @OnClick({R.id.title_addressName, R.id.title_scanningIcon, R.id.main_tap_scanningIcon,R.id.title_editorText})
+    @OnClick({R.id.title_addressName, R.id.title_scanningIcon, R.id.main_tap_scanningIcon, R.id.title_editorText})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.title_addressName:
@@ -167,7 +193,7 @@ public class MainActivity extends BaseActivity {
                 Passageway.jumpActivity(context, ScanningActivity.class);
                 break;
             case R.id.title_editorText:
-                if(shoppingCarFrameLayout!=null){
+                if (shoppingCarFrameLayout != null) {
                     shoppingCarFrameLayout.onEditorText(editorText);
                 }
                 break;
@@ -205,12 +231,13 @@ public class MainActivity extends BaseActivity {
 //        scanningIcon.setVisibility(View.VISIBLE);
 
         fragmentManager = getFragmentManager();
-        setTap(MAIN);
+//        setTap(MAIN);
 
         if (!UserObjHandler.isLigon(context)) {
             jumpLoginActivity();
         } else {
             initPush();
+            checkVersion();
         }
     }
 
@@ -303,7 +330,7 @@ public class MainActivity extends BaseActivity {
 //        scanningIcon.setVisibility(View.VISIBLE);
         titleIcon.setVisibility(View.VISIBLE);
         if (mainFrameLayout == null) {
-            mainFrameLayout = new MainFrameLayoutV4();
+            mainFrameLayout = new MainFrameLayoutV2();
             transaction.add(R.id.main_content, mainFrameLayout);
         } else {
             transaction.show(mainFrameLayout);
@@ -347,6 +374,63 @@ public class MainActivity extends BaseActivity {
 
         if (mainFrameLayout != null) {
             mainFrameLayout.stopFlish();
+        }
+    }
+
+
+    private void checkVersion() {
+        progress.setVisibility(View.VISIBLE);
+
+        String url = Url.getVersion();
+
+        HttpUtilsBox.getHttpUtil().send(HttpMethod.GET, url,
+                new RequestCallBack<String>() {
+
+                    @Override
+                    public void onFailure(HttpException exception, String msg) {
+                        progress.setVisibility(View.GONE);
+                        MessageHandler.showFailure(context);
+                    }
+
+                    @Override
+                    public void onSuccess(ResponseInfo<String> responseInfo) {
+                        progress.setVisibility(View.GONE);
+                        String result = responseInfo.result;
+                        Log.d("", result);
+
+                        JSONObject json = JsonHandle.getJSON(result);
+                        if (json != null) {
+                            JSONObject resultJson = JsonHandle.getJSON(json, "results");
+                            if (JsonHandle.getInt(json, "status") == 1 && resultJson != null) {
+                                JSONObject android = JsonHandle.getJSON(resultJson, "android");
+                                if (android != null) {
+                                    jumpVersionActivity(VersionHandler.detectionVersion(context, JsonHandle.getInt(android, "version")),
+                                            VersionHandler.detectionVersion(context, JsonHandle.getInt(android, "versionShort")),
+                                            JsonHandle.getString(android, "changelog"),
+                                            JsonHandle.getString(android, "update_url"));
+                                }
+                            }
+
+                        }
+
+                    }
+
+                });
+    }
+
+    private void jumpVersionActivity(boolean version, boolean versionShort, String changelog, String update_url) {
+        if (version) {
+            Bundle b = new Bundle();
+            b.putString("changelog", changelog);
+            b.putString("update_url", update_url);
+            if (versionShort) {
+                b.putBoolean("must", true);
+            } else {
+                b.putBoolean("must", false);
+            }
+            Passageway.jumpActivity(context, VersionActivity.class, VersionActivity.UPLOAD_REQUEST_CODE, b);
+        } else {
+            setTap(MAIN);
         }
     }
 

@@ -97,7 +97,18 @@ public class ShoppingCarFrameLayout extends BaseFragment {
     }
 
     private void setSumText(List<StoreItemObj> list) {
-        sumText.setText(TextHandeler.getText(context, R.string.settlement_sum_text).replace("?", String.valueOf(list.size())));
+        int s = 0;
+        for (StoreItemObj obj : list) {
+            s += obj.getSum();
+        }
+        String sum;
+        if (s > 99) {
+            sum = "...";
+        } else {
+            sum = String.valueOf(s);
+        }
+
+        sumText.setText(TextHandeler.getText(context, R.string.settlement_sum_text).replace("?", sum));
     }
 
     public void onEditorText(TextView view) {
@@ -114,11 +125,11 @@ public class ShoppingCarFrameLayout extends BaseFragment {
     }
 
     public void setTotalPriceText(List<StoreItemObj> list) {
-        double sum=0;
-        for(StoreItemObj obj:list){
-            double p=obj.getPrice();
-            double s=obj.getSum();
-            sum=sum+(p*s);
+        double sum = 0;
+        for (StoreItemObj obj : list) {
+            double p = obj.getPrice();
+            double s = obj.getSum();
+            sum = sum + (p * s);
         }
         totalPriceText.setText(new DecimalFormat("#.00").format(sum));
     }

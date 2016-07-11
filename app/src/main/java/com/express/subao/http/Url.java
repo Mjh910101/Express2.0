@@ -20,6 +20,10 @@ public class Url {
         return getIndex() + "/api/v1/area";
     }
 
+    public static String getVersion() {
+        return getIndex() + "/api/v1/version";
+    }
+
     public static String getSignUp() {
         return getIndex() + "/api/v1/signUp";
     }

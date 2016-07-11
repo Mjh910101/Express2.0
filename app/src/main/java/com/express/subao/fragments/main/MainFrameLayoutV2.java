@@ -176,14 +176,14 @@ public class MainFrameLayoutV2 extends BaseFragment {
                 Passageway.jumpActivity(context, SdyOrderListActivity.class);
                 break;
             case R.id.main_expressCheck:
-                jumpScanningActivity();
-//                Bundle b = new Bundle();
+//                jumpScanningActivity();
+                Bundle b = new Bundle();
 //                b.putString(WebActivity.URL, "https://m.baidu.com/from=844b/s?word=%E5%BF%AB%E9%80%92%E5%8D%95%E5%8F%B7%E6%9F%A5%E8%AF%A2&ts=9273863&t_kt=0&ie=utf-8&rsv_iqid=15097551060046916401&rsv_t=72deMgPPNkm183EeiLmi7c4tOYHp0VHnafndB7E%252BxsATdrxKgzYXkgQVGw&sa=is_1&ms=1&rsv_pq=15097551060046916401&rsv_sug4=7846&ss=100&inputT=5348&rq=k");
 //                b.putString(WebActivity.URL, "http://m.kuaidi100.com");
-//                b.putString(WebActivity.URL, "https://m.baidu.com");
-//                b.putString(WebActivity.TITLE, "百度查件");
+                b.putString(WebActivity.URL, "https://m.baidu.com");
+                b.putString(WebActivity.TITLE, "百度查件");
 //                b.putString(WebActivity.URL, "http://m.kuaidi100.com/result.jsp?nu=5124366058");
-//                Passageway.jumpActivity(context, WebActivity.class, b);
+                Passageway.jumpActivity(context, WebActivity.class, b);
                 break;
         }
     }

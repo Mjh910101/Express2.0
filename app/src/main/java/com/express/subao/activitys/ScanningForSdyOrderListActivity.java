@@ -120,7 +120,7 @@ public class ScanningForSdyOrderListActivity extends BaseActivity {
 
     private void initActivity() {
         backIcon.setVisibility(View.VISIBLE);
-        titleName.setText(TextHandeler.getText(context, R.string.open_box_find_box_text));
+        titleName.setText(TextHandeler.getText(context, R.string.box_express_text));
 
         Bundle b = getIntent().getExtras();
         if (b != null) {

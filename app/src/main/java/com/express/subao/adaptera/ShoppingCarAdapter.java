@@ -384,6 +384,14 @@ public class ShoppingCarAdapter extends BaseAdapter {
         return list;
     }
 
+    public void choiceAll(){
+
+    }
+
+    public void removeAllChoice(){
+
+    }
+
     class StoreHolder {
         ImageView allChoice;
         TextView storeName;
@@ -438,5 +446,5 @@ public class ShoppingCarAdapter extends BaseAdapter {
         public void onNotify(List<StoreItemObj> list, boolean b);
     }
 
-    ;
+
 }

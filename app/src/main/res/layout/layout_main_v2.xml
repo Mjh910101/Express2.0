@@ -27,14 +27,14 @@
                     android:layout_width="0dp"
                     android:layout_height="fill_parent"
                     android:layout_weight="257"
-                    android:src="@drawable/scanning_express_icon" />
+                    android:src="@drawable/check_express_icon" />
 
                 <ImageView
                     android:id="@+id/main_expressBox"
                     android:layout_width="0dp"
                     android:layout_height="fill_parent"
                     android:layout_weight="383"
-                    android:src="@drawable/code_express_icon" />
+                    android:src="@drawable/box_express_icon" />
 
             </LinearLayout>
 
