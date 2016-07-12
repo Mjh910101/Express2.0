@@ -13,6 +13,7 @@ import android.widget.TextView;
 import com.express.subao.R;
 import com.express.subao.box.ShoppingCarObj;
 import com.express.subao.box.StoreItemObj;
+import com.express.subao.box.StoreObj;
 import com.express.subao.box.handlers.ShoppingCarHandler;
 import com.express.subao.dao.DBHandler;
 import com.express.subao.dialogs.MessageDialog;
@@ -21,7 +22,9 @@ import com.express.subao.tool.WinTool;
 import com.nostra13.universalimageloader.utils.L;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * *
@@ -100,7 +103,7 @@ public class ShoppingCarAdapter extends BaseAdapter {
     public void notifyDataSetChanged() {
         super.notifyDataSetChanged();
         if (mNotifyListener != null) {
-            mNotifyListener.onNotify(getChoiseItemList(), isSetting());
+            mNotifyListener.onNotify(getChoiseItemList(), isSetting(), isChoiceAll());
         }
     }
 
@@ -271,21 +274,27 @@ public class ShoppingCarAdapter extends BaseAdapter {
         dialog.setCommitListener(new MessageDialog.CallBackListener() {
             @Override
             public void callback() {
-                deleteItem(obj);
+                deleteItem(obj, true);
             }
         });
         dialog.setCancelStyle("取消");
         dialog.setCancelListener(null);
     }
 
-    private void deleteItem(ShoppingCarObj obj) {
-        ShoppingCarHandler.deleteItem(context, obj.getStoreItemObj());
+    private void deleteItem(ShoppingCarObj obj, boolean b) {
         itemList.remove(obj);
-        List<ShoppingCarObj> list = getAllStoreItemList(obj.getStoreItemObj().getStoreId());
-        if (list.isEmpty()) {
-            itemList.remove(getStoreForId(obj.getStoreItemObj().getStoreId()));
+        deleteItem(obj.getStoreItemObj());
+        if (b) {
+            notifyDataSetChanged();
         }
-        notifyDataSetChanged();
+    }
+
+    private void deleteItem(StoreItemObj obj) {
+        ShoppingCarHandler.deleteItem(context, obj);
+        List<ShoppingCarObj> list = getAllStoreItemList(obj.getStoreId());
+        if (list.isEmpty()) {
+            itemList.remove(getStoreForId(obj.getStoreId()));
+        }
     }
 
     private void setOnItemChoice(ImageView view, final ShoppingCarObj obj) {
@@ -384,12 +393,77 @@ public class ShoppingCarAdapter extends BaseAdapter {
         return list;
     }
 
-    public void choiceAll(){
-
+    public void choiceAll() {
+        removeAllChoice(false);
+        choiceList.addAll(itemList);
+        notifyDataSetChanged();
     }
 
-    public void removeAllChoice(){
+    public void removeAllChoice() {
+        removeAllChoice(true);
+    }
 
+    private void removeAllChoice(boolean b) {
+        choiceList.removeAll(choiceList);
+        if (b) {
+            notifyDataSetChanged();
+        }
+    }
+
+    public boolean isChoiceAll() {
+        for (ShoppingCarObj obj : itemList) {
+            if (obj.isStore()) {
+                if (!isAllStoreItemChoice(obj.getStoreObj().getObjectId())) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
+    public void deleteChoice() {
+        MessageDialog dialog = new MessageDialog(context);
+        dialog.setMessage("是否刪除選擇商品？");
+        dialog.setCommitStyle("確定");
+        dialog.setCommitListener(new MessageDialog.CallBackListener() {
+            @Override
+            public void callback() {
+                for (ShoppingCarObj obj : choiceList) {
+                    if (obj.isItem()) {
+                        deleteItem(obj, false);
+                    }
+                }
+                removeAllChoice();
+            }
+        });
+        dialog.setCancelStyle("取消");
+        dialog.setCancelListener(null);
+    }
+
+    public Map<String, List<StoreItemObj>> getChoiseItemMap() {
+        Map<String, List<StoreItemObj>> map = new HashMap<>();
+        for (ShoppingCarObj obj : itemList) {
+            if (obj.isStore()) {
+                List<StoreItemObj> list = getChoiseItemForStoreList(obj.getStoreObj().getObjectId());
+                if (!list.isEmpty()) {
+                    map.put(obj.getStoreObj().getObjectId(), list);
+                }
+            }
+        }
+        return map;
+    }
+
+    private List<StoreItemObj> getChoiseItemForStoreList(String id) {
+        List<StoreItemObj> list = new ArrayList<>();
+        for (ShoppingCarObj obj : choiceList) {
+            if (obj.isItem()) {
+                StoreItemObj item = obj.getStoreItemObj();
+                if (item.isStore(id)) {
+                    list.add(item);
+                }
+            }
+        }
+        return list;
     }
 
     class StoreHolder {
@@ -443,7 +517,7 @@ public class ShoppingCarAdapter extends BaseAdapter {
     }
 
     public interface NotifyListener {
-        public void onNotify(List<StoreItemObj> list, boolean b);
+        public void onNotify(List<StoreItemObj> list, boolean isSetting, boolean isChoiceAll);
     }
 
 

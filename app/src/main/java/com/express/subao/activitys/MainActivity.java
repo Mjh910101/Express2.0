@@ -95,7 +95,7 @@ public class MainActivity extends BaseActivity {
     @ViewInject(R.id.main_progress)
     private ProgressBar progress;
 
-    private MainFrameLayoutV2 mainFrameLayout;
+    private MainFrameLayoutV4 mainFrameLayout;
     private RebateFrameLayout rebateFrameLayout;
     private ShoppingCarFrameLayout shoppingCarFrameLayout;
     private UserFrameLayout userFrameLayout;
@@ -330,7 +330,7 @@ public class MainActivity extends BaseActivity {
 //        scanningIcon.setVisibility(View.VISIBLE);
         titleIcon.setVisibility(View.VISIBLE);
         if (mainFrameLayout == null) {
-            mainFrameLayout = new MainFrameLayoutV2();
+            mainFrameLayout = new MainFrameLayoutV4();
             transaction.add(R.id.main_content, mainFrameLayout);
         } else {
             transaction.show(mainFrameLayout);

@@ -15,6 +15,7 @@ import com.lidroid.xutils.exception.DbException;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 /**
  * *
@@ -158,4 +159,23 @@ public class ShoppingCarHandler {
     }
 
 
+    private static Map<String, List<StoreItemObj>> choiseMap;
+
+    public static void saveChoiseItem(Map<String, List<StoreItemObj>> map) {
+        choiseMap = map;
+    }
+
+    public static Map<String, List<StoreItemObj>> getChoiseMap() {
+        return choiseMap;
+    }
+
+    public static StoreObj getStoreForId(Context context, String id) {
+        StoreObj obj = null;
+        try {
+            obj = DBHandler.getDbUtils(context).findById(StoreObj.class, id);
+        } catch (DbException e) {
+            e.printStackTrace();
+        }
+        return obj;
+    }
 }

@@ -123,4 +123,12 @@ public class Url {
     public static String getUserOrderOpen() {
         return getIndex() + "/api/v1/user/order/open";
     }
+
+    public static String getUserAddress() {
+        return getIndex() + "/api/v1/user/address";
+    }
+
+    public static String getUserAddressDefault() {
+        return getIndex() + "/api/v1/user/address/default";
+    }
 }

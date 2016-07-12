@@ -20,9 +20,11 @@
         <ImageView
             android:layout_width="25dp"
             android:layout_height="25dp"
-            android:layout_margin="6dp" />
+            android:layout_margin="6dp"
+            android:src="@drawable/shoppingcar_store_icon" />
 
         <TextView
+            android:id="@+id/itemOrder_storeName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="6dp"
@@ -40,6 +42,7 @@
         android:background="@color/line_gray" />
 
     <com.express.subao.views.InsideListView
+        android:id="@+id/itemOrder_dataList"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:divider="@color/lucency"
@@ -53,7 +56,7 @@
 
     <RelativeLayout
         android:layout_width="fill_parent"
-        android:layout_height="35dp"
+        android:layout_height="40dp"
         android:padding="8dp">
 
         <TextView
@@ -96,7 +99,7 @@
 
     <RelativeLayout
         android:layout_width="fill_parent"
-        android:layout_height="35dp"
+        android:layout_height="40dp"
         android:padding="8dp">
 
         <TextView
@@ -130,7 +133,7 @@
 
     <RelativeLayout
         android:layout_width="fill_parent"
-        android:layout_height="35dp"
+        android:layout_height="40dp"
         android:padding="8dp">
 
         <TextView
@@ -195,7 +198,7 @@
 
     <RelativeLayout
         android:layout_width="fill_parent"
-        android:layout_height="35dp"
+        android:layout_height="40dp"
         android:padding="8dp">
 
         <TextView

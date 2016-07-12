@@ -14,28 +14,35 @@
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
-        android:src="@drawable/back_icon" />
+        android:src="@drawable/next_icon" />
 
     <RelativeLayout
+        android:id="@+id/orderHead_notAddressLayout"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
-        android:layout_toLeftOf="@id/orderHead_rightIcon">
+        android:layout_toLeftOf="@id/orderHead_rightIcon"
+        android:visibility="visible">
 
         <TextView
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:text="address"
+            android:drawableLeft="@drawable/address_icon"
+            android:drawablePadding="5dp"
+            android:gravity="center_vertical"
+            android:text="請填寫收貨地址"
             android:textColor="@color/text_gray_01"
             android:textSize="@dimen/text_size_17" />
 
     </RelativeLayout>
 
     <RelativeLayout
+        android:id="@+id/orderHead_addressLayout"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
-        android:layout_toLeftOf="@id/orderHead_rightIcon">
+        android:layout_toLeftOf="@id/orderHead_rightIcon"
+        android:visibility="gone">
 
         <TextView
             android:id="@+id/orderHead_userNameText"
@@ -47,6 +54,7 @@
             android:textSize="@dimen/text_size_18" />
 
         <TextView
+            android:id="@+id/orderHead_userTelText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
@@ -55,6 +63,7 @@
             android:textSize="@dimen/text_size_18" />
 
         <TextView
+            android:id="@+id/orderHead_userAddressText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
