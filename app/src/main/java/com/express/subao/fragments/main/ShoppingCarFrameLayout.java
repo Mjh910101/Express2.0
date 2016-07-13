@@ -177,6 +177,6 @@ public class ShoppingCarFrameLayout extends BaseFragment {
             double s = obj.getSum();
             sum = sum + (p * s);
         }
-        totalPriceText.setText(new DecimalFormat("#.00").format(sum));
+        totalPriceText.setText(new DecimalFormat("0.00").format(sum));
     }
 }

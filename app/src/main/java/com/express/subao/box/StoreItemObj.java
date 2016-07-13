@@ -9,6 +9,7 @@ import com.lidroid.xutils.db.annotation.Transient;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -227,5 +228,15 @@ public class StoreItemObj {
 
     public boolean isStore(String id) {
         return storeId.equals(id);
+    }
+
+    public String getPriceSumForString() {
+        double s = price * sum;
+        return new DecimalFormat("0.00").format(s);
+    }
+
+    public double getPriceSum() {
+        double s = price * sum;
+        return s;
     }
 }
