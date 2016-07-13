@@ -44,13 +44,22 @@ public class UserAddressObjHandler {
         UserAddressObj obj = new UserAddressObj();
 
         obj.setBox(SdyBoxObjHandler.getSdyBoxObj(JsonHandle.getJSON(json, "box")));
-        obj.setContact(JsonHandle.getString(json,"contact"));
-        obj.setDefault_flag(JsonHandle.getString(json,"default_flag"));
-        obj.setDeleted(JsonHandle.getBoolean(json,"isDeleted"));
-        obj.setObjectId(JsonHandle.getString(json,"objectId"));
-        obj.setReceiver(JsonHandle.getString(json,"receiver"));
+        obj.setContact(JsonHandle.getString(json, "contact"));
+        obj.setDefault_flag(JsonHandle.getString(json, "default_flag"));
+        obj.setDeleted(JsonHandle.getBoolean(json, "isDeleted"));
+        obj.setObjectId(JsonHandle.getString(json, "objectId"));
+        obj.setReceiver(JsonHandle.getString(json, "receiver"));
 
         return obj;
     }
 
+    private static UserAddressObj mUserAddressObj;
+
+    public static void saveUserAddressObj(UserAddressObj obj) {
+        mUserAddressObj = obj;
+    }
+
+    public static UserAddressObj getUserAddressObj() {
+        return mUserAddressObj;
+    }
 }

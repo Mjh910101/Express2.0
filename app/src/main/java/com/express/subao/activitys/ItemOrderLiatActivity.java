@@ -1,5 +1,6 @@
 package com.express.subao.activitys;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -10,20 +11,17 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.express.subao.R;
-import com.express.subao.box.SdyOrderObj;
 import com.express.subao.box.StoreItemObj;
 import com.express.subao.box.StoreObj;
 import com.express.subao.box.UserAddressObj;
-import com.express.subao.box.handlers.SdyOrderObjHandler;
 import com.express.subao.box.handlers.ShoppingCarHandler;
 import com.express.subao.box.handlers.UserAddressObjHandler;
 import com.express.subao.box.handlers.UserObjHandler;
-import com.express.subao.download.DownloadImageLoader;
 import com.express.subao.handlers.JsonHandle;
 import com.express.subao.handlers.MessageHandler;
-import com.express.subao.handlers.TextHandeler;
 import com.express.subao.http.HttpUtilsBox;
 import com.express.subao.http.Url;
+import com.express.subao.tool.Passageway;
 import com.express.subao.views.ItemOrderView;
 import com.lidroid.xutils.ViewUtils;
 import com.lidroid.xutils.exception.HttpException;
@@ -31,8 +29,8 @@ import com.lidroid.xutils.http.ResponseInfo;
 import com.lidroid.xutils.http.callback.RequestCallBack;
 import com.lidroid.xutils.http.client.HttpRequest.HttpMethod;
 import com.lidroid.xutils.view.annotation.ViewInject;
+import com.lidroid.xutils.view.annotation.event.OnClick;
 
-import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
@@ -61,6 +59,8 @@ import java.util.Map;
  * Created by Hua on 16/7/12.
  */
 public class ItemOrderLiatActivity extends BaseActivity {
+
+    public final static int RC = 1005;
 
     @ViewInject(R.id.title_back)
     private ImageView backIcon;
@@ -94,6 +94,30 @@ public class ItemOrderLiatActivity extends BaseActivity {
 
         initActivity();
 
+    }
+
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        switch (requestCode) {
+            case RC:
+                setDeletedAddress(UserAddressObjHandler.getUserAddressObj());
+                break;
+        }
+        super.onActivityResult(requestCode, resultCode, data);
+    }
+
+
+    @OnClick({R.id.title_back, R.id.orderHead_headLayout})
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.title_back:
+                finish();
+                break;
+            case R.id.orderHead_headLayout:
+                Passageway.jumpActivity(context, UserAddressListActivity.class, RC);
+                break;
+        }
     }
 
     private void initActivity() {
@@ -159,7 +183,7 @@ public class ItemOrderLiatActivity extends BaseActivity {
     }
 
     public void setDeletedAddress(UserAddressObj obj) {
-        if (!obj.isNull()) {
+        if (obj != null && !obj.isNull()) {
             notAddressLayout.setVisibility(View.GONE);
             addressLayout.setVisibility(View.VISIBLE);
 

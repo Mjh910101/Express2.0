@@ -8,9 +8,11 @@
         android:id="@+id/addressItem_onClick"
         android:layout_width="30dp"
         android:layout_height="30dp"
-        android:layout_marginLeft="8dp"
+        android:scaleType="fitCenter"
         android:layout_alignParentRight="true"
-        android:layout_centerVertical="true" />
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="10dp"
+        android:src="@drawable/choice_off_icon" />
 
     <RelativeLayout
         android:layout_width="wrap_content"
@@ -20,7 +22,7 @@
         android:layout_toLeftOf="@id/addressItem_onClick">
 
         <TextView
-            android:id="@+id/orderHead_userNameText"
+            android:id="@+id/addressItem_userNameText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
@@ -29,6 +31,7 @@
             android:textSize="@dimen/text_size_18" />
 
         <TextView
+            android:id="@+id/addressItem_userTel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
@@ -36,14 +39,29 @@
             android:textColor="@color/text_gray_01"
             android:textSize="@dimen/text_size_18" />
 
+
         <TextView
+            android:id="@+id/addressItem_defaultText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
-            android:layout_below="@id/orderHead_userNameText"
+            android:layout_below="@id/addressItem_userNameText"
+            android:layout_marginRight="5dp"
+            android:text="[默認]"
+            android:textColor="@color/text_orange"
+            android:textSize="@dimen/text_size_18" />
+
+        <TextView
+            android:id="@+id/addressItem_addressText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/addressItem_userNameText"
+            android:layout_toRightOf="@id/addressItem_defaultText"
+            android:minLines="2"
             android:text="address"
             android:textColor="@color/text_gray_01"
             android:textSize="@dimen/text_size_18" />
+
 
     </RelativeLayout>
 

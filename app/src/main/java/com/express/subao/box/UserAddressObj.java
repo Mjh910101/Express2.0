@@ -70,6 +70,16 @@ public class UserAddressObj {
         this.default_flag = default_flag;
     }
 
+    public boolean isDefault() {
+        int d = 0;
+        try {
+            d = Integer.valueOf(default_flag);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return d == 1;
+    }
+
     public String getObjectId() {
         return objectId;
     }
@@ -83,6 +93,9 @@ public class UserAddressObj {
     }
 
     public String getAddress() {
+        if (isNull()) {
+            return "";
+        }
         return box.getAddress();
     }
 }

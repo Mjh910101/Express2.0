@@ -187,6 +187,13 @@
             android:name=".activitys.ItemOrderLiatActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden|stateUnchanged" />
+        <activity
+            android:name=".activitys.UserAddressListActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activitys.UserAddressActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|stateUnchanged" />
         <!-- 服务 -->
         <service android:name=".download.DownloadNewAppService" />
 
