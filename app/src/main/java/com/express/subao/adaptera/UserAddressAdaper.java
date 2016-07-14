@@ -1,6 +1,7 @@
 package com.express.subao.adaptera;
 
 import android.content.Context;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,7 +10,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.express.subao.R;
+import com.express.subao.activitys.UserAddressActivity;
 import com.express.subao.box.UserAddressObj;
+import com.express.subao.box.handlers.UserAddressObjHandler;
+import com.express.subao.tool.Passageway;
 
 import java.util.List;
 
@@ -97,18 +101,26 @@ public class UserAddressAdaper extends BaseAdapter {
         return convertView;
     }
 
-    private void setOnClick(View view, UserAddressObj obj, final int p) {
+    private void setOnClick(View view, final UserAddressObj obj, final int p) {
         view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (isSet) {
-
+                    jumpAddressActivity(obj);
                 } else {
                     click = p;
                     notifyDataSetChanged();
                 }
             }
         });
+    }
+
+    private void jumpAddressActivity(UserAddressObj obj) {
+        UserAddressObjHandler.saveUserAddressObj(obj);
+        Bundle b = new Bundle();
+        b.putBoolean(UserAddressActivity.IS_NEW, false);
+        Passageway.jumpActivity(context, UserAddressActivity.class, UserAddressActivity.RC, b);
+
     }
 
     private void setView(HolderView holder, UserAddressObj obj, int p) {
@@ -151,8 +163,10 @@ public class UserAddressAdaper extends BaseAdapter {
                     return obj;
                 }
             }
+        } else {
+            return itemList.get(click);
         }
-        return itemList.get(click);
+        return null;
     }
 
     class HolderView {

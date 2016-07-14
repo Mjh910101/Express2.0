@@ -131,4 +131,8 @@ public class Url {
     public static String getUserAddressDefault() {
         return getIndex() + "/api/v1/user/address/default";
     }
+
+    public static String getUserAddressRemove() {
+        return getIndex() + "/api/v1/user/address/remove";
+    }
 }

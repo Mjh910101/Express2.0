@@ -1,9 +1,11 @@
 package com.express.subao.activitys;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
+import android.widget.AbsListView;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
@@ -83,12 +85,22 @@ public class UserAddressListActivity extends BaseActivity {
         ViewUtils.inject(this);
 
         initActivity();
-
+        setDataListScrollListener();
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        switch (requestCode) {
+            case UserAddressActivity.RC:
+                refreshData(data);
+                break;
+        }
     }
 
     @Override
@@ -110,17 +122,45 @@ public class UserAddressListActivity extends BaseActivity {
                 break;
             case R.id.addressList_newAddressBtn:
                 jumpAddressActivity();
+                break;
         }
     }
 
+    private void setDataListScrollListener() {
+        dataList.setOnScrollListener(new AbsListView.OnScrollListener() {
+            public void onScrollStateChanged(AbsListView view, int scrollState) {
+                if (scrollState == AbsListView.OnScrollListener.SCROLL_STATE_IDLE) {
+                    if (view.getLastVisiblePosition() >= (view.getCount() - 1)) {
+                        if (page <= pages) {
+                            if (progress.getVisibility() == View.GONE) {
+                                downloadData();
+                            }
+                        } else {
+                            MessageHandler.showLast(context);
+                        }
+                    }
+                }
+            }
+
+            @Override
+            public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
+            }
+        });
+    }
+
     private void jumpAddressActivity() {
-        Passageway.jumpActivity(context, UserAddressActivity.class);
+        Bundle b = new Bundle();
+        b.putBoolean(UserAddressActivity.IS_NEW, true);
+        Passageway.jumpActivity(context, UserAddressActivity.class, UserAddressActivity.RC, b);
 
     }
 
     private void close() {
         if (mUserAddressAdaper != null) {
-            UserAddressObjHandler.saveUserAddressObj(mUserAddressAdaper.getClickUserAddress());
+            UserAddressObj obj = mUserAddressAdaper.getClickUserAddress();
+            if (obj != null) {
+                UserAddressObjHandler.saveUserAddressObj(obj);
+            }
         }
         finish();
     }
@@ -155,6 +195,22 @@ public class UserAddressListActivity extends BaseActivity {
         titleName.setText("選擇收貨地址");
 
         downloadData();
+    }
+
+
+    private void refreshData(Intent data) {
+        if (data != null) {
+            Bundle b = data.getExtras();
+            if (b != null) {
+                if (b.getBoolean("is_post")) {
+                    onSetBtn();
+                    page = 1;
+                    pages = 1;
+                    mUserAddressAdaper = null;
+                    downloadData();
+                }
+            }
+        }
     }
 
     private void downloadData() {

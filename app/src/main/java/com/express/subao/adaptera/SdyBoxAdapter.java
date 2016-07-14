@@ -130,8 +130,8 @@ public class SdyBoxAdapter extends BaseAdapter {
         });
     }
 
-    public void initOnPosition(){
-        onPosition=-1;
+    public void initOnPosition() {
+        onPosition = -1;
         notifyDataSetChanged();
     }
 
@@ -144,13 +144,13 @@ public class SdyBoxAdapter extends BaseAdapter {
         if (onPosition == p) {
             holder.pic.setBackgroundResource(R.drawable.marker_small_icon);
             holder.contentText.setBackgroundResource(R.drawable.blue_box_white_background_btn);
-            holder.contentText.setTextColor(ColorHandler.getColorForID(context,R.color.text_blue));
-            holder.title.setTextColor(ColorHandler.getColorForID(context,R.color.text_blue));
-        }else{
+            holder.contentText.setTextColor(ColorHandler.getColorForID(context, R.color.text_blue));
+            holder.title.setTextColor(ColorHandler.getColorForID(context, R.color.text_blue));
+        } else {
             holder.pic.setBackgroundResource(R.drawable.sdy_icon);
             holder.contentText.setBackgroundResource(R.drawable.orange_box_white_background_btn);
-            holder.contentText.setTextColor(ColorHandler.getColorForID(context,R.color.text_orange));
-            holder.title.setTextColor(ColorHandler.getColorForID(context,R.color.black));
+            holder.contentText.setTextColor(ColorHandler.getColorForID(context, R.color.text_orange));
+            holder.title.setTextColor(ColorHandler.getColorForID(context, R.color.black));
         }
     }
 
@@ -159,6 +159,13 @@ public class SdyBoxAdapter extends BaseAdapter {
             itemList.add(obj);
         }
         notifyDataSetChanged();
+    }
+
+    public SdyBoxObj getClickItem() {
+        if (onPosition == -1) {
+            return null;
+        }
+        return itemList.get(onPosition);
     }
 
     class HolderView {

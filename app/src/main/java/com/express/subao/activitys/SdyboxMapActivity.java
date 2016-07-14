@@ -1,5 +1,6 @@
 package com.express.subao.activitys;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
@@ -88,11 +89,14 @@ import java.util.List;
 public class SdyboxMapActivity extends BaseActivity {
 
     private final static int MAPZOOM = 18;
+    public final static String IS_SET = "SET";
 
     @ViewInject(R.id.title_back)
     private ImageView backIcon;
     @ViewInject(R.id.title_name)
     private TextView titleName;
+    @ViewInject(R.id.title_editorText)
+    private TextView editorText;
     @ViewInject(R.id.boxMap_bmapView)
     private MapView mMapView;
     @ViewInject(R.id.boxMap_progress)
@@ -126,7 +130,7 @@ public class SdyboxMapActivity extends BaseActivity {
         setDataListScrollListener();
     }
 
-    @OnClick({R.id.title_back, R.id.boxMap_mapIcon, R.id.boxMap_positionIcon})
+    @OnClick({R.id.title_back, R.id.boxMap_mapIcon, R.id.boxMap_positionIcon, R.id.title_editorText})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.title_back:
@@ -142,6 +146,26 @@ public class SdyboxMapActivity extends BaseActivity {
                 removeOnClickMarker();
                 initMap();
                 break;
+            case R.id.title_editorText:
+                saveAndFinish();
+                break;
+        }
+    }
+
+    private void saveAndFinish() {
+        if (mSdyBoxAdapter != null) {
+            SdyBoxObj obj = mSdyBoxAdapter.getClickItem();
+            if (obj != null) {
+                SdyBoxObjHandler.saveSdyBoxObj(obj);
+                Bundle b = new Bundle();
+                b.putBoolean(IS_SET, true);
+                Intent i = new Intent();
+                i.putExtras(b);
+                setResult(UserAddressActivity.RC, i);
+                finish();
+            } else {
+                MessageHandler.showToast(context, "請選擇箱體");
+            }
         }
     }
 
@@ -188,6 +212,15 @@ public class SdyboxMapActivity extends BaseActivity {
 
         mOverlayList = new ArrayList<Overlay>();
         mSdyBoxObjList = new ArrayList<SdyBoxObj>();
+
+        Bundle b = getIntent().getExtras();
+        if (b != null) {
+            if (b.getBoolean(IS_SET)) {
+                editorText.setVisibility(View.VISIBLE);
+                editorText.setText("保存");
+            }
+        }
+
         initMap();
         downloadData();
     }
