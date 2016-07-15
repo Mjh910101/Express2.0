@@ -260,6 +260,10 @@ public class ModifyUserActivity extends BaseActivity {
                     if (e == null) {
 //                        UserObjHandler.saveUserAvatar(context, file.getUrl());
                         uploadMessage(file.getObjectId());
+                    }else{
+                        e.printStackTrace();
+                        progress.setVisibility(View.GONE);
+                        MessageHandler.showFailure(context);
                     }
                 }
             });

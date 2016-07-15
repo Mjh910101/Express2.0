@@ -135,4 +135,8 @@ public class Url {
     public static String getUserAddressRemove() {
         return getIndex() + "/api/v1/user/address/remove";
     }
+
+    public static String getCartAdd() {
+        return getIndex() + "/api/v1/cart/add";
+    }
 }

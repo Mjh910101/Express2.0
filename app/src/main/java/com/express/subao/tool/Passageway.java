@@ -151,4 +151,8 @@ public class Passageway {
     public static void jumpToActivity(Context context, Class<?> cls) {
         jumpActivity(context, Intent.FLAG_ACTIVITY_CLEAR_TOP, cls);
     }
+
+    public static void jumpToActivity(Context context, Class<?> cls, Bundle b) {
+        jumpActivity(context, Intent.FLAG_ACTIVITY_CLEAR_TOP, cls, b);
+    }
 }

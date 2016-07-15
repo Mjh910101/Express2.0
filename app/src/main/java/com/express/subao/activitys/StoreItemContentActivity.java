@@ -5,6 +5,7 @@ import android.view.View;
 import android.webkit.WebSettings;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -65,6 +66,8 @@ public class StoreItemContentActivity extends BaseActivity {
     private LinearLayout ballLayout;
     @ViewInject(R.id.ppt_boxBg)
     private ImageView sliderBg;
+    @ViewInject(R.id.storeItemContent_progress)
+    private ProgressBar progress;
 
     private StoreItemObj mStoreItemObj;
 
@@ -96,7 +99,7 @@ public class StoreItemContentActivity extends BaseActivity {
     }
 
     private void saveInShoppingCar(StoreItemObj obj) {
-        ShoppingCarHandler.saveInShoppingCar(context,obj);
+        ShoppingCarHandler.saveInShoppingCar(context,progress,obj);
         MessageHandler.showToast(context,"添加入購物車");
     }
 

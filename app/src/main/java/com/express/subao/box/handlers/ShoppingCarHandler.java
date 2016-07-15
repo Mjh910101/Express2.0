@@ -2,6 +2,8 @@ package com.express.subao.box.handlers;
 
 import android.content.Context;
 import android.util.Log;
+import android.view.View;
+import android.widget.ProgressBar;
 
 import com.baidu.platform.comapi.map.C;
 import com.express.subao.box.ItemObj;
@@ -9,9 +11,20 @@ import com.express.subao.box.ShoppingCarObj;
 import com.express.subao.box.StoreItemObj;
 import com.express.subao.box.StoreObj;
 import com.express.subao.dao.DBHandler;
+import com.express.subao.handlers.JsonHandle;
+import com.express.subao.handlers.MessageHandler;
+import com.express.subao.http.HttpUtilsBox;
+import com.express.subao.http.Url;
 import com.lidroid.xutils.DbUtils;
 import com.lidroid.xutils.db.sqlite.Selector;
 import com.lidroid.xutils.exception.DbException;
+import com.lidroid.xutils.exception.HttpException;
+import com.lidroid.xutils.http.RequestParams;
+import com.lidroid.xutils.http.ResponseInfo;
+import com.lidroid.xutils.http.callback.RequestCallBack;
+import com.lidroid.xutils.http.client.HttpRequest.HttpMethod;
+
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -59,19 +72,56 @@ public class ShoppingCarHandler {
         }
     }
 
-    public static void saveInShoppingCar(Context context, StoreItemObj obj) {
+    public static void saveInShoppingCar(final Context context, final ProgressBar progress, final StoreItemObj obj) {
+
+        progress.setVisibility(View.VISIBLE);
+        String url = Url.getCartAdd();
+        RequestParams params = HttpUtilsBox.getRequestParams(context);
+        params.addBodyParameter("store_id", obj.getStoreId());
+        params.addBodyParameter("item_id", obj.getObjectId());
+        params.addBodyParameter("count", "1");
+        params.addBodyParameter("sessiontoken", UserObjHandler.getSessionToken(context));
+        HttpUtilsBox.getHttpUtil().send(HttpMethod.POST, url, params,
+                new RequestCallBack<String>() {
+
+                    @Override
+                    public void onFailure(HttpException exception, String msg) {
+                        progress.setVisibility(View.GONE);
+                        MessageHandler.showFailure(context);
+                    }
+
+                    @Override
+                    public void onSuccess(ResponseInfo<String> responseInfo) {
+                        progress.setVisibility(View.GONE);
+                        String result = responseInfo.result;
+                        Log.d("", result);
+
+                        JSONObject json = JsonHandle.getJSON(result);
+                        if (json != null) {
+                            JSONObject resultsJson = JsonHandle.getJSON(json, "results");
+                            if (JsonHandle.getInt(json, "status") == 1) {
+                                saveInShoppingCar(context, obj);
+                            } else {
+                                MessageHandler.showToast(context, JsonHandle.getString(resultsJson, "message"));
+                            }
+
+                        }
+                    }
+
+                });
+    }
+
+    private static void saveInShoppingCar(Context context, StoreItemObj obj) {
         try {
             DbUtils db = DBHandler.getDbUtils(context);
             StoreItemObj saveObj = db.findById(StoreItemObj.class, obj.getObjectId());
             if (saveObj == null) {
                 obj.setSum(1);
                 db.saveOrUpdate(obj);
+                Log.e("Shopping Car Handler", "SAVE " + "ID " + obj.getObjectId() + "   Store ID " + obj.getStoreId() + "  SUM " + obj.getSum());
             } else {
                 saveObj.setSum(saveObj.getSum() + 1);
                 db.saveOrUpdate(saveObj);
-            }
-            Log.e("Shopping Car Handler", "SAVE " + "ID " + obj.getObjectId() + "   Store ID " + obj.getStoreId() + "  SUM " + obj.getSum());
-            if (saveObj != null) {
                 Log.e("Shopping Car Handler", "SAVE " + "ID " + saveObj.getObjectId() + "   Store ID " + obj.getStoreId() + "  SUM " + saveObj.getSum());
             }
         } catch (DbException e) {

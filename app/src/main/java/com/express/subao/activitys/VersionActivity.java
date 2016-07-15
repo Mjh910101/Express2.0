@@ -81,21 +81,25 @@ public class VersionActivity extends BaseActivity {
         switch (view.getId()) {
             case R.id.messageDialog_commit:
                 downloadApp(update_url);
-                finish();
+                close();
                 break;
             case R.id.messageDialog_cancel:
-                Intent i = new Intent();
-                Bundle b = new Bundle();
-                if (isMust) {
-                    b.putBoolean("isFinish", true);
-                } else {
-                    b.putBoolean("isFinish", false);
-                }
-                i.putExtras(b);
-                setResult(UPLOAD_REQUEST_CODE, i);
-                finish();
+                close();
                 break;
         }
+    }
+
+    private void close(){
+        Intent i = new Intent();
+        Bundle b = new Bundle();
+        if (isMust) {
+            b.putBoolean("isFinish", true);
+        } else {
+            b.putBoolean("isFinish", false);
+        }
+        i.putExtras(b);
+        setResult(UPLOAD_REQUEST_CODE, i);
+        finish();
     }
 
     private void downloadApp(String update_url) {

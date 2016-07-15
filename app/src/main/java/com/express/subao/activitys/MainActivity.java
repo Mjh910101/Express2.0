@@ -95,7 +95,7 @@ public class MainActivity extends BaseActivity {
     @ViewInject(R.id.main_progress)
     private ProgressBar progress;
 
-    private MainFrameLayoutV4 mainFrameLayout;
+    private MainFrameLayoutV2 mainFrameLayout;
     private RebateFrameLayout rebateFrameLayout;
     private ShoppingCarFrameLayout shoppingCarFrameLayout;
     private UserFrameLayout userFrameLayout;
@@ -111,8 +111,20 @@ public class MainActivity extends BaseActivity {
         DownloadImageLoader.initLoader(context);
         ViewUtils.inject(this);
 
-        initActivity();
+        initApp();
+    }
 
+    private void initApp() {
+        fragmentManager = getFragmentManager();
+
+        Bundle b = getIntent().getExtras();
+        if (b != null) {
+            if (b.getBoolean("no_check")) {
+                initActivity();
+                return;
+            }
+        }
+        checkVersion();
     }
 
 
@@ -155,7 +167,7 @@ public class MainActivity extends BaseActivity {
                         if (b.getBoolean("isFinish")) {
                             finish();
                         } else {
-                            setTap(MAIN);
+                            initActivity();
                         }
                     }
                 }
@@ -230,15 +242,14 @@ public class MainActivity extends BaseActivity {
 //        initAddarss();
 //        scanningIcon.setVisibility(View.VISIBLE);
 
-        fragmentManager = getFragmentManager();
-//        setTap(MAIN);
-
+        setTap(MAIN);
         if (!UserObjHandler.isLigon(context)) {
             jumpLoginActivity();
         } else {
             initPush();
-            checkVersion();
         }
+//        setTap(MAIN);
+
     }
 
     private void initPush() {
@@ -330,7 +341,7 @@ public class MainActivity extends BaseActivity {
 //        scanningIcon.setVisibility(View.VISIBLE);
         titleIcon.setVisibility(View.VISIBLE);
         if (mainFrameLayout == null) {
-            mainFrameLayout = new MainFrameLayoutV4();
+            mainFrameLayout = new MainFrameLayoutV2();
             transaction.add(R.id.main_content, mainFrameLayout);
         } else {
             transaction.show(mainFrameLayout);
@@ -390,6 +401,7 @@ public class MainActivity extends BaseActivity {
                     public void onFailure(HttpException exception, String msg) {
                         progress.setVisibility(View.GONE);
                         MessageHandler.showFailure(context);
+                        initActivity();
                     }
 
                     @Override
@@ -430,7 +442,7 @@ public class MainActivity extends BaseActivity {
             }
             Passageway.jumpActivity(context, VersionActivity.class, VersionActivity.UPLOAD_REQUEST_CODE, b);
         } else {
-            setTap(MAIN);
+            initActivity();
         }
     }
 

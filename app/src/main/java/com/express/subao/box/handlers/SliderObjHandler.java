@@ -45,9 +45,9 @@ public class SliderObjHandler {
         obj.setImg(JsonHandle.getString(json, "img"));
         obj.setImg(JsonHandle.getJSON(json, "img"));
         obj.setUrl(JsonHandle.getString(json, "url"));
-        obj.setUrl(JsonHandle.getString(json, "objectId"));
-        obj.setUrl(JsonHandle.getString(json, "additional"));
-        obj.setUrl(JsonHandle.getString(json, "type"));
+        obj.setObjectId(JsonHandle.getString(json, "objectId"));
+        obj.setAdditional(JsonHandle.getString(json, "additional"));
+        obj.setType(JsonHandle.getString(json, "type"));
         return obj;
     }
 

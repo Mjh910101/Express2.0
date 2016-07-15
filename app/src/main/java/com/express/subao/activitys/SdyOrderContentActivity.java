@@ -141,6 +141,8 @@ public class SdyOrderContentActivity extends BaseActivity {
     private void close() {
         finish();
         if (isPush) {
+            Bundle b = new Bundle();
+            b.putBoolean("no_check", true);
             Passageway.jumpToActivity(context, MainActivity.class);
         }
     }
