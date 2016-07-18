@@ -24,6 +24,7 @@ import com.lidroid.xutils.http.ResponseInfo;
 import com.lidroid.xutils.http.callback.RequestCallBack;
 import com.lidroid.xutils.http.client.HttpRequest.HttpMethod;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
@@ -76,11 +77,17 @@ public class ShoppingCarHandler {
 
         progress.setVisibility(View.VISIBLE);
         String url = Url.getCartAdd();
+
         RequestParams params = HttpUtilsBox.getRequestParams(context);
         params.addBodyParameter("store_id", obj.getStoreId());
         params.addBodyParameter("item_id", obj.getObjectId());
         params.addBodyParameter("count", "1");
         params.addBodyParameter("sessiontoken", UserObjHandler.getSessionToken(context));
+
+        Log.e("store_id", obj.getStoreId());
+        Log.e("item_id", obj.getObjectId());
+        Log.e("sessiontoken", UserObjHandler.getSessionToken(context));
+
         HttpUtilsBox.getHttpUtil().send(HttpMethod.POST, url, params,
                 new RequestCallBack<String>() {
 
@@ -112,6 +119,7 @@ public class ShoppingCarHandler {
     }
 
     private static void saveInShoppingCar(Context context, StoreItemObj obj) {
+        MessageHandler.showToast(context, "添加入購物車");
         try {
             DbUtils db = DBHandler.getDbUtils(context);
             StoreItemObj saveObj = db.findById(StoreItemObj.class, obj.getObjectId());
@@ -200,7 +208,45 @@ public class ShoppingCarHandler {
     }
 
 
-    public static void deleteItem(Context context, StoreItemObj obj) {
+    public static void deleteItem(final Context context, final ProgressBar progress, final StoreItemObj obj) {
+        progress.setVisibility(View.VISIBLE);
+        String url = Url.getCartAdd();
+        RequestParams params = HttpUtilsBox.getRequestParams(context);
+        params.addBodyParameter("store_id", obj.getStoreId());
+        params.addBodyParameter("item_id", obj.getObjectId());
+        params.addBodyParameter("count", "-1");
+        params.addBodyParameter("sessiontoken", UserObjHandler.getSessionToken(context));
+        HttpUtilsBox.getHttpUtil().send(HttpMethod.POST, url, params,
+                new RequestCallBack<String>() {
+
+                    @Override
+                    public void onFailure(HttpException exception, String msg) {
+                        progress.setVisibility(View.GONE);
+                        MessageHandler.showFailure(context);
+                    }
+
+                    @Override
+                    public void onSuccess(ResponseInfo<String> responseInfo) {
+                        progress.setVisibility(View.GONE);
+                        String result = responseInfo.result;
+                        Log.d("", result);
+
+                        JSONObject json = JsonHandle.getJSON(result);
+                        if (json != null) {
+                            JSONObject resultsJson = JsonHandle.getJSON(json, "results");
+                            if (JsonHandle.getInt(json, "status") == 1) {
+                                deleteItem(context, obj);
+                            } else {
+                                MessageHandler.showToast(context, JsonHandle.getString(resultsJson, "message"));
+                            }
+
+                        }
+                    }
+
+                });
+    }
+
+    private static void deleteItem(Context context, StoreItemObj obj) {
         try {
             DBHandler.getDbUtils(context).deleteById(StoreItemObj.class, obj.getObjectId());
         } catch (DbException e) {
@@ -208,6 +254,14 @@ public class ShoppingCarHandler {
         }
     }
 
+
+    public static void deleteAllItem(Context context) {
+        try {
+            DBHandler.getDbUtils(context).deleteAll(StoreItemObj.class);
+        } catch (DbException e) {
+            e.printStackTrace();
+        }
+    }
 
     private static Map<String, List<StoreItemObj>> choiseMap;
 
@@ -228,4 +282,36 @@ public class ShoppingCarHandler {
         }
         return obj;
     }
+
+    public static List<ShoppingCarObj> getShoppingCarList(Context context, JSONArray array) {
+
+        List<ShoppingCarObj> list = new ArrayList<>();
+
+        for (int i = 0; i < array.length(); i++) {
+            JSONObject storeJson = JsonHandle.getJSON(array, i);
+            StoreObj store = getStoreObj(storeJson);
+            saveStore(context,store);
+            addShoppingCarList(list, store);
+            List<StoreItemObj> itemList= getStoreItemList(JsonHandle.getArray(storeJson, "items"), store.getObjectId());
+            updateShoppingCar(context,itemList);
+            addShoppingCarList(list,itemList);
+        }
+
+        return list;
+    }
+
+    private static List<StoreItemObj> getStoreItemList(JSONArray array, String storeId) {
+        List<StoreItemObj> list = StoreItemObjHandler.getStoreItemObjList(array);
+        for (StoreItemObj obj : list) {
+            obj.setStoreId(storeId);
+        }
+        return list;
+    }
+
+    private static StoreObj getStoreObj(JSONObject json) {
+        StoreObj obj = StoreObjHandler.getStoreObj(json);
+        return obj;
+
+    }
+
 }

@@ -1,11 +1,13 @@
 package com.express.subao.fragments.main;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.express.subao.R;
@@ -14,13 +16,26 @@ import com.express.subao.adaptera.ShoppingCarAdapter;
 import com.express.subao.adaptera.StoreItemAdapter;
 import com.express.subao.box.ShoppingCarObj;
 import com.express.subao.box.StoreItemObj;
+import com.express.subao.box.handlers.UserObjHandler;
 import com.express.subao.fragments.BaseFragment;
 import com.express.subao.box.handlers.ShoppingCarHandler;
+import com.express.subao.handlers.JsonHandle;
+import com.express.subao.handlers.MessageHandler;
 import com.express.subao.handlers.TextHandeler;
+import com.express.subao.http.HttpUtilsBox;
+import com.express.subao.http.Url;
 import com.express.subao.tool.Passageway;
 import com.lidroid.xutils.ViewUtils;
+import com.lidroid.xutils.exception.HttpException;
+import com.lidroid.xutils.http.RequestParams;
+import com.lidroid.xutils.http.ResponseInfo;
+import com.lidroid.xutils.http.callback.RequestCallBack;
+import com.lidroid.xutils.http.client.HttpRequest.HttpMethod;
 import com.lidroid.xutils.view.annotation.ViewInject;
 import com.lidroid.xutils.view.annotation.event.OnClick;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
@@ -58,6 +73,8 @@ public class ShoppingCarFrameLayout extends BaseFragment {
     private TextView totalPriceText;
     @ViewInject(R.id.shoppingCar_choiceIcon)
     private ImageView choiceIcon;
+    @ViewInject(R.id.shoppingCar_progress)
+    private ProgressBar progress;
 
     private ShoppingCarAdapter mShoppingCarAdapter;
 
@@ -97,7 +114,7 @@ public class ShoppingCarFrameLayout extends BaseFragment {
             } else {
                 Map<String, List<StoreItemObj>> map = mShoppingCarAdapter.getChoiseItemMap();
                 ShoppingCarHandler.saveChoiseItem(map);
-                Passageway.jumpActivity(context,ItemOrderLiatActivity.class);
+                Passageway.jumpActivity(context, ItemOrderLiatActivity.class);
             }
         }
     }
@@ -114,7 +131,15 @@ public class ShoppingCarFrameLayout extends BaseFragment {
 
     private void initShoppingCar() {
         initText();
+        downloadData();
+    }
+
+    private void getShoppingCsrInData(){
         List<ShoppingCarObj> list = ShoppingCarHandler.getAllShoppingCar(context);
+       setShoppingCarData(list);
+    }
+
+    private void setShoppingCarData(List<ShoppingCarObj> list) {
         mShoppingCarAdapter = new ShoppingCarAdapter(context, list, new ShoppingCarAdapter.NotifyListener() {
 
             @Override
@@ -134,6 +159,7 @@ public class ShoppingCarFrameLayout extends BaseFragment {
                 setTotalPriceText(list);
             }
         });
+        mShoppingCarAdapter.setProgress(progress);
         dataList.setAdapter(mShoppingCarAdapter);
     }
 
@@ -179,4 +205,44 @@ public class ShoppingCarFrameLayout extends BaseFragment {
         }
         totalPriceText.setText(new DecimalFormat("0.00").format(sum));
     }
+
+    private void downloadData() {
+        progress.setVisibility(View.VISIBLE);
+
+        String url = Url.getCart() + "?sessiontoken=" + UserObjHandler.getSessionToken(context);
+
+        HttpUtilsBox.getHttpUtil().send(HttpMethod.GET, url,
+                new RequestCallBack<String>() {
+
+                    @Override
+                    public void onFailure(HttpException exception, String msg) {
+                        progress.setVisibility(View.GONE);
+                        getShoppingCsrInData();
+                        MessageHandler.showFailure(context);
+                    }
+
+                    @Override
+                    public void onSuccess(ResponseInfo<String> responseInfo) {
+                        progress.setVisibility(View.GONE);
+                        String result = responseInfo.result;
+                        Log.d("", result);
+
+                        JSONObject json = JsonHandle.getJSON(result);
+                        if (json != null) {
+                            JSONArray resultsArray = JsonHandle.getArray(json, "results");
+                            if (JsonHandle.getInt(json, "status") == 1) {
+                                if (resultsArray != null) {
+                                    ShoppingCarHandler.deleteAllItem(context);
+                                    setShoppingCarData(ShoppingCarHandler.getShoppingCarList(context, resultsArray));
+                                }
+                            } else {
+                                MessageHandler.showToast(context, JsonHandle.getString(json, "message"));
+                            }
+
+                        }
+                    }
+
+                });
+    }
+
 }

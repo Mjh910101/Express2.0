@@ -80,4 +80,11 @@
         android:divider="@color/lucency"
         android:dividerHeight="0dp" />
 
+    <ProgressBar
+        android:id="@+id/shoppingCar_progress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:visibility="gone"/>
+
 </RelativeLayout>

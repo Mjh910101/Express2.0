@@ -57,6 +57,12 @@ public class StoreObj {
     private int comments;
 
     @Transient
+    private String shiptips;
+    @Transient
+    private String statusLabel;
+    @Transient
+    private int status;
+    @Transient
     private List<SliderObj> sliderList;
     @Transient
     private List<String> tapList;
@@ -135,8 +141,42 @@ public class StoreObj {
         }
     }
 
+    public String getShiptips() {
+        return shiptips;
+    }
+
+    public void setShiptips(String shiptips) {
+        this.shiptips = shiptips;
+    }
+
+    public String getStatusLabel() {
+        return statusLabel;
+    }
+
+    public void setStatusLabel(String statusLabel) {
+        this.statusLabel = statusLabel;
+    }
+
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
+    }
+
     public boolean equals(String id) {
         return objectId.equals(id);
+    }
+
+    public boolean isHaveShiptips() {
+        if (shiptips == null) {
+            return false;
+        }
+        if (shiptips.equals("")) {
+            return false;
+        }
+        return true;
     }
 }
 

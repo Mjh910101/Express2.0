@@ -100,7 +100,6 @@ public class StoreItemContentActivity extends BaseActivity {
 
     private void saveInShoppingCar(StoreItemObj obj) {
         ShoppingCarHandler.saveInShoppingCar(context,progress,obj);
-        MessageHandler.showToast(context,"添加入購物車");
     }
 
     private void jumpCommentsListActivity() {

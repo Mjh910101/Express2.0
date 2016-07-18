@@ -50,6 +50,9 @@ public class StoreObjHandler {
         obj.setObjectId(JsonHandle.getString(json, StoreObj.OBJECT_ID));
         obj.setTitle(JsonHandle.getString(json, StoreObj.TITLE));
         obj.setComments(JsonHandle.getInt(json, "comments"));
+        obj.setShiptips(JsonHandle.getString(json, "shiptips"));
+        obj.setStatus(JsonHandle.getInt(json, "status"));
+        obj.setStatusLabel(JsonHandle.getString(json, "statusLabel"));
 
         JSONArray array = JsonHandle.getArray(json, StoreObj.SLIDER);
         obj.setSliderList(array);

@@ -139,4 +139,12 @@ public class Url {
     public static String getCartAdd() {
         return getIndex() + "/api/v1/cart/add";
     }
+
+    public static String getCartRemove() {
+        return getIndex() + "/api/v1/cart/remove";
+    }
+
+    public static String getCart() {
+        return getIndex() + "/api/v1/cart";
+    }
 }

@@ -104,6 +104,10 @@ public class StoreItemObj {
         }
     }
 
+    public void setStoreId(String id) {
+        this.storeId = id;
+    }
+
     public String getObjectId() {
         return objectId;
     }

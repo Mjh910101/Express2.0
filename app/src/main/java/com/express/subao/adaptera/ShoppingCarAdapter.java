@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -58,6 +59,8 @@ public class ShoppingCarAdapter extends BaseAdapter {
     private List<ShoppingCarObj> choiceList;
     private boolean isSetting;
 
+    private ProgressBar progress;
+
     private NotifyListener mNotifyListener;
 
     public ShoppingCarAdapter(Context context, List<ShoppingCarObj> itemList, NotifyListener mNotifyListener) {
@@ -72,6 +75,10 @@ public class ShoppingCarAdapter extends BaseAdapter {
         this.inflater = (LayoutInflater) context
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         this.isSetting = false;
+    }
+
+    public void setProgress(ProgressBar progress) {
+        this.progress = progress;
     }
 
     @Override
@@ -149,8 +156,14 @@ public class ShoppingCarAdapter extends BaseAdapter {
 
     private void setStoreLayoutMessage(StoreHolder holder, ShoppingCarObj obj, int p) {
         holder.storeName.setText(obj.getStoreObj().getTitle());
-        holder.status.setVisibility(View.GONE);
-//        holder.delivery.setVisibility(View.GONE);
+
+        holder.status.setText(obj.getStoreObj().getStatusLabel());
+
+        holder.delivery.setVisibility(View.GONE);
+        if (obj.getStoreObj().isHaveShiptips()) {
+            holder.delivery.setVisibility(View.VISIBLE);
+            holder.delivery.setText(obj.getStoreObj().getShiptips());
+        }
 
         holder.allChoice.setImageResource(R.drawable.choice_off_icon);
         if (isAllStoreItemChoice(obj.getStoreObj().getObjectId())) {
@@ -290,7 +303,7 @@ public class ShoppingCarAdapter extends BaseAdapter {
     }
 
     private void deleteItem(StoreItemObj obj) {
-        ShoppingCarHandler.deleteItem(context, obj);
+        ShoppingCarHandler.deleteItem(context, progress, obj);
         List<ShoppingCarObj> list = getAllStoreItemList(obj.getStoreId());
         if (list.isEmpty()) {
             itemList.remove(getStoreForId(obj.getStoreId()));
@@ -430,7 +443,7 @@ public class ShoppingCarAdapter extends BaseAdapter {
             public void callback() {
                 for (ShoppingCarObj obj : choiceList) {
                     if (obj.isItem()) {
-                        deleteItem(obj, false);
+//                        deleteItem(obj, false);
                     }
                 }
                 removeAllChoice();

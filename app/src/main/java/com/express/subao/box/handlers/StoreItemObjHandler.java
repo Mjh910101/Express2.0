@@ -42,19 +42,20 @@ public class StoreItemObjHandler {
 
     private static StoreItemObj getStoreItemObj(JSONObject json) {
         StoreItemObj obj = new StoreItemObj();
-        obj.setComments(JsonHandle.getInt(json,"comment"));
-        obj.setCover(JsonHandle.getJSON(json,"cover"));
-        obj.setCreatedAt(JsonHandle.getString(json,"createdAt"));
-        obj.setDesc(JsonHandle.getString(json,"desc"));
-        obj.setImagesList(JsonHandle.getArray(json,"images"));
-        obj.setIntro(JsonHandle.getString(json,"intro"));
-        obj.setObjectId(JsonHandle.getString(json,"objectId"));
-        obj.setPrice(JsonHandle.getDouble(json,"price"));
-        obj.setSell(JsonHandle.getInt(json,"sell"));
-        obj.setStoreId(JsonHandle.getJSON(json,"store"));
-        obj.setTagList(JsonHandle.getArray(json,"tag"));
-        obj.setTitle(JsonHandle.getString(json,"title"));
-        obj.setUpdatedAt(JsonHandle.getString(json,"updatedAt"));
+        obj.setComments(JsonHandle.getInt(json, "comment"));
+        obj.setCover(JsonHandle.getJSON(json, "cover"));
+        obj.setCreatedAt(JsonHandle.getString(json, "createdAt"));
+        obj.setDesc(JsonHandle.getString(json, "desc"));
+        obj.setImagesList(JsonHandle.getArray(json, "images"));
+        obj.setIntro(JsonHandle.getString(json, "intro"));
+        obj.setObjectId(JsonHandle.getString(json, "objectId"));
+        obj.setPrice(JsonHandle.getDouble(json, "price"));
+        obj.setSell(JsonHandle.getInt(json, "sell"));
+        obj.setStoreId(JsonHandle.getJSON(json, "store"));
+        obj.setTagList(JsonHandle.getArray(json, "tag"));
+        obj.setTitle(JsonHandle.getString(json, "title"));
+        obj.setSum(JsonHandle.getInt(json, "count"));
+        obj.setUpdatedAt(JsonHandle.getString(json, "updatedAt"));
         return obj;
     }
 
