@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.express.subao.R;
@@ -15,6 +16,7 @@ import com.express.subao.box.handlers.UserObjHandler;
 import com.express.subao.handlers.JsonHandle;
 import com.express.subao.handlers.MessageHandler;
 import com.express.subao.handlers.TextHandeler;
+import com.express.subao.handlers.TitleHandler;
 import com.express.subao.http.HttpUtilsBox;
 import com.express.subao.http.Url;
 import com.express.subao.tool.Passageway;
@@ -64,6 +66,8 @@ public class LoginActivity extends BaseActivity {
     private EditText telInput;
     @ViewInject(R.id.login_progress)
     private ProgressBar progress;
+    @ViewInject(R.id.title_titleLayout)
+    private RelativeLayout titleLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -93,6 +97,7 @@ public class LoginActivity extends BaseActivity {
     }
 
     private void initActivity() {
+        TitleHandler.setTitle(context, titleLayout);
         backIcon.setVisibility(View.VISIBLE);
         titleName.setText(TextHandeler.getText(context, R.string.login_text));
     }

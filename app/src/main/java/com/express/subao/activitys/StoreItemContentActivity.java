@@ -15,6 +15,7 @@ import com.express.subao.box.handlers.StoreItemObjHandler;
 import com.express.subao.box.handlers.ShoppingCarHandler;
 import com.express.subao.handlers.MessageHandler;
 import com.express.subao.handlers.TextHandeler;
+import com.express.subao.handlers.TitleHandler;
 import com.express.subao.tool.Passageway;
 import com.express.subao.views.InsideViewFlipper;
 import com.express.subao.views.SliderView;
@@ -68,6 +69,8 @@ public class StoreItemContentActivity extends BaseActivity {
     private ImageView sliderBg;
     @ViewInject(R.id.storeItemContent_progress)
     private ProgressBar progress;
+    @ViewInject(R.id.title_titleLayout)
+    private RelativeLayout titleLayout;
 
     private StoreItemObj mStoreItemObj;
 
@@ -110,6 +113,7 @@ public class StoreItemContentActivity extends BaseActivity {
     }
 
     private void initActivity() {
+        TitleHandler.setTitle(context, titleLayout);
         backIcon.setVisibility(View.VISIBLE);
         titleName.setText(TextHandeler.getText(context, R.string.item_content_text));
 

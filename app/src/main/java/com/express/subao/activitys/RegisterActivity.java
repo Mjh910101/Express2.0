@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.express.subao.R;
@@ -18,6 +19,7 @@ import com.express.subao.dialogs.MessageDialog;
 import com.express.subao.handlers.JsonHandle;
 import com.express.subao.handlers.MessageHandler;
 import com.express.subao.handlers.TextHandeler;
+import com.express.subao.handlers.TitleHandler;
 import com.express.subao.http.HttpUtilsBox;
 import com.express.subao.http.Url;
 import com.express.subao.tool.Passageway;
@@ -71,6 +73,8 @@ public class RegisterActivity extends BaseActivity {
     private ImageView passwordJudge;
     @ViewInject(R.id.register_progress)
     private ProgressBar progress;
+    @ViewInject(R.id.title_titleLayout)
+    private RelativeLayout titleLayout;
 
 
     @Override
@@ -146,6 +150,7 @@ public class RegisterActivity extends BaseActivity {
     }
 
     private void initActivity() {
+        TitleHandler.setTitle(context, titleLayout);
         backIcon.setVisibility(View.VISIBLE);
         titleName.setText(TextHandeler.getText(context, R.string.register_text));
     }

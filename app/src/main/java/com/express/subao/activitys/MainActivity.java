@@ -9,6 +9,7 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.avos.avoscloud.AVException;
@@ -36,6 +37,7 @@ import com.express.subao.handlers.JsonHandle;
 import com.express.subao.handlers.MessageHandler;
 import com.express.subao.handlers.PushHandler;
 import com.express.subao.handlers.TextHandeler;
+import com.express.subao.handlers.TitleHandler;
 import com.express.subao.handlers.VersionHandler;
 import com.express.subao.http.HttpUtilsBox;
 import com.express.subao.http.Url;
@@ -94,6 +96,8 @@ public class MainActivity extends BaseActivity {
     private TextView editorText;
     @ViewInject(R.id.main_progress)
     private ProgressBar progress;
+    @ViewInject(R.id.title_titleLayout)
+    private RelativeLayout titleLayout;
 
     private MainFrameLayoutV4 mainFrameLayout;
     private RebateFrameLayout rebateFrameLayout;
@@ -115,6 +119,8 @@ public class MainActivity extends BaseActivity {
     }
 
     private void initApp() {
+        TitleHandler.setTitle(context, titleLayout);
+
         fragmentManager = getFragmentManager();
 
         Bundle b = getIntent().getExtras();
@@ -319,6 +325,7 @@ public class MainActivity extends BaseActivity {
         } else {
             transaction.show(shoppingCarFrameLayout);
             shoppingCarFrameLayout.onRestart();
+            editorText.setText(TextHandeler.getText(context, R.string.editor_text));
         }
     }
 

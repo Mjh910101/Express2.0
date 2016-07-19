@@ -7,12 +7,14 @@ import android.view.View;
 import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.express.subao.R;
 import com.express.subao.client.MyWebChromeClient;
 import com.express.subao.client.MyWebViewClient;
+import com.express.subao.handlers.TitleHandler;
 import com.express.subao.interfaces.CallbackForString;
 import com.lidroid.xutils.ViewUtils;
 import com.lidroid.xutils.view.annotation.ViewInject;
@@ -50,6 +52,8 @@ public class OrdinaryWebActivity extends BaseActivity {
     private TextView titleName;
     @ViewInject(R.id.web_contentWeb)
     private WebView content;
+    @ViewInject(R.id.title_titleLayout)
+    private RelativeLayout titleLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,6 +75,7 @@ public class OrdinaryWebActivity extends BaseActivity {
     }
 
     private void initAcitvity() {
+        TitleHandler.setTitle(context, titleLayout);
         backBtn.setVisibility(View.VISIBLE);
         titleName.setVisibility(View.VISIBLE);
 

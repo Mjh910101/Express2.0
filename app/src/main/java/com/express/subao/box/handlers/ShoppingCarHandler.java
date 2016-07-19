@@ -15,6 +15,7 @@ import com.express.subao.handlers.JsonHandle;
 import com.express.subao.handlers.MessageHandler;
 import com.express.subao.http.HttpUtilsBox;
 import com.express.subao.http.Url;
+import com.express.subao.interfaces.CallbackForString;
 import com.lidroid.xutils.DbUtils;
 import com.lidroid.xutils.db.sqlite.Selector;
 import com.lidroid.xutils.exception.DbException;
@@ -62,7 +63,46 @@ public class ShoppingCarHandler {
         }
     }
 
-    public static void updateShoppingCar(Context context, List<StoreItemObj> list) {
+
+    public static void updateShoppingCar(final Context context, final ProgressBar progress, final List<StoreItemObj> list) {
+        progress.setVisibility(View.VISIBLE);
+        String url = Url.getCartUpdate();
+
+        RequestParams params = HttpUtilsBox.getRequestParams(context);
+        params.addBodyParameter("sessiontoken", UserObjHandler.getSessionToken(context));
+        params.addBodyParameter("data", getJsonForList(list).toString());
+
+        HttpUtilsBox.getHttpUtil().send(HttpMethod.POST, url, params,
+                new RequestCallBack<String>() {
+
+                    @Override
+                    public void onFailure(HttpException exception, String msg) {
+                        progress.setVisibility(View.GONE);
+                        MessageHandler.showFailure(context);
+                    }
+
+                    @Override
+                    public void onSuccess(ResponseInfo<String> responseInfo) {
+                        progress.setVisibility(View.GONE);
+                        String result = responseInfo.result;
+                        Log.d("", result);
+
+                        JSONObject json = JsonHandle.getJSON(result);
+                        if (json != null) {
+                            JSONObject resultsJson = JsonHandle.getJSON(json, "results");
+                            if (JsonHandle.getInt(json, "status") == 1) {
+                                updateShoppingCar(context, list);
+                            } else {
+                                MessageHandler.showToast(context, JsonHandle.getString(resultsJson, "message"));
+                            }
+
+                        }
+                    }
+
+                });
+    }
+
+    private static void updateShoppingCar(Context context, List<StoreItemObj> list) {
         try {
             DbUtils db = DBHandler.getDbUtils(context);
             for (StoreItemObj obj : list) {
@@ -210,7 +250,7 @@ public class ShoppingCarHandler {
 
     public static void deleteItem(final Context context, final ProgressBar progress, final StoreItemObj obj) {
         progress.setVisibility(View.VISIBLE);
-        String url = Url.getCartAdd();
+        String url = Url.getCartRemove();
         RequestParams params = HttpUtilsBox.getRequestParams(context);
         params.addBodyParameter("store_id", obj.getStoreId());
         params.addBodyParameter("item_id", obj.getObjectId());
@@ -244,6 +284,81 @@ public class ShoppingCarHandler {
                     }
 
                 });
+    }
+
+
+    public static void deleteAllItem(final Context context, final ProgressBar progress, final List<StoreItemObj> list, final CallbackForString callback) {
+        progress.setVisibility(View.VISIBLE);
+        String url = Url.getCartUpdate();
+
+        RequestParams params = HttpUtilsBox.getRequestParams(context);
+        params.addBodyParameter("sessiontoken", UserObjHandler.getSessionToken(context));
+        params.addBodyParameter("data", getJsonForList(list, -1).toString());
+
+        HttpUtilsBox.getHttpUtil().send(HttpMethod.POST, url, params,
+                new RequestCallBack<String>() {
+
+                    @Override
+                    public void onFailure(HttpException exception, String msg) {
+                        progress.setVisibility(View.GONE);
+                        MessageHandler.showFailure(context);
+                    }
+
+                    @Override
+                    public void onSuccess(ResponseInfo<String> responseInfo) {
+                        progress.setVisibility(View.GONE);
+                        String result = responseInfo.result;
+                        Log.d("", result);
+                        callback.callback(result);
+                    }
+
+                });
+    }
+
+    private static JSONObject getJsonForList(List<StoreItemObj> list) {
+        JSONArray array = new JSONArray();
+        for (StoreItemObj obj : list) {
+            JsonHandle.put(array, obj.toJson());
+        }
+        JSONObject json = new JSONObject();
+        JsonHandle.put(json, "cartData", array);
+        Log.e("json for cart", json.toString());
+        return json;
+    }
+
+    private static JSONObject getJsonForList(List<StoreItemObj> list, int c) {
+        JSONArray array = new JSONArray();
+        for (StoreItemObj obj : list) {
+            JsonHandle.put(array, obj.toJson(c));
+        }
+        JSONObject json = new JSONObject();
+        JsonHandle.put(json, "cartData", array);
+        Log.e("json for cart", json.toString());
+        return json;
+    }
+
+    private static String getItemIdForList(List<StoreItemObj> list) {
+        StringBuffer sb = new StringBuffer();
+        for (StoreItemObj obj : list) {
+            sb.append(obj.getObjectId());
+            sb.append(",");
+        }
+        Log.e("Item Id List", sb.toString().substring(0, sb.length() - 1));
+        return sb.toString().substring(0, sb.length() - 1);
+    }
+
+    private static String getStoreIdForList(List<StoreItemObj> list) {
+        StringBuffer sb = new StringBuffer();
+        List<String> idList = new ArrayList<>();
+        for (StoreItemObj obj : list) {
+            if (!idList.contains(obj.getStoreId())) {
+                sb.append(obj.getStoreId());
+                sb.append(",");
+                idList.add(obj.getStoreId());
+            }
+        }
+        Log.e("Store Id List", sb.toString().substring(0, sb.length() - 1));
+        return sb.toString().substring(0, sb.length() - 1);
     }
 
     private static void deleteItem(Context context, StoreItemObj obj) {
@@ -290,11 +405,11 @@ public class ShoppingCarHandler {
         for (int i = 0; i < array.length(); i++) {
             JSONObject storeJson = JsonHandle.getJSON(array, i);
             StoreObj store = getStoreObj(storeJson);
-            saveStore(context,store);
+            saveStore(context, store);
             addShoppingCarList(list, store);
-            List<StoreItemObj> itemList= getStoreItemList(JsonHandle.getArray(storeJson, "items"), store.getObjectId());
-            updateShoppingCar(context,itemList);
-            addShoppingCarList(list,itemList);
+            List<StoreItemObj> itemList = getStoreItemList(JsonHandle.getArray(storeJson, "items"), store.getObjectId());
+            updateShoppingCar(context, itemList);
+            addShoppingCarList(list, itemList);
         }
 
         return list;

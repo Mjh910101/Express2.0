@@ -243,4 +243,16 @@ public class StoreItemObj {
         double s = price * sum;
         return s;
     }
+
+    public JSONObject toJson(int count) {
+        JSONObject json = new JSONObject();
+        JsonHandle.put(json, "count", count);
+        JsonHandle.put(json, "item_id", getObjectId());
+        JsonHandle.put(json, "store_id", getStoreId());
+        return json;
+    }
+
+    public JSONObject toJson() {
+        return toJson(sum);
+    }
 }

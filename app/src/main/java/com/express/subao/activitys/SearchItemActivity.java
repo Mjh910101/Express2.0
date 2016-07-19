@@ -11,6 +11,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.express.subao.R;
@@ -21,6 +22,7 @@ import com.express.subao.box.handlers.StoreObjHandler;
 import com.express.subao.handlers.JsonHandle;
 import com.express.subao.handlers.MessageHandler;
 import com.express.subao.handlers.TextHandeler;
+import com.express.subao.handlers.TitleHandler;
 import com.express.subao.http.HttpUtilsBox;
 import com.express.subao.http.Url;
 import com.express.subao.views.SliderView;
@@ -72,6 +74,8 @@ public class SearchItemActivity extends BaseActivity {
     private ProgressBar progress;
     @ViewInject(R.id.searchItem_dataList)
     private ListView dataList;
+    @ViewInject(R.id.title_titleLayout)
+    private RelativeLayout titleLayout;
 
     private StoreItemAdapter itemAdapter;
     private String storeId, search;
@@ -127,6 +131,7 @@ public class SearchItemActivity extends BaseActivity {
     }
 
     private void initActivity() {
+        TitleHandler.setTitle(context, titleLayout);
         backIcon.setVisibility(View.VISIBLE);
         titleName.setText(TextHandeler.getText(context, R.string.item_list_text));
         imm = (InputMethodManager) searchInput.getContext().getSystemService(

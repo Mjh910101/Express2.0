@@ -5,6 +5,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
@@ -12,6 +13,7 @@ import com.express.subao.R;
 import com.express.subao.download.DownloadImageLoader;
 import com.express.subao.handlers.MessageHandler;
 import com.express.subao.handlers.TextHandeler;
+import com.express.subao.handlers.TitleHandler;
 import com.express.subao.tool.WinTool;
 import com.lidroid.xutils.ViewUtils;
 import com.lidroid.xutils.view.annotation.ViewInject;
@@ -61,6 +63,8 @@ public class TopUpActivity extends BaseActivity {
     private ImageView bank02;
     @ViewInject(R.id.topUp_bank_03)
     private ImageView bank03;
+    @ViewInject(R.id.title_titleLayout)
+    private RelativeLayout titleLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -106,6 +110,7 @@ public class TopUpActivity extends BaseActivity {
     }
 
     private void initActivity() {
+        TitleHandler.setTitle(context, titleLayout);
         backIcon.setVisibility(View.VISIBLE);
         titleName.setText(TextHandeler.getText(context, R.string.main_cz_text));
 

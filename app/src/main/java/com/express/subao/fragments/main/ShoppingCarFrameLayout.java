@@ -166,6 +166,8 @@ public class ShoppingCarFrameLayout extends BaseFragment {
     private void initText() {
         totalPriceText.setText("0.0");
         sumText.setText(TextHandeler.getText(context, R.string.settlement_sum_text).replace("?", String.valueOf(0)));
+        sumText.setBackgroundResource(R.color.title_bg);
+        choiceIcon.setImageResource(R.drawable.choice_off_icon);
     }
 
     private void setSumText(List<StoreItemObj> list) {

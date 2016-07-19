@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.express.subao.R;
@@ -16,6 +17,7 @@ import com.express.subao.download.DownloadImageLoader;
 import com.express.subao.handlers.JsonHandle;
 import com.express.subao.handlers.MessageHandler;
 import com.express.subao.handlers.TextHandeler;
+import com.express.subao.handlers.TitleHandler;
 import com.express.subao.http.HttpUtilsBox;
 import com.express.subao.http.Url;
 import com.express.subao.interfaces.CallbackForString;
@@ -65,6 +67,8 @@ public class AreaActivity extends BaseActivity {
     private ProgressBar progress;
     @ViewInject(R.id.area_dataList)
     private ListView dataList;
+    @ViewInject(R.id.title_titleLayout)
+    private RelativeLayout titleLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -90,16 +94,17 @@ public class AreaActivity extends BaseActivity {
     private void initActivity() {
         backIcon.setVisibility(View.VISIBLE);
         titleName.setText(TextHandeler.getText(context, R.string.area_text));
+        TitleHandler.setTitle(context, titleLayout);
     }
 
 
     public void setAreaData(JSONArray array) {
         List<AreaObj> liat = AreaObjHandler.getAreaObjList(array);
-        AreaAdaper adaper=new AreaAdaper(context,liat);
+        AreaAdaper adaper = new AreaAdaper(context, liat);
         adaper.setCallback(new CallbackForString() {
             @Override
             public void callback(String result) {
-                AreaObjHandler.saveAreaName(context,result);
+                AreaObjHandler.saveAreaName(context, result);
                 finish();
             }
         });

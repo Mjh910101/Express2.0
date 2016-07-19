@@ -35,6 +35,7 @@ import com.express.subao.handlers.JsonHandle;
 import com.express.subao.handlers.MapHandler;
 import com.express.subao.handlers.MessageHandler;
 import com.express.subao.handlers.TextHandeler;
+import com.express.subao.handlers.TitleHandler;
 import com.express.subao.http.HttpUtilsBox;
 import com.express.subao.http.Url;
 import com.express.subao.tool.Passageway;
@@ -101,6 +102,8 @@ public class UserAddressActivity extends BaseActivity {
     private ImageView defaultIcon;
     @ViewInject(R.id.addressEditor_deleteBtn)
     private RelativeLayout deleteBtn;
+    @ViewInject(R.id.title_titleLayout)
+    private RelativeLayout titleLayout;
 
     private UserAddressObj address;
     private SdyBoxObj userBox;
@@ -165,6 +168,7 @@ public class UserAddressActivity extends BaseActivity {
     }
 
     private void initActivity() {
+        TitleHandler.setTitle(context, titleLayout);
         backIcon.setVisibility(View.VISIBLE);
         titleName.setText("編輯收貨地址");
         editorText.setVisibility(View.VISIBLE);

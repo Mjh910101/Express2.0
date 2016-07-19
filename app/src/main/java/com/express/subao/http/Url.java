@@ -144,6 +144,10 @@ public class Url {
         return getIndex() + "/api/v1/cart/remove";
     }
 
+    public static String getCartUpdate() {
+        return getIndex() + "/api/v1/cart/update";
+    }
+
     public static String getCart() {
         return getIndex() + "/api/v1/cart";
     }

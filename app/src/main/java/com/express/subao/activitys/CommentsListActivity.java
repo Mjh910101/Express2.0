@@ -10,6 +10,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.express.subao.R;
@@ -21,6 +22,7 @@ import com.express.subao.box.handlers.UserObjHandler;
 import com.express.subao.handlers.JsonHandle;
 import com.express.subao.handlers.MessageHandler;
 import com.express.subao.handlers.TextHandeler;
+import com.express.subao.handlers.TitleHandler;
 import com.express.subao.http.HttpUtilsBox;
 import com.express.subao.http.Url;
 import com.express.subao.tool.Passageway;
@@ -73,6 +75,8 @@ public class CommentsListActivity extends BaseActivity {
     private EditText commentInput;
     @ViewInject(R.id.comment_dataList)
     private ListView dataList;
+    @ViewInject(R.id.title_titleLayout)
+    private RelativeLayout titleLayout;
 
     private InputMethodManager imm = null;
 
@@ -141,6 +145,7 @@ public class CommentsListActivity extends BaseActivity {
     }
 
     private void initActivity() {
+        TitleHandler.setTitle(context, titleLayout);
         backIcon.setVisibility(View.VISIBLE);
         titleName.setText(TextHandeler.getText(context, R.string.comment_text));
 

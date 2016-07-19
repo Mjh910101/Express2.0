@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.express.subao.R;
@@ -17,6 +18,7 @@ import com.express.subao.box.handlers.UserObjHandler;
 import com.express.subao.handlers.JsonHandle;
 import com.express.subao.handlers.MessageHandler;
 import com.express.subao.handlers.TextHandeler;
+import com.express.subao.handlers.TitleHandler;
 import com.express.subao.http.HttpUtilsBox;
 import com.express.subao.http.Url;
 import com.express.subao.tool.Passageway;
@@ -74,6 +76,8 @@ public class SMSActivity extends BaseActivity {
     private TextView getCodeText;
     @ViewInject(R.id.sms_codeInput)
     private EditText codeInput;
+    @ViewInject(R.id.title_titleLayout)
+    private RelativeLayout titleLayout;
 
     private UserObj mUserObj;
 
@@ -131,6 +135,7 @@ public class SMSActivity extends BaseActivity {
     }
 
     private void initActivity() {
+        TitleHandler.setTitle(context, titleLayout);
         backIcon.setVisibility(View.VISIBLE);
 
         Bundle b = getIntent().getExtras();

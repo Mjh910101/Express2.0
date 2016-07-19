@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
@@ -22,6 +23,7 @@ import com.express.subao.dialogs.MessageDialog;
 import com.express.subao.handlers.JsonHandle;
 import com.express.subao.handlers.MessageHandler;
 import com.express.subao.handlers.TextHandeler;
+import com.express.subao.handlers.TitleHandler;
 import com.express.subao.http.HttpUtilsBox;
 import com.express.subao.http.Url;
 import com.express.subao.tool.Passageway;
@@ -74,6 +76,8 @@ public class ScanningForSdyOrderListActivity extends BaseActivity {
     private ProgressBar progress;
     @ViewInject(R.id.scanningSyd_dataList)
     private ListView dataList;
+    @ViewInject(R.id.title_titleLayout)
+    private RelativeLayout titleLayout;
 
     private int page = 1, pages = 1;
     private String qrCode = "";
@@ -119,6 +123,7 @@ public class ScanningForSdyOrderListActivity extends BaseActivity {
     }
 
     private void initActivity() {
+        TitleHandler.setTitle(context, titleLayout);
         backIcon.setVisibility(View.VISIBLE);
         titleName.setText(TextHandeler.getText(context, R.string.box_express_text));
 
@@ -189,7 +194,7 @@ public class ScanningForSdyOrderListActivity extends BaseActivity {
         }));
     }
 
-    private void jumpOpenSdyDailog(){
+    private void jumpOpenSdyDailog() {
         Bundle b = new Bundle();
         Passageway.jumpActivity(context, OpenSdyDailogActivity.class, ScanningForSdyOrderListActivity.RequestCode, b);
     }

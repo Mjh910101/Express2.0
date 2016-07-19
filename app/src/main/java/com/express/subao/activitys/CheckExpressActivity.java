@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.express.subao.R;
@@ -19,6 +20,7 @@ import com.express.subao.handlers.ColorHandler;
 import com.express.subao.handlers.JsonHandle;
 import com.express.subao.handlers.MessageHandler;
 import com.express.subao.handlers.TextHandeler;
+import com.express.subao.handlers.TitleHandler;
 import com.express.subao.http.HttpUtilsBox;
 import com.express.subao.views.InsideListView;
 import com.lidroid.xutils.ViewUtils;
@@ -70,6 +72,8 @@ public class CheckExpressActivity extends BaseActivity {
     private TextView codeText;
     @ViewInject(R.id.checkExpress_dataList)
     private InsideListView dataList;
+    @ViewInject(R.id.title_titleLayout)
+    private RelativeLayout titleLayout;
 
     private String code;
 
@@ -94,6 +98,8 @@ public class CheckExpressActivity extends BaseActivity {
     }
 
     private void initActivity() {
+        TitleHandler.setTitle(context, titleLayout);
+
         backIcon.setVisibility(View.VISIBLE);
         titleName.setText("快遞跟蹤");
 

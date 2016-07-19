@@ -9,6 +9,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
@@ -24,6 +25,7 @@ import com.express.subao.handlers.ColorHandler;
 import com.express.subao.handlers.JsonHandle;
 import com.express.subao.handlers.MessageHandler;
 import com.express.subao.handlers.TextHandeler;
+import com.express.subao.handlers.TitleHandler;
 import com.express.subao.http.HttpUtilsBox;
 import com.express.subao.http.Url;
 import com.express.subao.tool.Passageway;
@@ -90,6 +92,8 @@ public class SdyOrderListActivity extends BaseActivity {
     private ScrollView scroll;
     @ViewInject(R.id.boxExpress_swipeRefresh)
     private SwipeRefreshLayout swipeRefresh;
+    @ViewInject(R.id.title_titleLayout)
+    private RelativeLayout titleLayout;
 
     private List<SdyOrderObj> notReceivedList;
     private List<SdyOrderObj> receivedList;
@@ -178,6 +182,7 @@ public class SdyOrderListActivity extends BaseActivity {
     }
 
     private void initActivity() {
+        TitleHandler.setTitle(context, titleLayout);
         backIcon.setVisibility(View.VISIBLE);
         titleName.setText(TextHandeler.getText(context, R.string.open_box_find_box_text));
 

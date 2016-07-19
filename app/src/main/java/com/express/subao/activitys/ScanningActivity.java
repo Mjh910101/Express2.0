@@ -12,12 +12,14 @@ import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.express.subao.R;
 import com.express.subao.dialogs.MessageDialog;
 import com.express.subao.handlers.TextHandeler;
+import com.express.subao.handlers.TitleHandler;
 import com.express.subao.tool.Passageway;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.Result;
@@ -73,7 +75,8 @@ public class ScanningActivity extends BaseActivity implements SurfaceHolder.Call
     private ViewfinderView viewfinderView;
     @ViewInject(R.id.scanning_previewView)
     private SurfaceView surfaceView;
-
+    @ViewInject(R.id.title_titleLayout)
+    private RelativeLayout titleLayout;
     /**
      * Called when the activity is first created.
      */
@@ -139,6 +142,7 @@ public class ScanningActivity extends BaseActivity implements SurfaceHolder.Call
     }
 
     private void initActivity() {
+        TitleHandler.setTitle(context, titleLayout);
         backIcon.setVisibility(View.VISIBLE);
         titleName.setText(TextHandeler.getText(context, R.string.sacnning_text));
         //ViewUtil.addTopView(getApplicationContext(), this, R.string.scan_card);

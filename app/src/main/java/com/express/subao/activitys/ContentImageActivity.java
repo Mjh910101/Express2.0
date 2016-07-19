@@ -6,12 +6,14 @@ import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.express.subao.R;
 import com.express.subao.download.DownloadImageLoader;
 import com.express.subao.handlers.MessageHandler;
+import com.express.subao.handlers.TitleHandler;
 import com.lidroid.xutils.ViewUtils;
 import com.lidroid.xutils.view.annotation.ViewInject;
 import com.lidroid.xutils.view.annotation.event.OnClick;
@@ -48,6 +50,8 @@ public class ContentImageActivity extends BaseActivity {
     private ImageView contentIamge;
     @ViewInject(R.id.comtent_scroll)
     private ScrollView scroll;
+    @ViewInject(R.id.title_titleLayout)
+    private RelativeLayout titleLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,6 +74,7 @@ public class ContentImageActivity extends BaseActivity {
     }
 
     private void initActivity() {
+        TitleHandler.setTitle(context, titleLayout);
         Bundle b = getIntent().getExtras();
         if (b != null) {
             titleName.setText(b.getString(TITLE_NAME));

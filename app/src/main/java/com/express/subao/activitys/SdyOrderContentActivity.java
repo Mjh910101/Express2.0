@@ -20,6 +20,7 @@ import com.express.subao.handlers.ColorHandle;
 import com.express.subao.handlers.JsonHandle;
 import com.express.subao.handlers.MessageHandler;
 import com.express.subao.handlers.TextHandeler;
+import com.express.subao.handlers.TitleHandler;
 import com.express.subao.http.HttpUtilsBox;
 import com.express.subao.http.Url;
 import com.express.subao.receivers.PushReceiver;
@@ -93,6 +94,8 @@ public class SdyOrderContentActivity extends BaseActivity {
     private ProgressBar progress;
     @ViewInject(R.id.expres_content_messageBox)
     private LinearLayout messageBox;
+    @ViewInject(R.id.title_titleLayout)
+    private RelativeLayout titleLayout;
 
     private SdyOrderObj mSdyOrderObj;
     private boolean isPush = false;
@@ -158,6 +161,7 @@ public class SdyOrderContentActivity extends BaseActivity {
     }
 
     private void initActivity() {
+        TitleHandler.setTitle(context, titleLayout);
         backIcon.setVisibility(View.VISIBLE);
         titleName.setText(TextHandeler.getText(context, R.string.sdy_content_text));
 

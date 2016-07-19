@@ -20,6 +20,7 @@ import com.express.subao.box.handlers.UserAddressObjHandler;
 import com.express.subao.box.handlers.UserObjHandler;
 import com.express.subao.handlers.JsonHandle;
 import com.express.subao.handlers.MessageHandler;
+import com.express.subao.handlers.TitleHandler;
 import com.express.subao.http.HttpUtilsBox;
 import com.express.subao.http.Url;
 import com.express.subao.tool.Passageway;
@@ -71,6 +72,8 @@ public class UserAddressListActivity extends BaseActivity {
     private ListView dataList;
     @ViewInject(R.id.addressList_setLayout)
     private RelativeLayout setLayout;
+    @ViewInject(R.id.title_titleLayout)
+    private RelativeLayout titleLayout;
 
     private int page = 1, pages = 1;
 
@@ -189,6 +192,7 @@ public class UserAddressListActivity extends BaseActivity {
     }
 
     private void initActivity() {
+        TitleHandler.setTitle(context, titleLayout);
         backIcon.setVisibility(View.VISIBLE);
         editorText.setVisibility(View.VISIBLE);
         editorText.setText("管理");

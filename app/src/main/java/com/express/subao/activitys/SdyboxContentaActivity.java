@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.baidu.mapapi.SDKInitializer;
@@ -12,6 +13,7 @@ import com.express.subao.box.SdyBoxObj;
 import com.express.subao.box.handlers.SdyBoxObjHandler;
 import com.express.subao.download.DownloadImageLoader;
 import com.express.subao.handlers.TextHandeler;
+import com.express.subao.handlers.TitleHandler;
 import com.express.subao.tool.Passageway;
 import com.lidroid.xutils.ViewUtils;
 import com.lidroid.xutils.view.annotation.ViewInject;
@@ -53,6 +55,8 @@ public class SdyboxContentaActivity extends BaseActivity {
     private TextView address;
     @ViewInject(R.id.sdybox_content_cover)
     private ImageView cover;
+    @ViewInject(R.id.title_titleLayout)
+    private RelativeLayout titleLayout;
 
     private SdyBoxObj mSdyBoxObj;
 
@@ -92,6 +96,7 @@ public class SdyboxContentaActivity extends BaseActivity {
     }
 
     private void initActivity() {
+        TitleHandler.setTitle(context, titleLayout);
         backIcon.setVisibility(View.VISIBLE);
         titleName.setText(TextHandeler.getText(context, R.string.sdy_detailed_text));
 

@@ -19,6 +19,7 @@ import com.express.subao.box.handlers.UserAddressObjHandler;
 import com.express.subao.box.handlers.UserObjHandler;
 import com.express.subao.handlers.JsonHandle;
 import com.express.subao.handlers.MessageHandler;
+import com.express.subao.handlers.TitleHandler;
 import com.express.subao.http.HttpUtilsBox;
 import com.express.subao.http.Url;
 import com.express.subao.tool.Passageway;
@@ -80,6 +81,8 @@ public class ItemOrderLiatActivity extends BaseActivity {
     private TextView userTelText;
     @ViewInject(R.id.orderHead_userAddressText)
     private TextView userAddressText;
+    @ViewInject(R.id.title_titleLayout)
+    private RelativeLayout titleLayout;
 
     private Map<String, List<StoreItemObj>> orderMap;
     private List<ItemOrderView> orderList;
@@ -121,6 +124,7 @@ public class ItemOrderLiatActivity extends BaseActivity {
     }
 
     private void initActivity() {
+        TitleHandler.setTitle(context, titleLayout);
         backIcon.setVisibility(View.VISIBLE);
         titleName.setText("填寫訂單");
 

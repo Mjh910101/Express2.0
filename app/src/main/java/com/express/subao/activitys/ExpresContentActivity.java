@@ -14,6 +14,7 @@ import com.express.subao.box.handlers.ExpresObjHandler;
 import com.express.subao.box.handlers.RebateObjHandler;
 import com.express.subao.handlers.MessageHandler;
 import com.express.subao.handlers.TextHandeler;
+import com.express.subao.handlers.TitleHandler;
 import com.express.subao.tool.Passageway;
 import com.express.subao.views.LazyWebView;
 import com.lidroid.xutils.ViewUtils;
@@ -69,6 +70,8 @@ public class ExpresContentActivity extends BaseActivity {
     private RelativeLayout mobBox;
     @ViewInject(R.id.expres_content_mobLine)
     private View mobLine;
+    @ViewInject(R.id.title_titleLayout)
+    private RelativeLayout titleLayout;
 
 
     private ExpresObj mExpresObj;
@@ -111,6 +114,7 @@ public class ExpresContentActivity extends BaseActivity {
     }
 
     private void initActivity() {
+        TitleHandler.setTitle(context, titleLayout);
         backIcon.setVisibility(View.VISIBLE);
         titleName.setText(TextHandeler.getText(context, R.string.detailed_text));
 

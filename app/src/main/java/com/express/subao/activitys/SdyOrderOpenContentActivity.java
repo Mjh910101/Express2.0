@@ -18,6 +18,7 @@ import com.express.subao.handlers.ColorHandle;
 import com.express.subao.handlers.JsonHandle;
 import com.express.subao.handlers.MessageHandler;
 import com.express.subao.handlers.TextHandeler;
+import com.express.subao.handlers.TitleHandler;
 import com.express.subao.http.HttpUtilsBox;
 import com.express.subao.http.Url;
 import com.express.subao.receivers.PushReceiver;
@@ -92,6 +93,8 @@ public class SdyOrderOpenContentActivity extends BaseActivity {
     private LinearLayout messageBox;
     @ViewInject(R.id.expres_content_openText)
     private TextView openText;
+    @ViewInject(R.id.title_titleLayout)
+    private RelativeLayout titleLayout;
 
     private SdyOrderObj mSdyOrderObj;
     private boolean isPush = false;
@@ -159,6 +162,7 @@ public class SdyOrderOpenContentActivity extends BaseActivity {
     }
 
     private void initActivity() {
+        TitleHandler.setTitle(context, titleLayout);
         backIcon.setVisibility(View.VISIBLE);
         titleName.setText(TextHandeler.getText(context, R.string.sdy_content_text));
 

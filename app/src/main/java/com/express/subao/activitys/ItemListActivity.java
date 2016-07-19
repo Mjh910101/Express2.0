@@ -7,6 +7,7 @@ import android.widget.AbsListView;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.express.subao.R;
@@ -21,6 +22,7 @@ import com.express.subao.box.handlers.StoreObjHandler;
 import com.express.subao.handlers.JsonHandle;
 import com.express.subao.handlers.MessageHandler;
 import com.express.subao.handlers.TextHandeler;
+import com.express.subao.handlers.TitleHandler;
 import com.express.subao.http.HttpUtilsBox;
 import com.express.subao.http.Url;
 import com.express.subao.interfaces.CallbackForString;
@@ -75,6 +77,8 @@ public class ItemListActivity extends BaseActivity {
     private ListView itemTagList;
     @ViewInject(R.id.itemList_itemList)
     private ListView itemList;
+    @ViewInject(R.id.title_titleLayout)
+    private RelativeLayout titleLayout;
 
     private StoreObj mStoreObj;
     private int page = 1, pages = 1;
@@ -127,6 +131,7 @@ public class ItemListActivity extends BaseActivity {
     }
 
     private void initActivity() {
+        TitleHandler.setTitle(context, titleLayout);
         backIcon.setVisibility(View.VISIBLE);
         titleName.setText(TextHandeler.getText(context, R.string.item_list_text));
 

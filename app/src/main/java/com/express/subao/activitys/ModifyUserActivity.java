@@ -28,6 +28,7 @@ import com.express.subao.handlers.DateHandle;
 import com.express.subao.handlers.JsonHandle;
 import com.express.subao.handlers.MessageHandler;
 import com.express.subao.handlers.TextHandeler;
+import com.express.subao.handlers.TitleHandler;
 import com.express.subao.http.HttpUtilsBox;
 import com.express.subao.http.Url;
 import com.express.subao.tool.Passageway;
@@ -89,6 +90,8 @@ public class ModifyUserActivity extends BaseActivity {
     private ImageView userPic;
     @ViewInject(R.id.modifyUser_progress)
     private ProgressBar progress;
+    @ViewInject(R.id.title_titleLayout)
+    private RelativeLayout titleLayout;
 
     private int userPicWidth = 0;
     private long start = 0;
@@ -151,6 +154,7 @@ public class ModifyUserActivity extends BaseActivity {
 
 
     private void initActivity() {
+        TitleHandler.setTitle(context, titleLayout);
         backIcon.setVisibility(View.VISIBLE);
         saveText.setVisibility(View.VISIBLE);
         titleName.setText(TextHandeler.getText(context, R.string.compile_myself));

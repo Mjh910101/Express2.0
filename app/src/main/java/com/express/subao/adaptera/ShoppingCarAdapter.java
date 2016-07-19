@@ -19,8 +19,13 @@ import com.express.subao.box.handlers.ShoppingCarHandler;
 import com.express.subao.dao.DBHandler;
 import com.express.subao.dialogs.MessageDialog;
 import com.express.subao.download.DownloadImageLoader;
+import com.express.subao.handlers.JsonHandle;
+import com.express.subao.handlers.MessageHandler;
+import com.express.subao.interfaces.CallbackForString;
 import com.express.subao.tool.WinTool;
 import com.nostra13.universalimageloader.utils.L;
+
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -383,7 +388,7 @@ public class ShoppingCarAdapter extends BaseAdapter {
     }
 
     public void saveAll() {
-        ShoppingCarHandler.updateShoppingCar(context, getAllItemList());
+        ShoppingCarHandler.updateShoppingCar(context, progress,getAllItemList());
     }
 
     public List<StoreItemObj> getAllItemList() {
@@ -441,12 +446,28 @@ public class ShoppingCarAdapter extends BaseAdapter {
         dialog.setCommitListener(new MessageDialog.CallBackListener() {
             @Override
             public void callback() {
-                for (ShoppingCarObj obj : choiceList) {
-                    if (obj.isItem()) {
+//                for (ShoppingCarObj obj : choiceList) {
+//                    if (obj.isItem()) {
 //                        deleteItem(obj, false);
+//                    }
+//                }
+                ShoppingCarHandler.deleteAllItem(context, progress, getChoiseItemList(), new CallbackForString() {
+                    @Override
+                    public void callback(String result) {
+                        JSONObject json = JsonHandle.getJSON(result);
+                        if (json != null) {
+                            JSONObject resultsJson = JsonHandle.getJSON(json, "results");
+                            if (JsonHandle.getInt(json, "status") == 1) {
+                                itemList.removeAll(choiceList);
+                                removeAllChoice();
+                            } else {
+                                MessageHandler.showToast(context, JsonHandle.getString(resultsJson, "message"));
+                            }
+
+                        }
                     }
-                }
-                removeAllChoice();
+                });
+
             }
         });
         dialog.setCancelStyle("取消");
