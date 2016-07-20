@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -98,6 +99,8 @@ public class MainActivity extends BaseActivity {
     private ProgressBar progress;
     @ViewInject(R.id.title_titleLayout)
     private RelativeLayout titleLayout;
+    @ViewInject(R.id.main_tap_tapLayout)
+    private LinearLayout tapLayout;
 
     private MainFrameLayoutV4 mainFrameLayout;
     private RebateFrameLayout rebateFrameLayout;
@@ -120,6 +123,7 @@ public class MainActivity extends BaseActivity {
 
     private void initApp() {
         TitleHandler.setTitle(context, titleLayout);
+        TitleHandler.setTitle(context, tapLayout);
 
         fragmentManager = getFragmentManager();
 

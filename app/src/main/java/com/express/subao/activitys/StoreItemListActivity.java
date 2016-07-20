@@ -5,6 +5,7 @@ import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.AbsListView;
+import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -131,11 +132,22 @@ public class StoreItemListActivity extends BaseActivity {
         setTestLayout();
     }
 
+    protected int getStatusBarHeight() {
+        int result = 0;
+        int resourceId = getResources().getIdentifier("status_bar_height", "dimen", "android");
+        if (resourceId > 0) {
+            result = getResources().getDimensionPixelSize(resourceId);
+        }
+        return result;
+    }
+
     private void setTestLayout() {
         int w = WinTool.getWinWidth(context);
         int h = WinTool.getWinHeight(context);
 
-        listLayout.setLayoutParams(new LinearLayout.LayoutParams(w, h - 166 - 80));
+        final int titleHeight = (int) TitleHandler.getTilteHeight(context) + getStatusBarHeight();
+
+        listLayout.setLayoutParams(new LinearLayout.LayoutParams(w, h - titleHeight - 80));
         toolLayout.setLayoutParams(new LinearLayout.LayoutParams(w, 80));
 //        sliderLayout.setLayoutParams(new LinearLayout.LayoutParams(w, 360));
 
@@ -144,10 +156,13 @@ public class StoreItemListActivity extends BaseActivity {
             public boolean onTouch(View v, MotionEvent event) {
                 int[] position = new int[2];
                 sliderLayout.getLocationOnScreen(position);
-                Log.e("scroll", "position : " + position[0] + " , " + position[1]);
-                Log.e("scroll", "slider layout : " + sliderLayout.getWidth() + " , " + sliderLayout.getHeight());
-                Log.e("scroll", "x : " + (position[1] - 166 + sliderLayout.getHeight()));
-                if (isDispatchScroll || position[1] - 166 + sliderLayout.getHeight() > 1) {
+                Log.i("scroll", "************************************************************************");
+                Log.e("scroll", "position[0] : " + position[0] + " , position[1] : " + position[1]);
+                Log.e("scroll", "slider Width : " + sliderLayout.getWidth() + " , slider Height : " + sliderLayout.getHeight());
+                Log.e("scroll", "x : " + (position[1] - titleHeight + sliderLayout.getHeight()));
+                Log.e("scroll", "event X : " + event.getX() + " , " +
+                        "event Y :" + event.getY());
+                if (isDispatchScroll || position[1] - titleHeight + sliderLayout.getHeight() > 1) {
                     scroll.dispatchTouchEvent(event);
                     isDispatchScroll = false;
                 } else {
@@ -166,6 +181,19 @@ public class StoreItemListActivity extends BaseActivity {
             }
         });
 
+    }
+
+
+    public boolean isDispatchScroll() {
+        if (itemList.getFirstVisiblePosition() == 0) {
+            View firstItem = itemList.getChildAt(0);
+            if (firstItem != null) {
+                if (firstItem.getTop() == 0) {
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 
     @OnClick({R.id.title_back, R.id.imageList_searchIcon})
@@ -206,7 +234,7 @@ public class StoreItemListActivity extends BaseActivity {
             public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
                 Log.e("scroll", "count : " + firstVisibleItem);
                 View firstItem = itemList.getChildAt(0);
-                if (firstVisibleItem <= 1 && firstItem != null && firstItem.getTop() == 0) {
+                if (firstVisibleItem < 1 && firstItem != null && firstItem.getTop() == 0) {
                     Log.e("scroll", "top : " + firstItem.getTop());
                     isDispatchScroll = true;
                 } else {
@@ -247,7 +275,7 @@ public class StoreItemListActivity extends BaseActivity {
     }
 
     public void setItemTagView(List<String> tagList) {
-        ItemTagAdapter adapter = new ItemTagAdapter(context, tagList);
+        final ItemTagAdapter adapter = new ItemTagAdapter(context, tagList);
         adapter.setCallback(new CallbackForString() {
             @Override
             public void callback(String result) {
@@ -259,7 +287,14 @@ public class StoreItemListActivity extends BaseActivity {
             }
         });
         itemTagList.setAdapter(adapter);
-        itemTagList.setFocusable(false);
+//        itemTagList.setFocusable(false);
+
+//        itemTagList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//            @Override
+//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+//                Log.i("click", "on item click : " + position + " , id : " + id);
+//            }
+//        });
 
         if (!tagList.isEmpty()) {
             downloadItem(tagList.get(0));
@@ -360,6 +395,5 @@ public class StoreItemListActivity extends BaseActivity {
 
                 });
     }
-
 
 }

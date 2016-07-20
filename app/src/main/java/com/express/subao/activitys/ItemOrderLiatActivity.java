@@ -126,7 +126,7 @@ public class ItemOrderLiatActivity extends BaseActivity {
     private void initActivity() {
         TitleHandler.setTitle(context, titleLayout);
         backIcon.setVisibility(View.VISIBLE);
-        titleName.setText("填寫訂單");
+        titleName.setText("確認訂單");
 
         orderMap = ShoppingCarHandler.getChoiseMap();
         if (orderMap == null) {
