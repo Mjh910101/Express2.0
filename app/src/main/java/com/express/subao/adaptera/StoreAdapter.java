@@ -9,6 +9,7 @@ import android.widget.GridView;
 import android.widget.ImageView;
 
 import com.express.subao.activitys.StoreItemListActivity;
+import com.express.subao.activitys.StoreItemListActivityV2;
 import com.express.subao.box.StoreObj;
 import com.express.subao.box.handlers.StoreObjHandler;
 import com.express.subao.download.DownloadImageLoader;
@@ -90,7 +91,7 @@ public class StoreAdapter extends BaseAdapter {
                 StoreObjHandler.saveStoreObj(obj);
                 ShoppingCarHandler.saveStore(context, obj);
 //                Passageway.jumpActivity(context, ItemListActivity.class);
-                Passageway.jumpActivity(context, StoreItemListActivity.class);
+                Passageway.jumpActivity(context, StoreItemListActivityV2.class);
             }
         });
 
