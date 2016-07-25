@@ -12,8 +12,11 @@ import com.express.subao.R;
 import com.express.subao.box.SliderObj;
 import com.express.subao.box.StoreItemObj;
 import com.express.subao.box.StoreObj;
+import com.express.subao.handlers.JsonHandle;
 import com.lidroid.xutils.ViewUtils;
 import com.lidroid.xutils.view.annotation.ViewInject;
+
+import org.json.JSONObject;
 
 import java.text.DecimalFormat;
 import java.util.List;
@@ -49,6 +52,10 @@ public class ItemOrderView extends LinearLayout {
     private TextView number;
     @ViewInject(R.id.orderItem_sumText)
     private TextView sumText;
+    @ViewInject(R.id.orderItem_freightTypeText)
+    private TextView freightTypeText;
+    @ViewInject(R.id.orderItem_freightSum)
+    private TextView freightSum;
 
     private View view;
     private Context context;
@@ -86,11 +93,20 @@ public class ItemOrderView extends LinearLayout {
     }
 
     public String getItemSumPrice() {
-        double s=0;
+        double s = 0;
         for (StoreItemObj obj : itemList) {
             s += obj.getPriceSum();
         }
-        return "合計 mob:" +new DecimalFormat("0.00").format(s);
+        return "合計 mob:" + new DecimalFormat("0.00").format(s);
+    }
+
+    public List<StoreItemObj> getStoreItemList() {
+        return itemList;
+    }
+
+    public void upload(JSONObject json) {
+        freightTypeText.setText(JsonHandle.getString(json, "shipment_desc"));
+        freightSum.setText(String.valueOf(JsonHandle.getInt(json, "shipment")));
     }
 
     class ItemAdapter extends BaseAdapter {

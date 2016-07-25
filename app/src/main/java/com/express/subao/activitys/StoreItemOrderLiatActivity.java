@@ -26,15 +26,19 @@ import com.express.subao.tool.Passageway;
 import com.express.subao.views.ItemOrderView;
 import com.lidroid.xutils.ViewUtils;
 import com.lidroid.xutils.exception.HttpException;
+import com.lidroid.xutils.http.RequestParams;
 import com.lidroid.xutils.http.ResponseInfo;
 import com.lidroid.xutils.http.callback.RequestCallBack;
 import com.lidroid.xutils.http.client.HttpRequest.HttpMethod;
 import com.lidroid.xutils.view.annotation.ViewInject;
 import com.lidroid.xutils.view.annotation.event.OnClick;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.security.Identity;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -59,7 +63,7 @@ import java.util.Map;
  * *   ┗┻┛   ┗┻┛
  * Created by Hua on 16/7/12.
  */
-public class ItemOrderLiatActivity extends BaseActivity {
+public class StoreItemOrderLiatActivity extends BaseActivity {
 
     public final static int RC = 1005;
 
@@ -86,6 +90,7 @@ public class ItemOrderLiatActivity extends BaseActivity {
 
     private Map<String, List<StoreItemObj>> orderMap;
     private List<ItemOrderView> orderList;
+    private Map<String, ItemOrderView> orderViewMap;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -139,12 +144,14 @@ public class ItemOrderLiatActivity extends BaseActivity {
 
     private void initOrderList(Map<String, List<StoreItemObj>> map) {
         orderList = new ArrayList<>();
+        orderViewMap = new HashMap<>();
         for (Map.Entry entry : map.entrySet()) {
             String id = (String) entry.getKey();
             StoreObj obj = ShoppingCarHandler.getStoreForId(context, id);
             if (obj != null) {
                 ItemOrderView view = new ItemOrderView(context, obj, map.get(id));
                 orderList.add(view);
+                orderViewMap.put(id, view);
                 orderLayout.addView(getFillers());
                 orderLayout.addView(view);
             }
@@ -194,6 +201,7 @@ public class ItemOrderLiatActivity extends BaseActivity {
             userNameText.setText("收貨人：" + obj.getReceiver());
             userTelText.setText(obj.getContact());
             userAddressText.setText(obj.getAddress());
+            uploadOrderPre(obj.getObjectId());
         }
     }
 
@@ -202,4 +210,69 @@ public class ItemOrderLiatActivity extends BaseActivity {
         v.setLayoutParams(new LinearLayout.LayoutParams(20, 20));
         return v;
     }
+
+
+    public JSONObject getStoreItemJson() {
+        JSONObject json = new JSONObject();
+        JSONArray array = new JSONArray();
+        for (ItemOrderView view : orderList) {
+            List<StoreItemObj> list = view.getStoreItemList();
+            for (StoreItemObj obj : list) {
+                JsonHandle.put(array, obj.toJson());
+            }
+        }
+        JsonHandle.put(json, "cartData", array);
+        return json;
+    }
+
+
+    private void updateOrderView(JSONArray array) {
+        for (int i = 0; i < array.length(); i++) {
+            JSONObject json = JsonHandle.getJSON(array, i);
+            orderViewMap.get(JsonHandle.getString(json,"store_id")).upload(json);
+        }
+    }
+
+    private void uploadOrderPre(String id) {
+        progress.setVisibility(View.VISIBLE);
+        String url = Url.getOrderPre();
+
+        RequestParams params = new RequestParams();
+        params.addBodyParameter("sessiontoken", UserObjHandler.getSessionToken(context));
+        params.addBodyParameter("address_id", id);
+        params.addBodyParameter("data", getStoreItemJson().toString());
+
+
+        HttpUtilsBox.getHttpUtil().send(HttpMethod.POST, url, params,
+                new RequestCallBack<String>() {
+
+                    @Override
+                    public void onFailure(HttpException exception, String msg) {
+                        progress.setVisibility(View.GONE);
+                        MessageHandler.showFailure(context);
+                    }
+
+                    @Override
+                    public void onSuccess(ResponseInfo<String> responseInfo) {
+                        progress.setVisibility(View.GONE);
+                        String result = responseInfo.result;
+                        Log.d("", result);
+
+                        JSONObject json = JsonHandle.getJSON(result);
+                        if (json != null) {
+                            if (JsonHandle.getInt(json, "status") == 1) {
+                                JSONObject resultsJson = JsonHandle.getJSON(json, "results");
+                                if (resultsJson != null) {
+                                    JSONArray ordersArray = JsonHandle.getArray(resultsJson, "orders");
+                                    if (ordersArray != null) {
+                                        updateOrderView(ordersArray);
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                });
+    }
+
 }

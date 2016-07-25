@@ -184,7 +184,7 @@
             android:screenOrientation="portrait"
             android:theme="@style/transparent" />
         <activity
-            android:name=".activitys.ItemOrderLiatActivity"
+            android:name=".activitys.StoreItemOrderLiatActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden|stateUnchanged" />
         <activity

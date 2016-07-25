@@ -151,4 +151,8 @@ public class Url {
     public static String getCart() {
         return getIndex() + "/api/v1/cart";
     }
+
+    public static String getOrderPre() {
+        return getIndex() + "/api/v1/order/pre";
+    }
 }

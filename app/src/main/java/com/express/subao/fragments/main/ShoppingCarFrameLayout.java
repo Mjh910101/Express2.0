@@ -11,9 +11,8 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.express.subao.R;
-import com.express.subao.activitys.ItemOrderLiatActivity;
+import com.express.subao.activitys.StoreItemOrderLiatActivity;
 import com.express.subao.adaptera.ShoppingCarAdapter;
-import com.express.subao.adaptera.StoreItemAdapter;
 import com.express.subao.box.ShoppingCarObj;
 import com.express.subao.box.StoreItemObj;
 import com.express.subao.box.handlers.UserObjHandler;
@@ -27,7 +26,6 @@ import com.express.subao.http.Url;
 import com.express.subao.tool.Passageway;
 import com.lidroid.xutils.ViewUtils;
 import com.lidroid.xutils.exception.HttpException;
-import com.lidroid.xutils.http.RequestParams;
 import com.lidroid.xutils.http.ResponseInfo;
 import com.lidroid.xutils.http.callback.RequestCallBack;
 import com.lidroid.xutils.http.client.HttpRequest.HttpMethod;
@@ -38,7 +36,6 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.text.DecimalFormat;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -114,7 +111,7 @@ public class ShoppingCarFrameLayout extends BaseFragment {
             } else {
                 Map<String, List<StoreItemObj>> map = mShoppingCarAdapter.getChoiseItemMap();
                 ShoppingCarHandler.saveChoiseItem(map);
-                Passageway.jumpActivity(context, ItemOrderLiatActivity.class);
+                Passageway.jumpActivity(context, StoreItemOrderLiatActivity.class);
             }
         }
     }
