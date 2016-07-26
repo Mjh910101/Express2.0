@@ -37,6 +37,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.security.Identity;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -85,12 +86,16 @@ public class StoreItemOrderLiatActivity extends BaseActivity {
     private TextView userTelText;
     @ViewInject(R.id.orderHead_userAddressText)
     private TextView userAddressText;
+    @ViewInject(R.id.itemOrder_totalPriceText)
+    private TextView totalPriceText;
     @ViewInject(R.id.title_titleLayout)
     private RelativeLayout titleLayout;
 
     private Map<String, List<StoreItemObj>> orderMap;
     private List<ItemOrderView> orderList;
     private Map<String, ItemOrderView> orderViewMap;
+
+    private String ordersn = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -116,7 +121,7 @@ public class StoreItemOrderLiatActivity extends BaseActivity {
     }
 
 
-    @OnClick({R.id.title_back, R.id.orderHead_headLayout})
+    @OnClick({R.id.title_back, R.id.orderHead_headLayout, R.id.itemOrder_commitOrder})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.title_back:
@@ -124,6 +129,11 @@ public class StoreItemOrderLiatActivity extends BaseActivity {
                 break;
             case R.id.orderHead_headLayout:
                 Passageway.jumpActivity(context, UserAddressListActivity.class, RC);
+                break;
+            case R.id.itemOrder_commitOrder:
+                if (!ordersn.equals("")) {
+                    commitOrderPre();
+                }
                 break;
         }
     }
@@ -156,8 +166,16 @@ public class StoreItemOrderLiatActivity extends BaseActivity {
                 orderLayout.addView(view);
             }
         }
+        totalPriceText.setText(new DecimalFormat("0.00").format(gettotalPrice()));
     }
 
+    public double gettotalPrice() {
+        double s = 0;
+        for (ItemOrderView view : orderList) {
+            s += view.getItemSumPrice();
+        }
+        return s;
+    }
 
     private void downloadAddressData() {
         progress.setVisibility(View.VISIBLE);
@@ -225,11 +243,26 @@ public class StoreItemOrderLiatActivity extends BaseActivity {
         return json;
     }
 
+    public JSONObject getStoreJson() {
+        JSONObject json = new JSONObject();
+        JSONArray array = new JSONArray();
+        for (ItemOrderView view : orderList) {
+            JsonHandle.put(array, view.toJson());
+        }
+        JsonHandle.put(json, "remark", array);
+        return json;
+    }
 
     private void updateOrderView(JSONArray array) {
         for (int i = 0; i < array.length(); i++) {
             JSONObject json = JsonHandle.getJSON(array, i);
-            orderViewMap.get(JsonHandle.getString(json,"store_id")).upload(json);
+            orderViewMap.get(JsonHandle.getString(json, "store_id")).upload(json);
+        }
+    }
+
+    private void deleteItem(JSONArray array) {
+        for (int i = 0; i < array.length(); i++) {
+            ShoppingCarHandler.deleteItem(context, JsonHandle.getString(array, i));
         }
     }
 
@@ -260,12 +293,65 @@ public class StoreItemOrderLiatActivity extends BaseActivity {
 
                         JSONObject json = JsonHandle.getJSON(result);
                         if (json != null) {
+                            JSONObject resultsJson = JsonHandle.getJSON(json, "results");
                             if (JsonHandle.getInt(json, "status") == 1) {
-                                JSONObject resultsJson = JsonHandle.getJSON(json, "results");
                                 if (resultsJson != null) {
                                     JSONArray ordersArray = JsonHandle.getArray(resultsJson, "orders");
                                     if (ordersArray != null) {
                                         updateOrderView(ordersArray);
+                                    }
+                                }
+                                ordersn = JsonHandle.getString(json, "ordersn");
+                            } else {
+                                ordersn = "";
+                                MessageHandler.showToast(context, JsonHandle.getString(resultsJson, "message"));
+                            }
+                        }
+                    }
+
+                });
+    }
+
+    private void commitOrderPre() {
+        progress.setVisibility(View.VISIBLE);
+        String url = Url.getOrderCommit();
+
+        RequestParams params = new RequestParams();
+        params.addBodyParameter("sessiontoken", UserObjHandler.getSessionToken(context));
+        params.addBodyParameter("ordersn", ordersn);
+        params.addBodyParameter("data", getStoreJson().toString());
+
+        Log.e("ordersn", ordersn);
+        Log.e("data", getStoreJson().toString());
+
+        HttpUtilsBox.getHttpUtil().send(HttpMethod.POST, url, params,
+                new RequestCallBack<String>() {
+
+                    @Override
+                    public void onFailure(HttpException exception, String msg) {
+                        progress.setVisibility(View.GONE);
+                        MessageHandler.showFailure(context);
+                    }
+
+                    @Override
+                    public void onSuccess(ResponseInfo<String> responseInfo) {
+                        progress.setVisibility(View.GONE);
+                        String result = responseInfo.result;
+                        Log.d("", result);
+
+                        JSONObject json = JsonHandle.getJSON(result);
+                        if (json != null) {
+                            if (JsonHandle.getInt(json, "status") == 1) {
+                                JSONObject resultsJson = JsonHandle.getJSON(json, "results");
+                                if (resultsJson != null) {
+                                    if (JsonHandle.getInt(json, "status") == 1) {
+                                        if (resultsJson != null) {
+                                            deleteItem(JsonHandle.getArray(resultsJson, "items"));
+                                            finish();
+                                        }
+                                        ordersn = JsonHandle.getString(json, "ordersn");
+                                    } else {
+                                        MessageHandler.showToast(context, JsonHandle.getString(resultsJson, "message"));
                                     }
                                 }
                             }

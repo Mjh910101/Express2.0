@@ -181,6 +181,7 @@
 
 
         <EditText
+            android:id="@+id/orderItem_remarkInput"
             android:layout_width="fill_parent"
             android:layout_height="80dp"
             android:layout_below="@id/orderItem_messageTitle"

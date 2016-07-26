@@ -369,6 +369,13 @@ public class ShoppingCarHandler {
         }
     }
 
+    public static void deleteItem(Context context, String id) {
+        try {
+            DBHandler.getDbUtils(context).deleteById(StoreItemObj.class, id);
+        } catch (DbException e) {
+            e.printStackTrace();
+        }
+    }
 
     public static void deleteAllItem(Context context) {
         try {

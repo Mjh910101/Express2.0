@@ -13,7 +13,8 @@
 
         <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
+            android:paddingBottom="50dp"
             android:scrollbars="none">
 
             <LinearLayout
@@ -29,6 +30,54 @@
 
 
         </ScrollView>
+
+        <RelativeLayout
+            android:id="@+id/itemOrder_toolLayout"
+            android:layout_width="fill_parent"
+            android:layout_height="50dp"
+            android:layout_alignParentBottom="true"
+            android:background="@color/whitle">
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:layout_alignParentTop="true"
+                android:background="@color/line_gray" />
+
+            <TextView
+                android:id="@+id/itemOrder_commitOrder"
+                android:layout_width="110dp"
+                android:layout_height="fill_parent"
+                android:layout_alignParentRight="true"
+                android:background="@color/title_bg"
+                android:gravity="center"
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp"
+                android:text="提交訂單"
+                android:textColor="@color/whitle"
+                android:textSize="@dimen/text_size_17" />
+
+            <TextView
+                android:id="@+id/itemOrder_allSumText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="8dp"
+                android:text="總金額 : "
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_size_17" />
+
+            <TextView
+                android:id="@+id/itemOrder_totalPriceText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@id/itemOrder_allSumText"
+                android:text=""
+                android:textColor="@color/text_orange"
+                android:textSize="@dimen/text_size_16" />
+
+        </RelativeLayout>
 
         <ProgressBar
             android:id="@+id/itemOrder_progress"

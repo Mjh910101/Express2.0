@@ -137,6 +137,13 @@ public class MainActivity extends BaseActivity {
         checkVersion();
     }
 
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        if (nowTap==SHOPPING_CAR) {
+            shoppingCarFrameLayout.onRestart();
+        }
+    }
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {

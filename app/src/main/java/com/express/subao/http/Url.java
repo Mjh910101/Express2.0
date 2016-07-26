@@ -155,4 +155,8 @@ public class Url {
     public static String getOrderPre() {
         return getIndex() + "/api/v1/order/pre";
     }
+
+    public static String getOrderCommit() {
+        return getIndex() + "/api/v1/order/commit";
+    }
 }

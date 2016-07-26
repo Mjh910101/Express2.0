@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -13,6 +14,7 @@ import com.express.subao.box.SliderObj;
 import com.express.subao.box.StoreItemObj;
 import com.express.subao.box.StoreObj;
 import com.express.subao.handlers.JsonHandle;
+import com.express.subao.handlers.TextHandeler;
 import com.lidroid.xutils.ViewUtils;
 import com.lidroid.xutils.view.annotation.ViewInject;
 
@@ -56,6 +58,8 @@ public class ItemOrderView extends LinearLayout {
     private TextView freightTypeText;
     @ViewInject(R.id.orderItem_freightSum)
     private TextView freightSum;
+    @ViewInject(R.id.orderItem_remarkInput)
+    private EditText remarkInput;
 
     private View view;
     private Context context;
@@ -80,7 +84,7 @@ public class ItemOrderView extends LinearLayout {
     private void initLayout() {
         storeName.setText(store.getTitle());
         number.setText(getItemSum());
-        sumText.setText(getItemSumPrice());
+        sumText.setText(getItemSumPriceforStirng());
         dataList.setAdapter(new ItemAdapter());
     }
 
@@ -92,12 +96,16 @@ public class ItemOrderView extends LinearLayout {
         return "共計" + s + "件商品";
     }
 
-    public String getItemSumPrice() {
+    public String getItemSumPriceforStirng() {
+        return "合計 mob:" + new DecimalFormat("0.00").format(getItemSumPrice());
+    }
+
+    public double getItemSumPrice() {
         double s = 0;
         for (StoreItemObj obj : itemList) {
             s += obj.getPriceSum();
         }
-        return "合計 mob:" + new DecimalFormat("0.00").format(s);
+        return s;
     }
 
     public List<StoreItemObj> getStoreItemList() {
@@ -107,6 +115,13 @@ public class ItemOrderView extends LinearLayout {
     public void upload(JSONObject json) {
         freightTypeText.setText(JsonHandle.getString(json, "shipment_desc"));
         freightSum.setText(String.valueOf(JsonHandle.getInt(json, "shipment")));
+    }
+
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        JsonHandle.put(json, "store_id", store.getObjectId());
+        JsonHandle.put(json, "remark", TextHandeler.getText(remarkInput));
+        return json;
     }
 
     class ItemAdapter extends BaseAdapter {
