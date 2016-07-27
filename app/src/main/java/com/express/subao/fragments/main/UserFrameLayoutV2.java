@@ -20,6 +20,7 @@ import com.express.subao.activitys.ModifyUserActivity;
 import com.express.subao.activitys.RegisterActivity;
 import com.express.subao.activitys.RemainingMoneyListActivity;
 import com.express.subao.activitys.UserExpressListActivity;
+import com.express.subao.activitys.UserOrderActovoty;
 import com.express.subao.activitys.WebActivity;
 import com.express.subao.box.handlers.UserObjHandler;
 import com.express.subao.fragments.BaseFragment;
@@ -107,7 +108,7 @@ public class UserFrameLayoutV2 extends BaseFragment {
 
     @OnClick({R.id.user_registerBtn, R.id.user_loginBtn, R.id.user_logoutBtn, R.id.user_compileBox,
             R.id.user_item_feedbackBox, R.id.user_item_collectionBox, R.id.user_remainingMoneyBox,
-            R.id.user_item_subaoBox, R.id.user_item_push})
+            R.id.user_item_subaoBox, R.id.user_item_push, R.id.user_item_order})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.user_registerBtn:
@@ -139,6 +140,9 @@ public class UserFrameLayoutV2 extends BaseFragment {
 //                break;
             case R.id.user_item_push:
                 onClickPush();
+                break;
+            case R.id.user_item_order:
+                Passageway.jumpActivity(context, UserOrderActovoty.class);
                 break;
         }
     }

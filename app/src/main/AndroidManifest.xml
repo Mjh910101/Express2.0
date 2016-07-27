@@ -197,6 +197,9 @@
         <activity
             android:name=".activitys.StoreItemListActivityV2"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".activitys.UserOrderActovoty"
+            android:screenOrientation="portrait" />
         <!-- 服务 -->
         <service android:name=".download.DownloadNewAppService" />
 
