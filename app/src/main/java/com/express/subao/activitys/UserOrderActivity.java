@@ -1,18 +1,38 @@
 package com.express.subao.activitys;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.express.subao.R;
+import com.express.subao.adaptera.UserOrderAdaper;
+import com.express.subao.box.OrderObj;
+import com.express.subao.box.handlers.OrderObjHandler;
+import com.express.subao.box.handlers.UserObjHandler;
 import com.express.subao.handlers.ColorHandle;
+import com.express.subao.handlers.JsonHandle;
+import com.express.subao.handlers.MessageHandler;
 import com.express.subao.handlers.TextHandeler;
 import com.express.subao.handlers.TitleHandler;
+import com.express.subao.http.HttpUtilsBox;
+import com.express.subao.http.Url;
 import com.lidroid.xutils.ViewUtils;
+import com.lidroid.xutils.exception.HttpException;
+import com.lidroid.xutils.http.ResponseInfo;
+import com.lidroid.xutils.http.callback.RequestCallBack;
+import com.lidroid.xutils.http.client.HttpRequest.HttpMethod;
 import com.lidroid.xutils.view.annotation.ViewInject;
 import com.lidroid.xutils.view.annotation.event.OnClick;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import java.util.List;
 
 /**
  * *
@@ -35,12 +55,13 @@ import com.lidroid.xutils.view.annotation.event.OnClick;
  * *   ┗┻┛   ┗┻┛
  * Created by Hua on 16/7/27.
  */
-public class UserOrderActovoty extends BaseActivity {
+public class UserOrderActivity extends BaseActivity {
 
     private final static String ALL = "";
     private final static String WAITING = "1";
     private final static String ASSESS = "0";
     private final static String SHIP = "2";
+    private final static int LIMIT = 20;
 
     @ViewInject(R.id.title_back)
     private ImageView backIcon;
@@ -80,6 +101,13 @@ public class UserOrderActovoty extends BaseActivity {
     private View shipBelowLine;
     @ViewInject(R.id.userOrder_shipText)
     private TextView shipText;
+    @ViewInject(R.id.userOrder_progress)
+    private ProgressBar progress;
+    @ViewInject(R.id.userOrder_dataList)
+    private ListView dataList;
+
+    private int page = 1, pages = 1;
+    private UserOrderAdaper userOrderAdaper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -148,28 +176,28 @@ public class UserOrderActovoty extends BaseActivity {
     private void onShipType() {
         shipTopLin.setVisibility(View.VISIBLE);
         shipLine.setVisibility(View.INVISIBLE);
-        shipBelowLine.setVisibility(View.INVISIBLE);
+        shipBelowLine.setBackgroundResource(R.color.whitle);
         shipText.setTextColor(ColorHandle.getColorForID(context, R.color.red));
     }
 
     private void onAssessType() {
         assessTopLin.setVisibility(View.VISIBLE);
         assessLine.setVisibility(View.INVISIBLE);
-        assessBelowLine.setVisibility(View.INVISIBLE);
+        assessBelowLine.setBackgroundResource(R.color.whitle);
         assessText.setTextColor(ColorHandle.getColorForID(context, R.color.red));
     }
 
     private void onWaitingType() {
         waitingTopLin.setVisibility(View.VISIBLE);
         waitingLine.setVisibility(View.INVISIBLE);
-        waitingBelowLine.setVisibility(View.INVISIBLE);
+        waitingBelowLine.setBackgroundResource(R.color.whitle);
         waitingText.setTextColor(ColorHandle.getColorForID(context, R.color.red));
     }
 
     private void onAllType() {
         allTopLin.setVisibility(View.VISIBLE);
         allLine.setVisibility(View.INVISIBLE);
-        allBelowLine.setVisibility(View.INVISIBLE);
+        allBelowLine.setBackgroundResource(R.color.whitle);
         allText.setTextColor(ColorHandle.getColorForID(context, R.color.red));
     }
 
@@ -184,19 +212,66 @@ public class UserOrderActovoty extends BaseActivity {
         assessLine.setVisibility(View.VISIBLE);
         shipLine.setVisibility(View.VISIBLE);
 
-        allBelowLine.setVisibility(View.VISIBLE);
-        waitingBelowLine.setVisibility(View.VISIBLE);
-        assessBelowLine.setVisibility(View.VISIBLE);
-        shipBelowLine.setVisibility(View.VISIBLE);
+        allBelowLine.setBackgroundResource(R.color.red);
+        waitingBelowLine.setBackgroundResource(R.color.red);
+        assessBelowLine.setBackgroundResource(R.color.red);
+        shipBelowLine.setBackgroundResource(R.color.red);
 
         allText.setTextColor(ColorHandle.getColorForID(context, R.color.black));
         waitingText.setTextColor(ColorHandle.getColorForID(context, R.color.black));
         assessText.setTextColor(ColorHandle.getColorForID(context, R.color.black));
         shipText.setTextColor(ColorHandle.getColorForID(context, R.color.black));
+
+        page = 1;
+        pages = 1;
+        userOrderAdaper = null;
+    }
+
+    private void setListData(List<OrderObj> list) {
+        if (userOrderAdaper == null) {
+            userOrderAdaper = new UserOrderAdaper(context, list);
+            dataList.setAdapter(userOrderAdaper);
+        }
     }
 
     private void downloadDaata(String type) {
+        progress.setVisibility(View.VISIBLE);
 
+        String url = Url.getOrder() + "?sessiontoken=" + UserObjHandler.getSessionToken(context) + "&status=" + type + "&page=" + page + "&limit=" + LIMIT;
+
+        HttpUtilsBox.getHttpUtil().send(HttpMethod.GET, url,
+                new RequestCallBack<String>() {
+
+                    @Override
+                    public void onFailure(HttpException exception, String msg) {
+                        progress.setVisibility(View.GONE);
+                        MessageHandler.showFailure(context);
+                    }
+
+                    @Override
+                    public void onSuccess(ResponseInfo<String> responseInfo) {
+                        progress.setVisibility(View.GONE);
+                        String result = responseInfo.result;
+                        Log.d("", result);
+
+                        JSONObject json = JsonHandle.getJSON(result);
+                        if (json != null) {
+                            if (JsonHandle.getInt(json, "status") == 1) {
+                                JSONArray array = JsonHandle.getArray(json, "results");
+                                if (array != null) {
+                                    List<OrderObj> list = OrderObjHandler.getOrderObjList(array);
+                                    setListData(list);
+                                    page += 1;
+                                }
+                                pages = JsonHandle.getInt(json, "pages");
+                            }
+
+                        }
+
+                    }
+
+                });
     }
+
 
 }

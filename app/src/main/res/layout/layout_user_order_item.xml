@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/whitle"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_margin="6dp"
+            android:src="@drawable/shoppingcar_store_icon" />
+
+        <TextView
+            android:id="@+id/userOrder_storeName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="6dp"
+            android:layout_marginRight="6dp"
+            android:layout_marginTop="6dp"
+            android:drawableRight="@drawable/next_icon"
+            android:text="店鋪名"
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_size_17" />
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/line_gray" />
+
+    <com.express.subao.views.InsideListView
+        android:id="@+id/userOrder_dataList"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:divider="@color/lucency"
+        android:dividerHeight="0dp" />
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:background="@color/line_gray" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:gravity="right"
+        android:text="一共1间商品"
+        android:textColor="@color/text_gray_01"
+        android:textSize="@dimen/text_size_15" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="8dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:background="@drawable/orange_box_btn"
+            android:text="已经发货"
+            android:textColor="@color/text_orange"
+            android:textSize="@dimen/text_size_15" />
+    </RelativeLayout>
+
+</LinearLayout>

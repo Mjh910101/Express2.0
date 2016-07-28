@@ -8,7 +8,6 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.express.subao.R;
@@ -20,7 +19,7 @@ import com.express.subao.activitys.ModifyUserActivity;
 import com.express.subao.activitys.RegisterActivity;
 import com.express.subao.activitys.RemainingMoneyListActivity;
 import com.express.subao.activitys.UserExpressListActivity;
-import com.express.subao.activitys.UserOrderActovoty;
+import com.express.subao.activitys.UserOrderActivity;
 import com.express.subao.activitys.WebActivity;
 import com.express.subao.box.handlers.UserObjHandler;
 import com.express.subao.fragments.BaseFragment;
@@ -142,7 +141,7 @@ public class UserFrameLayoutV2 extends BaseFragment {
                 onClickPush();
                 break;
             case R.id.user_item_order:
-                Passageway.jumpActivity(context, UserOrderActovoty.class);
+                Passageway.jumpActivity(context, UserOrderActivity.class);
                 break;
         }
     }

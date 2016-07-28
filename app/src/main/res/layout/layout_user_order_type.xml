@@ -3,7 +3,6 @@
     android:layout_width="match_parent"
     android:layout_height="40dp"
     android:layout_marginTop="15dp"
-    android:background="@color/activity_bg"
     android:orientation="horizontal">
 
     <RelativeLayout
@@ -45,11 +44,24 @@
 
     </RelativeLayout>
 
-    <View
+    <RelativeLayout
         android:layout_width="1dp"
         android:layout_height="match_parent"
-        android:layout_marginTop="1dp"
-        android:background="@color/line_gray" />
+        android:orientation="vertical">
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="2dp"
+            android:layout_marginTop="1dp"
+            android:background="@color/line_gray" />
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="2dp"
+            android:layout_alignParentBottom="true"
+            android:background="@color/red" />
+    </RelativeLayout>
 
     <RelativeLayout
         android:layout_width="0dp"
@@ -90,11 +102,24 @@
 
     </RelativeLayout>
 
-    <View
+    <RelativeLayout
         android:layout_width="1dp"
         android:layout_height="match_parent"
-        android:layout_marginTop="1dp"
-        android:background="@color/line_gray" />
+        android:orientation="vertical">
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="2dp"
+            android:layout_marginTop="1dp"
+            android:background="@color/line_gray" />
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="2dp"
+            android:layout_alignParentBottom="true"
+            android:background="@color/red" />
+    </RelativeLayout>
 
     <RelativeLayout
         android:layout_width="0dp"
@@ -135,11 +160,24 @@
 
     </RelativeLayout>
 
-    <View
+    <RelativeLayout
         android:layout_width="1dp"
         android:layout_height="match_parent"
-        android:layout_marginTop="1dp"
-        android:background="@color/line_gray" />
+        android:orientation="vertical">
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="2dp"
+            android:layout_marginTop="1dp"
+            android:background="@color/line_gray" />
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="2dp"
+            android:layout_alignParentBottom="true"
+            android:background="@color/red" />
+    </RelativeLayout>
 
     <RelativeLayout
         android:layout_width="0dp"

@@ -33,6 +33,7 @@
                 android:id="@+id/sCar_item_noStock"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:visibility="gone"
                 android:layout_alignBottom="@id/sCar_item_image"
                 android:layout_alignLeft="@id/sCar_item_image"
                 android:layout_alignRight="@id/sCar_item_image"

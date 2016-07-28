@@ -57,6 +57,8 @@ public class StoreObj {
     private int comments;
 
     @Transient
+    private String shipment_min;
+    @Transient
     private String shiptips;
     @Transient
     private String statusLabel;
@@ -177,6 +179,14 @@ public class StoreObj {
             return false;
         }
         return true;
+    }
+
+    public String getShipment_min() {
+        return shipment_min;
+    }
+
+    public void setShipment_min(String shipment_min) {
+        this.shipment_min = shipment_min;
     }
 }
 

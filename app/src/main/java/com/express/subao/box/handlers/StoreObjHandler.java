@@ -53,6 +53,7 @@ public class StoreObjHandler {
         obj.setShiptips(JsonHandle.getString(json, "shiptips"));
         obj.setStatus(JsonHandle.getInt(json, "status"));
         obj.setStatusLabel(JsonHandle.getString(json, "statusLabel"));
+        obj.setShipment_min(JsonHandle.getString(json, "shipment_min"));
 
         JSONArray array = JsonHandle.getArray(json, StoreObj.SLIDER);
         obj.setSliderList(array);

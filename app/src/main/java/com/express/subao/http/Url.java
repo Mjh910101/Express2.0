@@ -156,6 +156,10 @@ public class Url {
         return getIndex() + "/api/v1/order/pre";
     }
 
+    public static String getOrder() {
+        return getIndex() + "/api/v1/order";
+    }
+
     public static String getOrderCommit() {
         return getIndex() + "/api/v1/order/commit";
     }
