@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/whitle"
+    android:background="@color/activity_bg"
     android:orientation="vertical">
 
     <include layout="@layout/layout_slide" />
@@ -11,6 +11,7 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="10dp"
+        android:layout_marginTop="10dp"
         android:background="@color/whitle"
         android:orientation="vertical">
 
@@ -25,14 +26,14 @@
                 android:layout_width="0dp"
                 android:layout_height="fill_parent"
                 android:layout_weight="257"
-                android:src="@drawable/check_express_v2_icon" />
+                android:src="@drawable/check_express_v3_icon" />
 
             <ImageView
                 android:id="@+id/main_expressBox"
                 android:layout_width="0dp"
                 android:layout_height="fill_parent"
                 android:layout_weight="383"
-                android:src="@drawable/box_express_v2_icon" />
+                android:src="@drawable/box_express_v3_icon" />
 
         </LinearLayout>
 

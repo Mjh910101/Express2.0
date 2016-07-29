@@ -1,5 +1,6 @@
 package com.express.subao.activitys;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.res.AssetFileDescriptor;
 import android.graphics.Bitmap;
@@ -12,6 +13,7 @@ import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -142,7 +144,7 @@ public class ScanningActivity extends BaseActivity implements SurfaceHolder.Call
     }
 
     private void initActivity() {
-        TitleHandler.setTitle(context, titleLayout);
+        setTitle(titleLayout);
         backIcon.setVisibility(View.VISIBLE);
         titleName.setText(TextHandeler.getText(context, R.string.sacnning_text));
         //ViewUtil.addTopView(getApplicationContext(), this, R.string.scan_card);
@@ -150,6 +152,11 @@ public class ScanningActivity extends BaseActivity implements SurfaceHolder.Call
 
         hasSurface = false;
         inactivityTimer = new InactivityTimer(this);
+    }
+
+    public void setTitle( View layout) {
+        double h =TitleHandler.getTilteHeight(context);
+        layout.setLayoutParams(new RelativeLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, (int) h));
     }
 
 
@@ -167,10 +174,10 @@ public class ScanningActivity extends BaseActivity implements SurfaceHolder.Call
 //        MessageDialog dialog = new MessageDialog(context);
 //        dialog.setMessage(getQRCode(resultString));
 
-        Bundle b = new Bundle();
-        b.putString("qrcode", getQRCode(resultString));
-        Passageway.jumpActivity(context, ScanningForSdyOrderListActivity.class, b);
-        finish();
+//        Bundle b = new Bundle();
+//        b.putString("qrcode", getQRCode(resultString));
+//        Passageway.jumpActivity(context, ScanningForSdyOrderListActivity.class, b);
+//        finish();
     }
 
     private String getQRCode(String result) {

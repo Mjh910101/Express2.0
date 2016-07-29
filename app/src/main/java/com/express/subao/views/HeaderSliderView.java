@@ -46,6 +46,7 @@ public class HeaderSliderView extends LinearLayout {
     private Context context;
 
     private View view;
+    private ImageView boxBg;
     private LayoutInflater inflater;
 
     private InsideViewFlipper mViewFlipper;
@@ -61,9 +62,10 @@ public class HeaderSliderView extends LinearLayout {
         view = inflater.inflate(R.layout.layout_slide, null);
 
         mViewFlipper = (InsideViewFlipper) view.findViewById(R.id.ppt_images);
+        boxBg = (ImageView) view.findViewById(R.id.ppt_boxBg);
         pptBallBox = (LinearLayout) view.findViewById(R.id.ppt_ball);
 
-        SliderView.initSliderView(context, list, mViewFlipper, pptBallBox);
+        SliderView.initSliderView(context, list, mViewFlipper, pptBallBox, boxBg);
 
         addView(view);
     }

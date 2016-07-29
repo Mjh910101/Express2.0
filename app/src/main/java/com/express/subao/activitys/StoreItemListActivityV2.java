@@ -79,6 +79,10 @@ public class StoreItemListActivityV2 extends BaseActivity {
     private ImageView backIcon;
     @ViewInject(R.id.title_name)
     private TextView titleName;
+    @ViewInject(R.id.title_scanningIcon)
+    private ImageView scanningIcon;
+    @ViewInject(R.id.title_shoppingCarIcon)
+    private ImageView shoppingCarIcon;
     @ViewInject(R.id.itemList_progress)
     private ProgressBar progress;
     @ViewInject(R.id.itemList_itemTagList)
@@ -103,6 +107,8 @@ public class StoreItemListActivityV2 extends BaseActivity {
     private ImageView sliderBg;
     @ViewInject(R.id.itemList_commentsSumText)
     private TextView commentsSumText;
+    @ViewInject(R.id.ppt_boxBg)
+    private ImageView boxBg;
 
     private StoreObj mStoreObj;
     private int page = 1, pages = 1;
@@ -138,8 +144,10 @@ public class StoreItemListActivityV2 extends BaseActivity {
         int titleHeight = (int) TitleHandler.getTilteHeight(context) + getStatusBarHeight();
         int pptHeight = (int) (w * 337d / 720d);
 
-        listLayout.setLayoutParams(new LinearLayout.LayoutParams(w, h - titleHeight - 80));
-        toolLayout.setLayoutParams(new LinearLayout.LayoutParams(w, 80));
+        int toolHeight = (int) getResources().getDimension(R.dimen.store_tool_layout);
+
+        listLayout.setLayoutParams(new LinearLayout.LayoutParams(w, h - titleHeight - toolHeight));
+        toolLayout.setLayoutParams(new LinearLayout.LayoutParams(w, toolHeight));
         sliderLayout.setLayoutParams(new LinearLayout.LayoutParams(w, pptHeight));
 
         itemList.setScrollParent(fatherLayou);
@@ -151,7 +159,7 @@ public class StoreItemListActivityV2 extends BaseActivity {
 //        listLayout.initDataList(itemTagList, itemList);
     }
 
-    @OnClick({R.id.title_back, R.id.imageList_searchIcon})
+    @OnClick({R.id.title_back, R.id.imageList_searchIcon, R.id.title_shoppingCarIcon, R.id.title_scanningIcon})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.title_back:
@@ -160,7 +168,21 @@ public class StoreItemListActivityV2 extends BaseActivity {
             case R.id.imageList_searchIcon:
                 jumpSearchItemActivity();
                 break;
+            case R.id.title_shoppingCarIcon:
+                jumpShoppingCarActivity();
+                break;
+            case R.id.title_scanningIcon:
+                jumpScanningActivity();
+                break;
         }
+    }
+
+    private void jumpScanningActivity() {
+        Passageway.jumpActivity(context, ScanningActivity.class);
+    }
+
+    private void jumpShoppingCarActivity() {
+        Passageway.jumpActivity(context, ShoppingCarActivity.class);
     }
 
     private void jumpSearchItemActivity() {
@@ -195,6 +217,8 @@ public class StoreItemListActivityV2 extends BaseActivity {
     private void initActivity() {
         TitleHandler.setTitle(context, titleLayout);
         backIcon.setVisibility(View.VISIBLE);
+        scanningIcon.setVisibility(View.VISIBLE);
+        shoppingCarIcon.setVisibility(View.VISIBLE);
         titleName.setText(TextHandeler.getText(context, R.string.item_list_text));
 
         setLayout();
@@ -202,7 +226,7 @@ public class StoreItemListActivityV2 extends BaseActivity {
         mStoreObj = StoreObjHandler.getStoreObj();
         if (mStoreObj != null) {
             downloadStoreData(mStoreObj.getObjectId());
-            SliderView.initSliderView(context, mStoreObj.getSliderList(), sliderFlipper, ballLayout);
+            SliderView.initSliderView(context, mStoreObj.getSliderList(), sliderFlipper, ballLayout, boxBg);
             sliderBg.setVisibility(View.GONE);
         }
     }

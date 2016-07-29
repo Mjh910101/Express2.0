@@ -31,7 +31,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ellipsize="end"
-            android:maxLines="1"
+            android:maxLines="2"
             android:textColor="@color/black"
             android:textSize="@dimen/text_size_14" />
 
@@ -44,14 +44,25 @@
             android:textColor="@color/text_gray_01"
             android:textSize="@dimen/text_size_13" />
 
-        <TextView
-            android:id="@+id/item_item_priceStr"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:ellipsize="end"
-            android:maxLines="1"
-            android:textColor="@color/text_orange"
-            android:textSize="@dimen/text_size_15" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="MOP"
+                android:textColor="@color/text_orange"
+                android:textSize="@dimen/text_size_12" />
+
+            <TextView
+                android:id="@+id/item_item_priceStr"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/text_orange"
+                android:textSize="@dimen/text_size_18" />
+        </LinearLayout>
     </LinearLayout>
 
 </RelativeLayout>

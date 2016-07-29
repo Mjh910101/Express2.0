@@ -16,4 +16,7 @@
     <dimen name="text_size_23">23dp</dimen>
     <dimen name="text_size_24">24dp</dimen>
 
+
+    <dimen name="store_tool_layout">40dp</dimen>
+
 </resources>

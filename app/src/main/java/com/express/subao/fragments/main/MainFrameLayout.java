@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.GridView;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 
@@ -79,6 +80,8 @@ public class MainFrameLayout extends BaseFragment {
     private InsideGridView helpGrid;
     @ViewInject(R.id.main_categoryGrid)
     private GridView categoryGrid;
+    @ViewInject(R.id.ppt_boxBg)
+    private ImageView boxBg;
 
     private SliderView mSliderView;
 
@@ -125,7 +128,7 @@ public class MainFrameLayout extends BaseFragment {
     }
 
     private void setSliderView(List<SliderObj> list) {
-        mSliderView = SliderView.initSliderView(context, list, mViewFlipper, pptBallBox);
+        mSliderView = SliderView.initSliderView(context, list, mViewFlipper, pptBallBox,boxBg);
     }
 
     public void setHelpView(JSONArray array) {

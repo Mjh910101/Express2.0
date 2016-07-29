@@ -221,7 +221,7 @@ public class ShoppingCarAdapter extends BaseAdapter {
     private void setItemLayoutMessage(StoreItemHolder holder, ShoppingCarObj obj, int p) {
         holder.title.setText(obj.getStoreItemObj().getTitle());
         holder.sell.setText("已售 " + obj.getStoreItemObj().getSell());
-        holder.price.setText("MOB " + obj.getStoreItemObj().getPrice());
+        holder.price.setText("MOP " + obj.getStoreItemObj().getPrice());
         holder.sum.setText("x " + obj.getStoreItemObj().getSum());
         holder.settingSum.setText(String.valueOf(obj.getStoreItemObj().getSum()));
 

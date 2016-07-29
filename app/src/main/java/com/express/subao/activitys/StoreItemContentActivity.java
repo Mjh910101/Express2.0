@@ -51,6 +51,10 @@ public class StoreItemContentActivity extends BaseActivity {
     private ImageView backIcon;
     @ViewInject(R.id.title_name)
     private TextView titleName;
+    @ViewInject(R.id.title_scanningIcon)
+    private ImageView scanningIcon;
+    @ViewInject(R.id.title_shoppingCarIcon)
+    private ImageView shoppingCarIcon;
     @ViewInject(R.id.storeItemContent_titleText)
     private TextView titleText;
     @ViewInject(R.id.storeItemContent_sellText)
@@ -71,6 +75,10 @@ public class StoreItemContentActivity extends BaseActivity {
     private ProgressBar progress;
     @ViewInject(R.id.title_titleLayout)
     private RelativeLayout titleLayout;
+    @ViewInject(R.id.storeItemContent_originalText)
+    private TextView originalText;
+    @ViewInject(R.id.ppt_boxBg)
+    private ImageView boxBg;
 
     private StoreItemObj mStoreItemObj;
 
@@ -86,7 +94,8 @@ public class StoreItemContentActivity extends BaseActivity {
 
     }
 
-    @OnClick({R.id.title_back, R.id.storeItemContent_commentsLayout, R.id.storeItemContent_inShoppingCarBtn})
+    @OnClick({R.id.title_back, R.id.storeItemContent_commentsLayout, R.id.storeItemContent_inShoppingCarBtn,
+            R.id.title_shoppingCarIcon, R.id.title_scanningIcon})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.title_back:
@@ -98,11 +107,25 @@ public class StoreItemContentActivity extends BaseActivity {
             case R.id.storeItemContent_inShoppingCarBtn:
                 saveInShoppingCar(mStoreItemObj);
                 break;
+            case R.id.title_shoppingCarIcon:
+                jumpShoppingCarActivity();
+                break;
+            case R.id.title_scanningIcon:
+                jumpScanningActivity();
+                break;
         }
     }
 
+    private void jumpScanningActivity() {
+        Passageway.jumpActivity(context, ScanningActivity.class);
+    }
+
+    private void jumpShoppingCarActivity() {
+        Passageway.jumpActivity(context, ShoppingCarActivity.class);
+    }
+
     private void saveInShoppingCar(StoreItemObj obj) {
-        ShoppingCarHandler.saveInShoppingCar(context,progress,obj);
+        ShoppingCarHandler.saveInShoppingCar(context, progress, obj);
     }
 
     private void jumpCommentsListActivity() {
@@ -115,6 +138,8 @@ public class StoreItemContentActivity extends BaseActivity {
     private void initActivity() {
         TitleHandler.setTitle(context, titleLayout);
         backIcon.setVisibility(View.VISIBLE);
+        scanningIcon.setVisibility(View.VISIBLE);
+        shoppingCarIcon.setVisibility(View.VISIBLE);
         titleName.setText(TextHandeler.getText(context, R.string.item_content_text));
 
         mStoreItemObj = StoreItemObjHandler.getStoreItemObj();
@@ -129,8 +154,9 @@ public class StoreItemContentActivity extends BaseActivity {
     public void setItemMessage(StoreItemObj obj) {
         titleText.setText(obj.getTitle());
         sellText.setText(obj.getSellText());
+        originalText.setText("" + obj.getPrice());
         commentsText.setText(TextHandeler.getText(context, R.string.comments_sum_text).replace("0", String.valueOf(obj.getComments())) + "   >");
-        SliderView.initSliderView(context, obj.getSliderList(), sliderFlipper, ballLayout);
+        SliderView.initSliderView(context, obj.getSliderList(), sliderFlipper, ballLayout,boxBg);
         setContentWeb(obj.getDesc());
     }
 

@@ -25,17 +25,31 @@
             android:textColor="@color/black"
             android:textSize="@dimen/text_size_17" />
 
-        <TextView
-            android:id="@+id/storeItemContent_originalText"
+        <LinearLayout
+            android:id="@+id/storeItemContent_originalBox"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/storeItemContent_titleText"
-            android:layout_marginRight="5dp"
-            android:ellipsize="end"
-            android:maxLines="2"
-            android:text="original"
-            android:textColor="@color/text_orange"
-            android:textSize="@dimen/text_size_15" />
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="MOP"
+                android:textColor="@color/text_orange"
+                android:textSize="@dimen/text_size_12" />
+
+            <TextView
+                android:id="@+id/storeItemContent_originalText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="5dp"
+                android:ellipsize="end"
+                android:maxLines="2"
+                android:text=""
+                android:textColor="@color/text_orange"
+                android:textSize="@dimen/text_size_18" />
+        </LinearLayout>
 
         <TextView
             android:id="@+id/storeItemContent_discountText"
@@ -43,10 +57,10 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/storeItemContent_titleText"
             android:layout_marginRight="5dp"
-            android:layout_toRightOf="@id/storeItemContent_originalText"
+            android:layout_toRightOf="@id/storeItemContent_originalBox"
             android:ellipsize="end"
             android:maxLines="2"
-            android:text="discount"
+            android:text=""
             android:textColor="@color/text_gray_02"
             android:textSize="@dimen/text_size_15" />
 
@@ -85,8 +99,9 @@
     <View
         android:layout_width="fill_parent"
         android:layout_height="1dp"
-        android:layout_marginTop="20dp"
-        android:background="@color/line_gray" />
+        android:layout_marginTop="10dp"
+        android:background="@color/line_gray"
+        android:visibility="invisible" />
 
     <RelativeLayout
         android:id="@+id/storeItemContent_commentsLayout"
@@ -123,8 +138,9 @@
     <View
         android:layout_width="fill_parent"
         android:layout_height="1dp"
-        android:layout_marginBottom="20dp"
-        android:background="@color/line_gray" />
+        android:layout_marginBottom="10dp"
+        android:background="@color/line_gray"
+        android:visibility="invisible" />
 
     <LinearLayout
         android:layout_width="fill_parent"

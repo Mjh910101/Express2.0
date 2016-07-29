@@ -228,7 +228,7 @@ public class MainFrameLayoutV2 extends BaseFragment {
     }
 
     private void setSliderView(List<SliderObj> list) {
-        mSliderView = SliderView.initSliderView(context, list, mViewFlipper, pptBallBox);
+        mSliderView = SliderView.initSliderView(context, list, mViewFlipper, pptBallBox, boxBg);
     }
 
     private void downloadData() {

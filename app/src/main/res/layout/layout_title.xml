@@ -47,11 +47,21 @@
 
     <ImageView
         android:id="@+id/title_scanningIcon"
-        android:layout_width="wrap_content"
+        android:layout_width="30dp"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
         android:src="@drawable/title_scanning_icon"
+        android:visibility="gone" />
+
+    <ImageView
+        android:id="@+id/title_shoppingCarIcon"
+        android:layout_width="30dp"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="8dp"
+        android:layout_toLeftOf="@id/title_scanningIcon"
+        android:src="@drawable/title_shoppingcar_icon"
         android:visibility="gone" />
 
     <ImageView
@@ -94,5 +104,6 @@
         android:textColor="@color/whitle"
         android:textSize="@dimen/text_size_17"
         android:visibility="gone" />
+
 
 </RelativeLayout>

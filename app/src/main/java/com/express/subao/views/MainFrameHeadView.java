@@ -70,6 +70,8 @@ public class MainFrameHeadView extends LinearLayout {
     private ImageView getExpress;
     @ViewInject(R.id.main_boxAddress)
     private ImageView boxAddress;
+    @ViewInject(R.id.ppt_boxBg)
+    private ImageView boxBg;
 
     public MainFrameHeadView(Context context, List<SliderObj> list) {
         super(context);
@@ -132,7 +134,7 @@ public class MainFrameHeadView extends LinearLayout {
 
     private void initLayout() {
         initImageView();
-        mSliderView = SliderView.initSliderView(context, list, mViewFlipper, pptBallBox);
+        mSliderView = SliderView.initSliderView(context, list, mViewFlipper, pptBallBox, boxBg);
     }
 
 

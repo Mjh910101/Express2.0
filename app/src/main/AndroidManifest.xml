@@ -200,6 +200,9 @@
         <activity
             android:name=".activitys.UserOrderListActivity"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".activitys.ShoppingCarActivity"
+            android:screenOrientation="portrait" />
         <!-- 服务 -->
         <service android:name=".download.DownloadNewAppService" />
 

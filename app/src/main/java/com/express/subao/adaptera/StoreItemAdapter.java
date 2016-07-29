@@ -126,7 +126,7 @@ public class StoreItemAdapter extends BaseAdapter {
         setRebateImage(holder.img, obj.getCover());
         holder.title.setText(obj.getTitle());
         holder.sell.setText("已售" + (int) obj.getSell());
-        holder.priceStr.setText(obj.getPrice() + "");
+        holder.priceStr.setText("" + obj.getPrice());
     }
 
     private void setRebateImage(ImageView img, String s) {

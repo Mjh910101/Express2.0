@@ -18,61 +18,63 @@
         android:paddingBottom="3dp"
         android:paddingTop="3dp">
 
-        <LinearLayout
+        <RelativeLayout
             android:id="@+id/main_tap_mainBox"
             android:layout_width="0dp"
             android:layout_height="fill_parent"
             android:layout_weight="1"
-            android:gravity="center"
-            android:orientation="vertical">
+            android:padding="3dp">
 
             <ImageView
                 android:id="@+id/main_tap_mainIcon"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="3dp"
+                android:layout_centerHorizontal="true"
                 android:src="@drawable/main_tap_off_main_icon" />
 
             <TextView
                 android:id="@+id/main_tap_mainText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
                 android:text="@string/main_text"
                 android:textColor="@color/black"
                 android:textSize="@dimen/text_size_13" />
 
-        </LinearLayout>
+        </RelativeLayout>
 
-        <LinearLayout
+        <RelativeLayout
             android:id="@+id/main_tap_rebateBox"
             android:layout_width="0dp"
             android:layout_height="fill_parent"
             android:layout_weight="1"
-            android:gravity="center"
-            android:orientation="vertical">
+            android:padding="3dp">
 
             <ImageView
                 android:id="@+id/main_tap_rebateIcon"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="3dp"
+                android:layout_centerHorizontal="true"
                 android:src="@drawable/main_tap_off_rebate_icon" />
 
             <TextView
                 android:id="@+id/main_tap_rebateText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
                 android:text="@string/rebate_text"
                 android:textColor="@color/black"
                 android:textSize="@dimen/text_size_13" />
 
-        </LinearLayout>
+        </RelativeLayout>
 
         <RelativeLayout
             android:layout_width="0dp"
             android:layout_height="fill_parent"
             android:layout_weight="1"
-            android:visibility="gone">
+            android:visibility="visible">
 
             <ImageView
                 android:id="@+id/main_tap_scanningIcon"
@@ -83,56 +85,58 @@
 
         </RelativeLayout>
 
-        <LinearLayout
+        <RelativeLayout
             android:id="@+id/main_tap_shoppingCarBox"
             android:layout_width="0dp"
             android:layout_height="fill_parent"
             android:layout_weight="1"
-            android:gravity="center"
-            android:orientation="vertical"
+            android:padding="3dp"
             android:visibility="visible">
 
             <ImageView
                 android:id="@+id/main_tap_shoppingCarIcon"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="3dp"
+                android:layout_centerHorizontal="true"
                 android:src="@drawable/main_tap_off_shoppingcar_icon" />
 
             <TextView
                 android:id="@+id/main_tap_shoppingCarText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
                 android:text="@string/shopping_car_text"
                 android:textColor="@color/black"
                 android:textSize="@dimen/text_size_13" />
 
-        </LinearLayout>
+        </RelativeLayout>
 
-        <LinearLayout
+        <RelativeLayout
             android:id="@+id/main_tap_userBox"
             android:layout_width="0dp"
             android:layout_height="fill_parent"
             android:layout_weight="1"
-            android:gravity="center"
-            android:orientation="vertical">
+            android:padding="3dp">
 
             <ImageView
                 android:id="@+id/main_tap_userIcon"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="3dp"
+                android:layout_centerHorizontal="true"
                 android:src="@drawable/main_tap_off_user_icon" />
 
             <TextView
                 android:id="@+id/main_tap_userText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
                 android:text="@string/user_text"
                 android:textColor="@color/black"
                 android:textSize="@dimen/text_size_13" />
 
-        </LinearLayout>
+        </RelativeLayout>
 
 
     </LinearLayout>

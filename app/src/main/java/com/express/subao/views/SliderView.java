@@ -61,12 +61,11 @@ public class SliderView {
     private PPTFlish flish = null;
     private Thread thread = null;
 
-    public static SliderView initSliderView(Context context, List<SliderObj> list, InsideViewFlipper mViewFlipper, LinearLayout pptBallBox) {
-        return new SliderView(context, list, mViewFlipper, pptBallBox);
+    public static SliderView initSliderView(Context context, List<SliderObj> list, InsideViewFlipper mViewFlipper, LinearLayout pptBallBox, ImageView boxBg) {
+        return new SliderView(context, list, mViewFlipper, pptBallBox, boxBg);
     }
 
-    private SliderView(Context context, List<SliderObj> list, InsideViewFlipper mViewFlipper, LinearLayout pptBallBox) {
-
+    private SliderView(Context context, List<SliderObj> list, InsideViewFlipper mViewFlipper, LinearLayout pptBallBox, ImageView boxBg) {
         this.context = context;
         this.list = list;
         inflater = (LayoutInflater) context
@@ -76,6 +75,7 @@ public class SliderView {
         this.pptBallBox = pptBallBox;
 
         setPptView(list);
+        boxBg.setVisibility(View.GONE);
     }
 
     private void setPptView(final List<SliderObj> list) {
@@ -189,9 +189,9 @@ public class SliderView {
     }
 
     private void onClickPPT(SliderObj obj) {
-        Log.e("img", obj.getImg());
-        Log.e("url", obj.getUrl());
-        if (obj.getUrl() != null && !obj.getUrl().equals("")) {
+        if (obj.getUrl() != null && !obj.getUrl().equals("null") && !obj.getUrl().equals("")) {
+            Log.e("img", obj.getImg());
+            Log.e("url", obj.getUrl());
             Bundle b = new Bundle();
             b.putString(WebActivity.TITLE, "詳細");
             b.putString(WebActivity.URL, obj.getUrl());

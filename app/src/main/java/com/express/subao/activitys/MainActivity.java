@@ -123,7 +123,7 @@ public class MainActivity extends BaseActivity {
 
     private void initApp() {
         TitleHandler.setTitle(context, titleLayout);
-        TitleHandler.setTitle(context, tapLayout);
+//        TitleHandler.setTitle(context, tapLayout);
 
         fragmentManager = getFragmentManager();
 

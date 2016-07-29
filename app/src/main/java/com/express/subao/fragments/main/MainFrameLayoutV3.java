@@ -87,6 +87,8 @@ public class MainFrameLayoutV3 extends BaseFragment {
     private ImageView boxAddress;
     @ViewInject(R.id.main_sortGrid)
     private InsideGridView sortGrid;
+    @ViewInject(R.id.ppt_boxBg)
+    private ImageView boxBg;
 
     private SliderView mSliderView;
     private StoreObj obj;
@@ -234,7 +236,7 @@ public class MainFrameLayoutV3 extends BaseFragment {
     }
 
     private void setSliderView(List<SliderObj> list) {
-        mSliderView = SliderView.initSliderView(context, list, mViewFlipper, pptBallBox);
+        mSliderView = SliderView.initSliderView(context, list, mViewFlipper, pptBallBox, boxBg);
     }
 
 

@@ -111,6 +111,8 @@ public class StoreItemListActivity extends BaseActivity {
     private ImageView sliderBg;
     @ViewInject(R.id.itemList_commentsSumText)
     private TextView commentsSumText;
+    @ViewInject(R.id.ppt_boxBg)
+    private ImageView boxBg;
 
     private StoreObj mStoreObj;
     private int page = 1, pages = 1;
@@ -255,7 +257,7 @@ public class StoreItemListActivity extends BaseActivity {
 //            titleName.setText(mStoreObj.getTitle());
 //            downloadItemTag(mStoreObj.getObjectId());
             downloadStoreData(mStoreObj.getObjectId());
-            SliderView.initSliderView(context, mStoreObj.getSliderList(), sliderFlipper, ballLayout);
+            SliderView.initSliderView(context, mStoreObj.getSliderList(), sliderFlipper, ballLayout,boxBg);
             sliderBg.setVisibility(View.GONE);
         }
     }
