@@ -12,6 +12,8 @@ import com.express.subao.R;
 import com.express.subao.box.ItemObj;
 import com.express.subao.box.OrderObj;
 import com.express.subao.box.StoreItemObj;
+import com.express.subao.handlers.ColorHandle;
+import com.express.subao.views.InsideListView;
 
 import java.util.List;
 
@@ -80,23 +82,47 @@ public class UserOrderAdaper extends BaseAdapter {
             holder = (HolderView) convertView.getTag();
         }
 
-        OrderObj obj=itemList.get(position);
+        OrderObj obj = itemList.get(position);
 
-        setView(holder,obj);
+        setView(holder, obj);
 
         return convertView;
     }
 
     private void setView(HolderView holder, OrderObj obj) {
         holder.storeName.setText(obj.getStoreName());
+        holder.messageText.setText(obj.getItemMessage());
+
+        switch (obj.getStatus()) {
+            case "1":
+                holder.statusText.setText("未發貨");
+                holder.statusText.setTextColor(ColorHandle.getColorForID(context, R.color.text_gray_01));
+                holder.statusText.setBackgroundResource(R.drawable.gray_box_btn);
+                break;
+            default:
+                holder.statusText.setText("已發貨");
+                holder.statusText.setTextColor(ColorHandle.getColorForID(context, R.color.text_orange));
+                holder.statusText.setBackgroundResource(R.drawable.orange_box_btn);
+                break;
+        }
+
+        if(!obj.isNull()){
+            holder.dataList.setAdapter(new OrderItemAdapter(context, obj.getItemList()));
+        }
     }
 
     class HolderView {
 
         TextView storeName;
+        TextView messageText;
+        TextView statusText;
+        InsideListView dataList;
 
         HolderView(View view) {
             storeName = (TextView) view.findViewById(R.id.userOrder_storeName);
+            messageText = (TextView) view.findViewById(R.id.userOrder_messageText);
+            statusText = (TextView) view.findViewById(R.id.userOrder_statusText);
+            dataList = (InsideListView) view.findViewById(R.id.userOrder_dataList);
         }
 
     }

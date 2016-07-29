@@ -180,9 +180,9 @@ public class SdyOrderContentActivity extends BaseActivity {
         messageBox.setVisibility(View.VISIBLE);
         contentPrice.setText("MOB");
         contentTips.setText("請盡快前往取件");
-        contentArea.setText("位置：" + obj.getBoxAddress());
+        contentArea.setText("地址：" + obj.getBoxAddress());
         contentPart.setText("");
-        contentCode.setText("編號：" + obj.getBoxDeviceId());
+        contentCode.setText("櫃名：" + obj.getBoxDeviceId());
         contentCompanyName.setText("快遞單號 : " + obj.getMailno());
         contentPostman.setText("快遞員 : " + obj.getMailman() + " " + obj.getMailman_mobile());
         contentExpressAt.setText("投件時間 : " + obj.getCreatedAt());

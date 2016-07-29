@@ -145,4 +145,31 @@ public class OrderObj {
         }
         return store.getTitle();
     }
+
+    public String getItemMessage() {
+        StringBuffer sb = new StringBuffer();
+
+        sb.append("共計");
+        sb.append(getItemSum());
+        sb.append("件商品 ");
+        sb.append("合計(含運費):");
+        sb.append("MOP");
+        sb.append(getTotal());
+
+        return sb.toString();
+    }
+
+    public int getItemSum() {
+        int sum = 0;
+        if (!isNull()) {
+            for (StoreItemObj obj : itemList) {
+                sum += obj.getSum();
+            }
+        }
+        return sum;
+    }
+
+    public boolean isNull() {
+        return itemList == null;
+    }
 }

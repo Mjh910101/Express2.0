@@ -84,16 +84,21 @@ public class FloatListView extends ListView {
                 return true;
             }
 
-        } else if (getFirstVisiblePosition() == 0 && getChildAt(0).getTop() == 0) {
-//            View view = ((ViewGroup) getParent());
-            View view = scrollParent;
-            if (view.getScrollY() > 0) {
-                view.scrollBy(0, (int) (lastY - currentY));
-                lastY = currentY;
-                if (view.getScrollY() < 0) {
-                    view.scrollTo(0, 0);
+        } else if (getFirstVisiblePosition() == 0) {
+            View child = getChildAt(0);
+            if (child != null) {
+                if (child.getTop() == 0) {
+                    //            View view = ((ViewGroup) getParent());
+                    View view = scrollParent;
+                    if (view.getScrollY() > 0) {
+                        view.scrollBy(0, (int) (lastY - currentY));
+                        lastY = currentY;
+                        if (view.getScrollY() < 0) {
+                            view.scrollTo(0, 0);
+                        }
+                        return true;
+                    }
                 }
-                return true;
             }
         }
         lastY = (int) ev.getRawY();
