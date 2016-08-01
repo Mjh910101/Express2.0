@@ -172,4 +172,25 @@ public class OrderObj {
     public boolean isNull() {
         return itemList == null;
     }
+
+    public String getAddressInfo() {
+        if (address != null) {
+            return address.getAddress();
+        }
+        return "";
+    }
+
+    public String getUserName() {
+        if (address != null) {
+            return address.getReceiver();
+        }
+        return "";
+    }
+
+    public String getUserTel() {
+        if (address != null) {
+            return address.getContact();
+        }
+        return "";
+    }
 }

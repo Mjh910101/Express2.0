@@ -73,11 +73,14 @@ public class FloatListView extends ListView {
         int currentY = (int) ev.getRawY();
         Log.e("distance", "currentY : " + currentY + " , lastY : " + lastY);
         if (currentY < lastY) {
+            Log.e("distance", "******************** currentY < lastY *********************");
 //            View view = ((ViewGroup) getParent());
             View view = scrollParent;
             if (view.getScrollY() < canScrollDistance) {
+                Log.e("distance", "scrollBy : " + (lastY - currentY));
                 view.scrollBy(0, (int) (lastY - currentY));
                 if (view.getScrollY() > canScrollDistance) {
+                    Log.e("distance", "scrollTo : " + canScrollDistance);
                     view.scrollTo(0, canScrollDistance);
                 }
                 lastY = currentY;
@@ -85,15 +88,19 @@ public class FloatListView extends ListView {
             }
 
         } else if (getFirstVisiblePosition() == 0) {
+            Log.e("distance", "******************** currentY > lastY *********************");
             View child = getChildAt(0);
             if (child != null) {
                 if (child.getTop() == 0) {
                     //            View view = ((ViewGroup) getParent());
                     View view = scrollParent;
+                    Log.e("distance", "ScrollY : " + view.getScrollY());
                     if (view.getScrollY() > 0) {
+                        Log.e("distance", "scrollBy : " + (lastY - currentY));
                         view.scrollBy(0, (int) (lastY - currentY));
                         lastY = currentY;
                         if (view.getScrollY() < 0) {
+                            Log.e("distance", "scrollTo : " + 0);
                             view.scrollTo(0, 0);
                         }
                         return true;

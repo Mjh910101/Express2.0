@@ -114,7 +114,7 @@ public class ItemOrderView extends LinearLayout {
 
     public void upload(JSONObject json) {
         freightTypeText.setText(JsonHandle.getString(json, "shipment_desc"));
-        freightSum.setText(String.valueOf(JsonHandle.getInt(json, "shipment")));
+        freightSum.setText("MOP" + JsonHandle.getInt(json, "shipment"));
     }
 
     public JSONObject toJson() {

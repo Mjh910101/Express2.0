@@ -160,6 +160,10 @@ public class Url {
         return getIndex() + "/api/v1/order";
     }
 
+    public static String getOrder(String id) {
+        return getIndex() + "/api/v1/order" + "/" + id;
+    }
+
     public static String getOrderCommit() {
         return getIndex() + "/api/v1/order/commit";
     }

@@ -89,16 +89,16 @@ public class UserAddressObj {
     }
 
     public boolean isNull() {
-        if(box!=null){
-            return box.getPoint()==null;
+        if (box != null) {
+            return box.getPoint() == null;
         }
         return box == null;
     }
 
     public String getAddress() {
-        if (isNull()) {
-            return "";
+        if (box != null) {
+            return box.getAddress();
         }
-        return box.getAddress();
+        return "";
     }
 }

@@ -1,6 +1,7 @@
 package com.express.subao.adaptera;
 
 import android.content.Context;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,10 +10,12 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.express.subao.R;
+import com.express.subao.activitys.UserOrderContentActivity;
 import com.express.subao.box.ItemObj;
 import com.express.subao.box.OrderObj;
 import com.express.subao.box.StoreItemObj;
 import com.express.subao.handlers.ColorHandle;
+import com.express.subao.tool.Passageway;
 import com.express.subao.views.InsideListView;
 
 import java.util.List;
@@ -85,8 +88,19 @@ public class UserOrderAdaper extends BaseAdapter {
         OrderObj obj = itemList.get(position);
 
         setView(holder, obj);
-
+        setOnClick(convertView, obj);
         return convertView;
+    }
+
+    private void setOnClick(View view, final OrderObj obj) {
+        view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Bundle b = new Bundle();
+                b.putString("id", obj.getObjectId());
+                Passageway.jumpActivity(context, UserOrderContentActivity.class, b);
+            }
+        });
     }
 
     private void setView(HolderView holder, OrderObj obj) {
@@ -106,9 +120,16 @@ public class UserOrderAdaper extends BaseAdapter {
                 break;
         }
 
-        if(!obj.isNull()){
+        if (!obj.isNull()) {
             holder.dataList.setAdapter(new OrderItemAdapter(context, obj.getItemList()));
         }
+    }
+
+    public void add(List<OrderObj> list) {
+        for (OrderObj obj : list) {
+            itemList.add(obj);
+        }
+        notifyDataSetChanged();
     }
 
     class HolderView {

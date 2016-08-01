@@ -62,7 +62,7 @@ public class UserOrderListActivity extends BaseActivity {
     private final static String WAITING = "1";
     private final static String ASSESS = "0";
     private final static String SHIP = "2";
-    private final static int LIMIT = 20;
+    private final static int LIMIT = 10;
 
     @ViewInject(R.id.title_back)
     private ImageView backIcon;
@@ -257,6 +257,8 @@ public class UserOrderListActivity extends BaseActivity {
         if (userOrderAdaper == null) {
             userOrderAdaper = new UserOrderAdaper(context, list);
             dataList.setAdapter(userOrderAdaper);
+        }else{
+            userOrderAdaper.add(list);
         }
     }
 

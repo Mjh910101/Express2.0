@@ -35,14 +35,14 @@ public class OrderObjHandler {
     public static List<OrderObj> getOrderObjList(JSONArray array){
         List<OrderObj> list=new ArrayList<>();
 
-        for(int i=0;i<=array.length();i++){
+        for(int i=0;i<array.length();i++){
             list.add(getOrderObj(JsonHandle.getJSON(array,i)));
         }
 
         return list;
     }
 
-    private static OrderObj getOrderObj(JSONObject json) {
+    public static OrderObj getOrderObj(JSONObject json) {
         OrderObj obj=new OrderObj();
 
         obj.setAddress(JsonHandle.getJSON(json,"receive"));
