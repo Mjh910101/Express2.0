@@ -73,6 +73,13 @@ public class SdyOrderObj {
         return boxObj.getAddress();
     }
 
+    public String getBoxTitle() {
+        if (boxObj == null) {
+            return "";
+        }
+        return boxObj.getTitle();
+    }
+
     public void setBoxObj(SdyBoxObj boxObj) {
         this.boxObj = boxObj;
     }
@@ -248,4 +255,6 @@ public class SdyOrderObj {
         }
         return sb.toString();
     }
+
+
 }

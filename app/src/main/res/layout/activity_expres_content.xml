@@ -15,8 +15,8 @@
             android:id="@+id/expres_content_messageBox"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
-            android:visibility="invisible"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:visibility="invisible">
 
             <RelativeLayout
                 android:id="@+id/expres_content_mobBox"
@@ -85,7 +85,10 @@
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
-                        android:padding="8dp">
+                        android:paddingBottom="15dp"
+                        android:paddingLeft="8dp"
+                        android:paddingRight="8dp"
+                        android:paddingTop="15dp">
 
                         <ImageView
                             android:layout_width="25dp"
@@ -101,6 +104,7 @@
                             <LinearLayout
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:layout_marginBottom="5dp"
                                 android:orientation="horizontal">
 
                                 <TextView
@@ -144,7 +148,10 @@
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
-                        android:padding="8dp">
+                        android:paddingBottom="15dp"
+                        android:paddingLeft="8dp"
+                        android:paddingRight="8dp"
+                        android:paddingTop="15dp">
 
                         <ImageView
                             android:layout_width="25dp"
@@ -161,6 +168,7 @@
                                 android:id="@+id/expres_content_area"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:layout_marginBottom="5dp"
                                 android:text=""
                                 android:textColor="@color/black"
                                 android:textSize="@dimen/text_size_17" />
@@ -169,6 +177,7 @@
                                 android:id="@+id/expres_content_part"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:layout_marginBottom="5dp"
                                 android:text="part"
                                 android:textColor="@color/black"
                                 android:textSize="@dimen/text_size_17"
@@ -196,7 +205,10 @@
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
-                        android:padding="8dp">
+                        android:paddingBottom="15dp"
+                        android:paddingLeft="8dp"
+                        android:paddingRight="8dp"
+                        android:paddingTop="15dp">
 
                         <ImageView
                             android:layout_width="25dp"
@@ -216,12 +228,14 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text=""
+                                android:layout_marginBottom="5dp"
                                 android:textColor="@color/black"
                                 android:textSize="@dimen/text_size_17" />
 
                             <TextView
                                 android:id="@+id/expres_content_postman"
                                 android:layout_width="wrap_content"
+                                android:layout_marginBottom="5dp"
                                 android:layout_height="wrap_content"
                                 android:text=""
                                 android:textColor="@color/black"
