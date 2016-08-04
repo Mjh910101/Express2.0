@@ -9,9 +9,10 @@
         android:id="@+id/main_sortGrid"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/whitle"
         android:horizontalSpacing="0dp"
-        android:numColumns="2"
         android:listSelector="@null"
+        android:numColumns="2"
         android:scrollbars="none"
         android:verticalSpacing="0dp" />
 
