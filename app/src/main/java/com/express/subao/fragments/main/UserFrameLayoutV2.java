@@ -66,7 +66,6 @@ public class UserFrameLayoutV2 extends BaseFragment {
     @ViewInject(R.id.user_item_pushSwitch)
     private RadioButton pushSwitch;
 
-
     @Override
     public void onRestart() {
         setLoginMessage();
