@@ -34,10 +34,11 @@
         android:allowBackup="true"
         android:icon="@mipmap/logo_icon"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme"><!--android:alwaysRetainTaskState="true"-->
         <activity
             android:name=".activitys.MainActivity"
             android:label="@string/app_name"
+            android:launchMode="singleTop"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

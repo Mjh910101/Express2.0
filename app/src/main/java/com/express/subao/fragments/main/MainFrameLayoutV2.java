@@ -140,9 +140,10 @@ public class MainFrameLayoutV2 extends BaseFragment {
         double eBH = eBW / 258 * 230;
         setImageParams(expressCheck, eBW, eBH);
 
-        double eCW = w * 382 / 640;
-        double eCH = eCW / 382 * 230;
-        setImageParams(expressBox, eCW, eCH);
+//        double eCW = w * 382 / 640;
+//        double eCH = eCW / 382 * 230;
+        double eCH = w / 16 * 5;
+        setImageParams(expressBox, w, eCH);
 
         double w2 = w / 2;
 

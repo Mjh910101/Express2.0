@@ -74,7 +74,7 @@
             android:layout_width="0dp"
             android:layout_height="fill_parent"
             android:layout_weight="1"
-            android:visibility="visible">
+            android:visibility="gone">
 
             <ImageView
                 android:id="@+id/main_tap_scanningIcon"
@@ -91,7 +91,7 @@
             android:layout_height="fill_parent"
             android:layout_weight="1"
             android:padding="3dp"
-            android:visibility="visible">
+            android:visibility="gone">
 
             <ImageView
                 android:id="@+id/main_tap_shoppingCarIcon"
